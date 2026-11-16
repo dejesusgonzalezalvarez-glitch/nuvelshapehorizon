@@ -8,6 +8,7 @@
 | **Retro Shapewear Top with Zipper** (Handle: `retro-shapewear-top-with-zipper`) | Top moldeador de estilo retro con cierre. | 0.00 (pendiente) | Tops / Shapewear | Tallas (S, M, L, XL), Colores (Negro, Rosa) | `corse-negro-modelo.jpg`, `corse-negro-modelo-espalda.jpg`, `corse-rosa-modelo.jpg`, `corse-rosa-modelo-espalda.jpg` | Sin precio definido en origen. |
 | **Womens Shapewear Dress Jumpsuit** (Handle: `womens-shapewear-dress-jumpsuit`) | Vestido jumpsuit moldeador sin costuras. | 0.00 (pendiente) | Vestidos / Shapewear | Tallas (S, M, L, XL), Colores (Negro, Gris) | `vestido-negro-frente.jpg`, `vestido-negro-espalda.jpg`, `vestido-gris-frente.jpg`, `vestido-gris-espalda.jpg`, `vestido-tallas.jpg`, `vestido-ugc-negro.jpg`, `vestido-ugc-gris.jpg` | Sin precio definido en origen. |
 | **Seamless Shapewear Panties** (Handle: `seamless-shapewear-panties`) | Braguitas moldeadoras sin costuras. | 0.00 (pendiente) | Panties / Shapewear | Tallas (S, M, L, XL), Colores (Negro, Beige) | `short-negro-frente.jpg`, `short-negro-espalda.jpg`, `short-beige-frente.jpg`, `short-beige-espalda.jpg`, `short-tallas.jpg`, `short-ugc-negro.jpg`, `short-ugc-beige.jpg` | Sin precio definido en origen. |
+| **Sujetador Corrector de Postura** (Handle: `sujetador-corrector-postura-sin-costuras`) | Sujetador con tecnología de corrección postural. | 0.00 (pendiente) | Accesorios / Shapewear | Talla Única, Color Beige | `sujetador-corrector.jpg` (imagen por verificar) | Nuevo producto detectado en tienda en vivo - no estaba en repositorio original. |
 
 ### Avisos de Imágenes en Productos y Activos:
 - **Imágenes > 500 KB:**
@@ -28,7 +29,7 @@
 | 2 | `vida-real` | Comparativa producto vs puesta | Eyebrow, Título, Subtítulo | `producto-frente.jpg`, `avatar-vestida.jpg` | - |
 | 3 | `caracteristicas-home` | Características técnicas | 3 puntos clave de diseño y comodidad | Iconos / imágenes técnicas | - |
 | 4 | `producto-ancla` | Producto destacado (Faja moldeadora) | Buybox y selectores de variantes | Galería del producto | Botón Añadir al carrito |
-| 5 | `catalogo` | Cuadrícula de catálogo | "Nuestro catálogo" | Tarjetas de los 4 productos | Enlaces a detalle de producto |
+| 5 | `catalogo` | Cuadrícula de catálogo | "Nuestro catálogo" | Tarjetas de los 5 productos | Enlaces a detalle de producto |
 | 6 | `por-que` | Beneficios Nuvel | "Por qué Nuvel" (4 columnas) | Iconos / textos explicativos | - |
 | 7 | `testimonios` | Opiniones de clientas | "Clientas reales, mensajes reales" | Texto informativo / UGC | - |
 | 8 | `confianza` | Garantías de compra | Envío gratis, 30 días de prueba, Pago seguro | Iconos | Enlaces informativos |
@@ -43,7 +44,7 @@
 | **Hero** (`index.json` -> `hero`) | `image-banner` o `custom-liquid` | Scheme de color, padding, imagen de fondo, textos alineados. |
 | **Vida Real** (`vida-real`) | `image-with-text` o `rich-text` con columnas | Título, subtítulo, imágenes superpuestas o lado a lado. |
 | **Características** (`caracteristicas-home`) | `multicolumn` | Título, 3 columnas con icono/título/texto, esquema de color. |
-| **Producto Ancla** (`producto-ancla`) | `featured-product` | Selección del producto `faja-moldeadora-invisible-nuvel`, tamaño de medios, esquema de color. |
+| **Producto Ancla** (`producto-ancla`) | `featured-product` | Selección del producto `faja-moldeadora-invisible-nuvel`, tamaño de medios, esquema de color. **Nota:** El catálogo ahora tiene 5 productos - el Sujetador Corrector se muestra en el catálogo pero el producto ancla principal sigue siendo la Faja Moldeadora Invisible. |
 | **Catálogo** (`catalogo`) | `featured-collection` o `collection-list` | Título de sección, visualización de los 4 productos. |
 | **Por qué Nuvel** (`por-que`) | `multicolumn` | 4 columnas con títulos y descripciones cortas. |
 | **Testimonios** (`testimonios`) | `rich-text` | Texto centrado con testimonios de clientas. |
