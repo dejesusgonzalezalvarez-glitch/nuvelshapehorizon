@@ -1,0 +1,17 @@
+"Handle","Title","Body (HTML)","Vendor","Type","Tags","Published","Option1 Name","Option1 Value","Variant SKU","Variant Grams","Variant Inventory Tracker","Variant Inventory Policy","Variant Fulfillment Service","Variant Price","Variant Requires Shipping","Variant Taxable","Image Src","Image Position","Image Alt Text","Gift Card","Status"
+"faja-moldeadora-invisible-nuvel","Faja moldeadora invisible Nuvel","","Nuvel Shape","Shapewear",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/producto-frente.jpg","1","Faja moldeadora invisible - vista frontal","false","draft"
+"retro-shapewear-top-with-zipper","Retro Shapewear Top with Zipper","","Nuvel Shape","Tops",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/corse-negro-modelo.jpg","1","Top retro con zipper - modelo","false","draft"
+"womens-shapewear-dress-jumpsuit","Womens Shapewear Dress Jumpsuit","","Nuvel Shape","Vestidos",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/vestido-negro-frente.jpg","1","Vestido jumpsuit moldeador negro - vista frontal","false","draft"
+"seamless-shapewear-panties","Seamless Shapewear Panties","","Nuvel Shape","Panties",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/short-negro-frente.jpg","1","Braguitas moldeadoras sin costuras negras - vista frontal","false","draft"
+
+<!-- NOTAS IMPORTANTES -->
+<!-- 
+WARNING: Product descriptions (Body HTML) are empty per "si falta información, déjala vacía; nunca la inventes".
+WARNING: Variant data (SKU, Grams, specific Option1 values) are placeholders. 
+  These products likely have variants (tallas, colores) in Shopify admin - complete manually after import.
+WARNING: Prices set to 0.00 as original origin lacked pricing - verify and update manually.
+WARNING: Image URLs use main branch raw GitHub paths - verify images display correctly.
+WARNING: Additional product images exist in _shopify/nuvelshapestore/assets/ - can be added as extra CSV rows 
+  with only: Image Src, Image Position, Image Alt Text columns filled (other columns empty).
+  Current CSV includes only primary image (position 1) per product.
+>
