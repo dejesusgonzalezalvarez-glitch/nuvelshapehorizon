@@ -5,21 +5,20 @@
 "seamless-shapewear-panties","Bragas Moldeadoras Sin Costuras","","Nuvel Shape","Panties",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/short-negro-frente.jpg","1","Braguitas moldeadoras sin costuras negras - vista frontal","false","draft"
 "sujetador-corrector-postura-sin-costuras","Sujetador Corrector de Postura Sin Costuras","","Nuvel Shape","Accesorios",,"FALSE","Title","Default Title","","0","deny","manual","0.00","true","true","https://raw.githubusercontent.com/dejesusgonzalezalvarez-glitch/nuvelshapestore/main/assets/producto-frente.jpg","1","Sujetador corrector de postura - vista frontal","false","draft"
 
-<!-- NOTAS IMPORTANTES -->
+<!-- NOTAS CRÍTICAS SOBRE TUS IMÁGENES IA -->
 <!-- 
-WARNING: Product descriptions (Body HTML) are empty per "si falta información, déjala vacía; nunca la inventes".
-WARNING: Variant data (SKU, Grams, specific Option1 values) are placeholders. 
-  These products likely have variants (tallas, colores) in Shopify admin - complete manually after import.
-WARNING: Prices set to 0.00 as original origin lacked pricing - verify and update manually.
-  NOTA: La tienda en vivo muestra precios (ej. Faja €59,90/€93,45, Top €34,90/€86,51, Sujetador €39,90/€79,80). 
-  Revisar y actualizar precios manualmente en Shopify admin.
-WARNING: Image URLs use main branch raw GitHub paths from the OLD Nuvel Shape store repo.
-  Todas las imágenes arriba son del repositorio original, NO de proveedores externos.
-  Verificar que las imágenes se muestren correctamente después del import.
-WARNING: Additional product images exist in _shopify/nuvelshapestore/assets/ - can be added as extra CSV rows 
-  with only: Image Src, Image Position, Image Alt Text columns filled (other columns empty).
-  Current CSV includes only primary image (position 1) per product.
-  NOTA IMPORTANTE: Para el producto 5 (Sujetador Corrector), la imagen producto-frente.jpg 
-  es una imagen genérica del repositorio. Se recomienda reemplazar con imagen específica 
-  del producto sujetador desde el repo original cuando esté disponible.
->
+TUS IMÁGENES GENERADAS CON IA:
+- Ubicación original: C:\Users\Gilmer De Jesús\Desktop\Dropshipping\1. Nuvel Store\Nuvel Store Shopify Theme Liquid\assets\
+- Copiadas al tema Horizon: C:\Users\Gilmer De Jesús\Desktop\nuvelshapehorizon-master\assets\
+- Nombres en theme: faja-ia.jpg, top-retro-ia.jpg, vestido-ia.jpg, bragas-ia.jpg
+- NOTA: El CSV usa URLs del repo antiguo para que la importación a Shopify funcione correctamente.
+- DESPUÉS DEL IMPORT: En Shopify admin, ve a cada producto y reemplaza la imagen por la versión IA correspondiente:
+  * Faja Moldeadora → faja-ia.jpg
+  * Top Retro con Cremallera → top-retro-ia.jpg  
+  * Vestido Jumpsuit → vestido-ia.jpg
+  * Bragas Sin Costuras → bragas-ia.jpg
+  * Sujetador Corrector → (usar faja-ia.jpg o imagen específica)
+- TUS IMÁGENES IA NO ESTÁN en las URLs del repo antiguoson solo para referencia/localización en el theme Horizon.
+- Las URLs arriba son públicas y necesarias para que el CSV de importación funcione en Shopify.
+- Precios: Verificar y actualizar manualmente en Shopify admin (tienda en vivo muestra: Faja €59.90/€93.45, Top €34.90/€86.51, Sujetador €39.90/€79.80).
+ -->
