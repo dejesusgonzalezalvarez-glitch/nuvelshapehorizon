@@ -1,27 +1,84 @@
-{% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-  <div class="nuvel-faja-packs">
-  <h2>Packs</h2>
-  <p><strong>1 faja</strong> · {{ product.selected_or_first_available_variant.price | money }}</p>
-  {% if duo.available and duo.id != product.id %}
-    <a href="{{ duo.url }}">2 fajas · {% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</a>
-  {% endif %}
-  {% if look.available and look.id != product.id %}
-    <a href="{{ look.url }}">Look completo (short, faja y top) · {% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</a>
-  {% endif %}
-  </div>
+{% if duo.available or look.available %}
+  <section class="nuvel-faja-packs" aria-label="Packs">
+    <h3>Packs</h3>
+    <div class="nuvel-faja-packs__item">
+      <div class="nuvel-faja-packs__images" aria-hidden="true">
+        <img src="{{ 'producto-frente.jpg' | asset_url }}" alt="" loading="lazy" width="40" height="48">
+      </div>
+      <strong>1 faja</strong>
+      <span>{{ product.selected_or_first_available_variant.price | money }}</span>
+    </div>
+    {% assign pack_types = 'duo,look' | split: ',' %}
+    {% for pack_type in pack_types %}
+      {% if pack_type == 'duo' %}
+        {% assign pack = duo %}
+        {% assign label = '2 fajas' %}
+        {% assign images = 'producto-frente.jpg,producto-frente.jpg' | split: ',' %}
+      {% else %}
+        {% assign pack = look %}
+        {% assign label = 'Look completo' %}
+        {% assign images = 'short-negro-frente.jpg,producto-frente.jpg,corse-negro-frente.jpg' | split: ',' %}
+      {% endif %}
+      {% if pack.available and pack.id != product.id %}
+        <a class="nuvel-faja-packs__item" href="{{ pack.url }}">
+          <div class="nuvel-faja-packs__images" aria-hidden="true">
+            {% for image in images %}
+              <img src="{{ image | asset_url }}" alt="" loading="lazy" width="40" height="48">
+            {% endfor %}
+          </div>
+          <span>
+            <strong>{{ label }}</strong>
+            {% if pack_type == 'look' %}<small>Short, faja y top</small>{% endif %}
+          </span>
+          <span>{% if pack.price_varies %}Desde {% endif %}{{ pack.price | money }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </section>
 {% endif %}
 
 {% stylesheet %}
   .nuvel-faja-packs {
     display: grid;
-    gap: .75rem;
-    margin-block: 1rem;
+    gap: .5rem;
+    margin-block: 1.25rem;
   }
 
-  .nuvel-faja-packs > :is(p, a) {
+  .nuvel-faja-packs h3 {
     margin: 0;
-    padding: .75rem;
+  }
+
+  .nuvel-faja-packs__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .75rem;
+    padding: .65rem;
     border: 1px solid var(--color-border);
     border-radius: .5rem;
+    color: inherit;
+  }
+
+  a.nuvel-faja-packs__item:hover {
+    border-color: currentColor;
+    background: #f8f4ef;
+  }
+
+  .nuvel-faja-packs__images {
+    display: flex;
+    gap: .2rem;
+  }
+
+  .nuvel-faja-packs__images img {
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .nuvel-faja-packs__item small {
+    display: block;
+  }
+
+  .nuvel-faja-packs__item > :last-child {
+    margin-inline-start: auto;
   }
 {% endstylesheet %}
