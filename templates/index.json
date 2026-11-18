@@ -9,21 +9,24 @@
         "toggle_overlay": true,
         "overlay_color": "#00000040",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "nuvel_campaign": "inicio"
       },
       "blocks": {
         "titulo": {
           "type": "text",
           "settings": {
             "text": "<h1>Faja moldeadora invisible Nuvel</h1>",
-            "type_preset": "h1"
+            "type_preset": "h1",
+            "text_color": "#ffffff"
           }
         },
         "texto": {
           "type": "text",
           "settings": {
             "text": "<p>Diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal y tejido flexible que se adapta a tu figura.</p>",
-            "type_preset": "rte"
+            "type_preset": "rte",
+            "text_color": "#ffffff"
           }
         },
         "boton": {
@@ -56,7 +59,8 @@
           "type": "_media-without-appearance",
           "settings": {
             "media_type": "image",
-            "image_position": "cover"
+            "image_position": "cover",
+            "nuvel_worn_photo": true
           },
           "static": true
         },
@@ -245,9 +249,10 @@
               },
               "blocks": {
                 "imagen": {
-                  "type": "image",
+                  "type": "icon",
                   "settings": {
-                    "image_ratio": "adapt"
+                    "icon": "shirt",
+                    "width": 44
                   }
                 },
                 "titulo": {
@@ -281,9 +286,10 @@
               },
               "blocks": {
                 "imagen": {
-                  "type": "image",
+                  "type": "icon",
                   "settings": {
-                    "image_ratio": "adapt"
+                    "icon": "silhouette",
+                    "width": 44
                   }
                 },
                 "titulo": {
@@ -317,9 +323,10 @@
               },
               "blocks": {
                 "imagen": {
-                  "type": "image",
+                  "type": "icon",
                   "settings": {
-                    "image_ratio": "adapt"
+                    "icon": "washing",
+                    "width": 44
                   }
                 },
                 "titulo": {
@@ -353,9 +360,10 @@
               },
               "blocks": {
                 "imagen": {
-                  "type": "image",
+                  "type": "icon",
                   "settings": {
-                    "image_ratio": "adapt"
+                    "icon": "ruler",
+                    "width": 44
                   }
                 },
                 "titulo": {
@@ -386,10 +394,19 @@
             "columna3",
             "columna4"
           ]
+        },
+        "detalle": {
+          "type": "image",
+          "settings": {
+            "nuvel_detail_photo": true,
+            "width": "fill",
+            "image_ratio": "adapt"
+          }
         }
       },
       "block_order": [
         "titulo",
+        "detalle",
         "columnas"
       ]
     },
@@ -707,41 +724,11 @@
       ]
     },
     "testimonios": {
-      "type": "section",
+      "type": "nuvel-opiniones",
       "settings": {
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
-        "padding-block-start": 72,
-        "padding-block-end": 72
-      },
-      "blocks": {
-        "titulo": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>Opiniones de clientas</h2>",
-            "type_preset": "h2"
-          }
-        },
-        "texto1": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes. En cuanto lo tengamos, los verás tal y como llegan.</p>",
-            "type_preset": "rte"
-          }
-        },
-        "texto2": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>",
-            "type_preset": "rte"
-          }
-        }
-      },
-      "block_order": [
-        "titulo",
-        "texto1",
-        "texto2"
-      ]
+        "heading": "Opiniones de clientas",
+        "pending": "Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes."
+      }
     },
     "confianza": {
       "type": "section",
@@ -878,21 +865,24 @@
         "toggle_overlay": true,
         "overlay_color": "#00000080",
         "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-end": 0,
+        "nuvel_campaign": "cierre"
       },
       "blocks": {
         "titulo": {
           "type": "text",
           "settings": {
             "text": "<h2>Sin aros. Sin costuras.</h2>",
-            "type_preset": "h2"
+            "type_preset": "h2",
+            "text_color": "#ffffff"
           }
         },
         "texto": {
           "type": "text",
           "settings": {
             "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
-            "type_preset": "rte"
+            "type_preset": "rte",
+            "text_color": "#ffffff"
           }
         },
         "boton": {

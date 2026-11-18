@@ -429,10 +429,10 @@
           {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
             <div
               class="product-media-constraint-wrapper">
-              {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+              {%- render 'product-media', selected_product: selected_product, media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
             </div>
           {% else %}
-            {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+            {%- render 'product-media', selected_product: selected_product, media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
           {% endif %}
         {% endcapture %}
         {% capture class %}
@@ -468,6 +468,7 @@
             style: slideshow_controls_style,
             item_count: sorted_media.size,
             thumbnails: sorted_media,
+            thumbnail_product: selected_product,
             controls_on_media: controls_on_media,
             pagination_position: pagination_position,
             aspect_ratio: block_settings.aspect_ratio,
@@ -481,6 +482,7 @@
             style: block_settings.slideshow_mobile_controls_style,
             item_count: sorted_media.size,
             thumbnails: sorted_media,
+            thumbnail_product: selected_product,
             controls_on_media: mobile_controls_on_media,
             pagination_position: 'center',
             aspect_ratio: block_settings.aspect_ratio,
@@ -544,10 +546,10 @@
             -%}
             {% if block_settings.aspect_ratio != 'adapt' and block_settings.constrain_to_viewport %}
               <div class="product-media-constraint-wrapper">
-                {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+                {%- render 'product-media', selected_product: selected_product, media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
               </div>
             {% else %}
-              {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
+              {%- render 'product-media', selected_product: selected_product, media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
             {% endif %}
           </li>
         {% endfor %}
@@ -604,17 +606,22 @@
                         assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                       endif
                     %}
-                    {{
-                      media.preview_image
-                      | image_url: width: 1024
-                      | image_tag:
-                        loading: 'lazy',
-                        sizes: 'auto, 110, (min-width: 750px) 160',
-                        widths: '240, 352, 832, 1200',
-                        alt: media.alt,
-                        style: focal_point_style
-                      | escape
-                    }}
+                    {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: selected_product %}{%- endcapture -%}
+                    {% if nuvel_file != blank %}
+                      {% render 'nuvel-photo', file: nuvel_file, alt: selected_product.title %}
+                    {% else %}
+                      {{
+                        media.preview_image
+                        | image_url: width: 1024
+                        | image_tag:
+                          loading: 'lazy',
+                          sizes: 'auto, 110, (min-width: 750px) 160',
+                          widths: '240, 352, 832, 1200',
+                          alt: media.alt,
+                          style: focal_point_style
+                        | escape
+                      }}
+                    {% endif %}
                   </button>
                 {%- endfor -%}
               {% endif %}
@@ -636,6 +643,7 @@
                 {% if media.media_type == 'image' %}
                   <drag-zoom-wrapper class="product-media__drag-zoom-wrapper">
                     {%- render 'product-media',
+                      selected_product: selected_product,
                       media: media,
                       sizes: '100vw',
                       loading: 'lazy',
@@ -645,6 +653,7 @@
                   </drag-zoom-wrapper>
                 {% else %}
                   {%- render 'product-media',
+                    selected_product: selected_product,
                     media: media,
                     sizes: '100vw',
                     loading: 'lazy',

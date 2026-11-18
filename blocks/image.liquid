@@ -11,6 +11,9 @@
       assign ratio = '4 / 5'
     when 'adapt'
       assign ratio = block_settings.image.aspect_ratio
+      if block_settings.image == blank and block_settings.nuvel_detail_photo
+        assign ratio = 3
+      endif
   endcase
 
   if ratio == 0 or ratio == null
@@ -53,6 +56,9 @@
         style: image_border_style,
         sizes: sizes
     }}
+  {%- elsif block_settings.nuvel_detail_photo -%}
+    <img src="{{ 'nuvel-caracteristicas.webp' | asset_url }}" width="2172" height="724"
+      class="image-block__image border-style" loading="lazy" alt="Detalle del tejido negro y el tirante regulable de la faja Nuvel">
   {%- else -%}
     <div class="placeholder-image border-style size-style" style="{{ image_border_style }}">
       {{ 'detailed-apparel-1' | placeholder_svg_tag: 'image-block__placeholder' }}
@@ -121,6 +127,12 @@
   "name": "t:names.image",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "nuvel_detail_photo",
+      "label": "Usar la fotografía de detalle de Nuvel si el selector está vacío",
+      "default": false
+    },
     {
       "type": "image_picker",
       "id": "image",

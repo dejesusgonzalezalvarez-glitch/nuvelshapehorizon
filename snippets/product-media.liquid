@@ -37,21 +37,27 @@
     endif
     assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
   %}
-  {{
-    media.preview_image
-    | image_url: width: 3840
-    | image_tag:
-      widths: widths,
-      alt: media.alt,
-      sizes: sizes,
-      loading: loading,
-      class: 'product-media__image',
-      ref: ref_image_to_transition,
-      data_max_resolution: high_res_url,
-      fetchpriority: fetch_priority,
-      style: focal_point_style,
-      ref: image_ref
-  }}
+  {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: selected_product %}{%- endcapture -%}
+  {% if nuvel_file != blank %}
+    {% assign nuvel_ref = image_ref | default: ref_image_to_transition %}
+    {% render 'nuvel-photo', file: nuvel_file, alt: selected_product.title, class: 'product-media__image', ref: nuvel_ref, priority: fetch_priority, loading: loading, style: focal_point_style, media_id: media.id %}
+  {% else %}
+    {{
+      media.preview_image
+      | image_url: width: 3840
+      | image_tag:
+        widths: widths,
+        alt: media.alt,
+        sizes: sizes,
+        loading: loading,
+        class: 'product-media__image',
+        ref: ref_image_to_transition,
+        data_max_resolution: high_res_url,
+        fetchpriority: fetch_priority,
+        style: focal_point_style,
+        ref: image_ref
+    }}
+  {% endif %}
 
   {% unless preview_image_only %}
     {%- case media.media_type -%}

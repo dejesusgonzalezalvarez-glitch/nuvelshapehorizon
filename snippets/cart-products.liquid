@@ -179,9 +179,14 @@
                       class="cart-items__media-container"
                       style="--ratio:{{ ratio }};"
                     >
-                      {%- liquid
-                        echo item.image | image_url: width: 250 | image_tag: class: 'cart-items__media-image border-style', style: border_override
-                      -%}
+                      {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: item.image, owner: item.product %}{%- endcapture -%}
+                      {% if nuvel_file != blank %}
+                        {% render 'nuvel-photo', file: nuvel_file, alt: item.product.title, class: 'cart-items__media-image border-style', style: border_override %}
+                      {% else %}
+                        {%- liquid
+                          echo item.image | image_url: width: 250 | image_tag: class: 'cart-items__media-image border-style', style: border_override
+                        -%}
+                      {% endif %}
                     </a>
                   {%- endif %}
                 </td>

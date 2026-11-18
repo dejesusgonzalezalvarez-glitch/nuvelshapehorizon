@@ -1,0 +1,61 @@
+<section class="nuvel-opiniones section section--page-width">
+  <div>
+    <h2>{{ section.settings.heading | escape }}</h2>
+    {%- capture opinions -%}
+      {%- for block in section.blocks -%}
+        {%- if block.settings.quote != blank -%}
+          <figure {{ block.shopify_attributes }}>
+            <blockquote>{{ block.settings.quote | escape | newline_to_br }}</blockquote>
+            {%- if block.settings.author != blank -%}<figcaption>{{ block.settings.author | escape }}</figcaption>{%- endif -%}
+          </figure>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {% if opinions != blank %}
+      <div class="nuvel-opiniones__lista">{{ opinions }}</div>
+    {% elsif section.settings.pending != blank %}
+      <p>{{ section.settings.pending | escape }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .nuvel-opiniones { padding-block: 2rem; text-align: center; }
+  .nuvel-opiniones h2 { margin: 0 0 .75rem; }
+  .nuvel-opiniones p { margin: auto; max-width: 48ch; font-size: .94rem; }
+  .nuvel-opiniones__lista { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  .nuvel-opiniones figure { margin: 0; padding: 1rem; max-width: 32ch; }
+  .nuvel-opiniones blockquote { margin: 0; font-size: 1rem; }
+  .nuvel-opiniones figcaption { margin-top: .4rem; font-size: .8rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .nuvel-opiniones figure { animation: nuvel-opinion-entrada .45s ease-out both; }
+    @supports (animation-timeline: view()) {
+      .nuvel-opiniones figure { animation-timeline: view(); animation-range: entry 0% entry 85%; }
+    }
+  }
+  @keyframes nuvel-opinion-entrada {
+    from { opacity: 0; transform: translateY(.4rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Opiniones de clientas",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Opiniones de clientas" },
+    { "type": "text", "id": "pending", "label": "Mensaje mientras no haya opiniones publicadas" }
+  ],
+  "blocks": [
+    {
+      "type": "opinion",
+      "name": "Opinión autorizada",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Mensaje original" },
+        { "type": "text", "id": "author", "label": "Firma autorizada (opcional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Opiniones de clientas" }]
+}
+{% endschema %}

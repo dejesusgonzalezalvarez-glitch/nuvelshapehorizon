@@ -19,6 +19,10 @@
     assign media_1 = 'image'
     assign media_count = media_count | plus: 1
   endif
+  if media_1 == 'none' and section.settings.media_type_1 == 'image' and section.settings.nuvel_campaign != 'none' and section.settings.nuvel_campaign != blank
+    assign media_1 = 'campaign'
+    assign media_count = media_count | plus: 1
+  endif
   if section.settings.video_1 != blank and section.settings.media_type_1 == 'video'
     assign media_1 = 'video'
     assign media_count = media_count | plus: 1
@@ -52,7 +56,7 @@
       assign media_count_mobile = media_count_mobile | plus: 1
     endif
   endif
-  if media_count > 0 and media_1 != 'image' and media_2 != 'image'
+  if media_count > 0 and media_1 != 'image' and media_1 != 'campaign' and media_2 != 'image'
     assign has_only_video = true
   endif
   if media_count > 0 and media_count_mobile > 0 and media_1_mobile != 'image' and media_2_mobile != 'image'
@@ -146,6 +150,12 @@
           data-testid: 'hero-desktop-image-1'
       }}
     </picture>
+  {%- elsif media_1 == 'campaign' -%}
+    <div class="{{ media_wrapper_desktop_class }}">
+      {% assign campaign_file = 'nuvel-' | append: section.settings.nuvel_campaign | append: '.webp' %}
+      <img src="{{ campaign_file | asset_url }}" width="1672" height="941" class="hero__media" alt=""
+        {% if section.index == 1 %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+    </div>
   {%- elsif media_1 == 'image' -%}
     <div class="{{ media_wrapper_desktop_class }}">
       {{
@@ -824,6 +834,17 @@
         }
       ],
       "default": "image"
+    },
+    {
+      "type": "select",
+      "id": "nuvel_campaign",
+      "label": "Fotografía de Nuvel si el selector está vacío",
+      "options": [
+        { "value": "none", "label": "Ninguna" },
+        { "value": "inicio", "label": "Portada" },
+        { "value": "cierre", "label": "Sin aros. Sin costuras." }
+      ],
+      "default": "none"
     },
     {
       "type": "image_picker",

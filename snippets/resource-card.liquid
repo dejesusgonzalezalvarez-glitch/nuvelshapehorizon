@@ -34,6 +34,13 @@
       if featured_media_url == blank
         assign featured_media_url = resource.featured_media.preview_image | image_url: width: image_width
       endif
+      assign transition_image = resource.selected_or_first_available_variant.featured_image | default: resource.featured_image
+      capture nuvel_file
+        render 'nuvel-photo-file', image: transition_image, owner: resource
+      endcapture
+      if nuvel_file != blank
+        assign featured_media_url = nuvel_file | asset_url
+      endif
     endif
   endif
 %}
@@ -93,18 +100,23 @@
             assign ref_image_to_transition = 'imagesToTransition[]'
           endif
         %}
-        {{
-          featured_image
-          | image_url: width: image_width
-          | image_tag:
-            loading: 'lazy',
-            class: 'resource-card__image',
-            widths: widths,
-            sizes: image_sizes,
-            ref: ref_image_to_transition,
-            data-media-id: featured_image.id,
-            style: primary_focal_point_style
-        }}
+        {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: featured_image, owner: resource %}{%- endcapture -%}
+        {% if nuvel_file != blank %}
+          {% render 'nuvel-photo', file: nuvel_file, alt: resource.title, class: 'resource-card__image', ref: ref_image_to_transition, media_id: featured_image.id %}
+        {% else %}
+          {{
+            featured_image
+            | image_url: width: image_width
+            | image_tag:
+              loading: 'lazy',
+              class: 'resource-card__image',
+              widths: widths,
+              sizes: image_sizes,
+              ref: ref_image_to_transition,
+              data-media-id: featured_image.id,
+              style: primary_focal_point_style
+          }}
+        {% endif %}
         {%- if image_hover and resource.media.size > 1 -%}
           {% liquid
             assign secondary_focal_point_style = ''
@@ -112,18 +124,23 @@
               assign secondary_focal_point_style = 'object-position: ' | append: resource.media[1].presentation.focal_point | append: ';'
             endif
           %}
-          {{
-            resource.media[1]
-            | image_url: width: image_width
-            | image_tag:
-              loading: 'lazy',
-              class: 'resource-card__image resource-card__image--secondary',
-              widths: widths,
-              sizes: image_sizes,
-              ref: ref_image_to_transition,
-              data-media-id: resource.media[1].id,
-              style: secondary_focal_point_style
-          }}
+          {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: resource.media[1].preview_image, owner: resource %}{%- endcapture -%}
+          {% if nuvel_file != blank %}
+            {% render 'nuvel-photo', file: nuvel_file, alt: resource.title, class: 'resource-card__image resource-card__image--secondary', ref: ref_image_to_transition, media_id: resource.media[1].id %}
+          {% else %}
+            {{
+              resource.media[1]
+              | image_url: width: image_width
+              | image_tag:
+                loading: 'lazy',
+                class: 'resource-card__image resource-card__image--secondary',
+                widths: widths,
+                sizes: image_sizes,
+                ref: ref_image_to_transition,
+                data-media-id: resource.media[1].id,
+                style: secondary_focal_point_style
+            }}
+          {% endif %}
         {%- endif -%}
       {%- else -%}
         <div
@@ -138,11 +155,16 @@
         <div class="resource-card__image-wrapper">
           {% assign resource_products = resource.products | where: 'featured_image' %}
           {% for product in resource_products limit: 4 %}
-            {{
-              product.featured_image
-              | image_url: width: image_width
-              | image_tag: loading: 'lazy', class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
-            }}
+            {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: product.featured_image, owner: product %}{%- endcapture -%}
+            {% if nuvel_file != blank %}
+              {% render 'nuvel-photo', file: nuvel_file, alt: product.title, class: 'resource-card__collection-image' %}
+            {% else %}
+              {{
+                product.featured_image
+                | image_url: width: image_width
+                | image_tag: loading: 'lazy', class: 'resource-card__collection-image', sizes: image_sizes, widths: widths
+              }}
+            {% endif %}
           {% endfor %}
         </div>
       {%- endif -%}

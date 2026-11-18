@@ -13,6 +13,8 @@
         type="image/png"
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
       >
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'nuvel-favicon.png' | asset_url }}">
     {%- endif -%}
 
     {%- render 'view-transition-opt-in' -%}
@@ -145,7 +147,7 @@
         {{ content_for_layout }}
       </main>
 
-      <footer>
+      <footer class="nuvel-footer" style="background: #f5f0e9 url('{{ 'nuvel-pie.webp' | asset_url }}') center / cover;">
         {% sections 'footer-group' %}
       </footer>
     </div>

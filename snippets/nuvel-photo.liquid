@@ -1,0 +1,55 @@
+{% doc %}
+  Renders a local Nuvel product photograph using the same attributes as the native gallery.
+  @param {string} file - Theme asset filename
+  @param {string} [alt] - Image description
+  @param {string} [class] - CSS classes
+  @param {string} [loading] - Image loading policy
+  @param {string} [priority] - Fetch priority
+  @param {string} [ref] - Gallery component reference
+  @param {string} [style] - Inline style
+  @param {number} [media_id] - Media ID for transitions
+{% enddoc %}
+{%- liquid
+  case file
+    when 'nuvel-faja-frontal.webp'
+      assign w = 1400
+      assign h = 1435
+    when 'nuvel-faja-con-ropa.webp'
+      assign w = 1000
+      assign h = 1791
+    when 'nuvel-faja-espejo.webp'
+      assign w = 720
+      assign h = 1280
+    when 'producto-espalda.jpg'
+      assign w = 1400
+      assign h = 1685
+    when 'corse-negro-frente.jpg'
+      assign w = 1212
+      assign h = 1297
+    when 'corse-negro-modelo.jpg', 'corse-negro-modelo-espalda.jpg'
+      assign w = 1086
+      assign h = 1448
+    when 'corse-rosa-modelo.jpg', 'corse-beige-frente.jpg', 'corse-beige-espalda.jpg'
+      assign w = 1024
+      assign h = 1536
+    when 'vestido-negro-frente.jpg', 'vestido-gris-frente.jpg', 'short-negro-frente.jpg', 'short-negro-espalda.jpg', 'short-beige-frente.jpg'
+      assign w = 1400
+      assign h = 1875
+    when 'short-ugc-beige.jpg'
+      assign w = 1200
+      assign h = 1607
+    when 'nuvel-short-marron.webp'
+      assign w = 1084
+      assign h = 1451
+    when 'nuvel-sujetador-beige.webp', 'nuvel-sujetador-negro.webp'
+      assign w = 1254
+      assign h = 1254
+  endcase
+-%}
+<img src="{{ file | asset_url }}" width="{{ w }}" height="{{ h }}" alt="{{ alt | escape }}"
+  loading="{{ loading | default: 'lazy' }}" data_max_resolution="{{ file | asset_url }}"
+  {% if class != blank %}class="{{ class }}"{% endif %}
+  {% if ref != blank %}ref="{{ ref }}"{% endif %}
+  {% if priority != blank %}fetchpriority="{{ priority }}"{% endif %}
+  {% if style != blank %}style="{{ style | escape }}"{% endif %}
+  {% if media_id != blank %}data-media-id="{{ media_id }}"{% endif %}>

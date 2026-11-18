@@ -1,0 +1,79 @@
+{% doc %}
+  Maps existing catalog photo filenames to their Nuvel artwork. Uploaded replacements pass through unchanged.
+  @param {image} image - Original Shopify image
+  @param {product} [owner] - Product used to match older variant photos
+{% enddoc %}
+{%- liquid
+  assign filename = image.src | split: '?' | first | split: '/' | last | split: '.' | first | split: '_' | first
+  case filename
+    when 'ad0c4e0e47f9adb3e2957826db54', '621971c145818920ccfd34569be5'
+      echo 'nuvel-faja-frontal.webp'
+    when '45ff059f43acb77c434dc97147f4'
+      echo 'nuvel-faja-con-ropa.webp'
+    when 'e073cc344fd0bc6d18d1fa378bcb'
+      echo 'nuvel-faja-espejo.webp'
+    when 'f621a8194e708b7f29e94d3ba0cd', '4aabf4564fd49d9941d4a43ceb1a'
+      echo 'producto-espalda.jpg'
+    when 'ba522be74c478d96d2bdcf045185'
+      echo 'corse-negro-frente.jpg'
+    when 'f1517bbd470ba776f812fc1f0984'
+      echo 'corse-negro-modelo.jpg'
+    when '8600992543d6bc10b9e4dc72fc6e'
+      echo 'corse-negro-modelo-espalda.jpg'
+    when '5e42e0ef4187968cecc068c320b1', 'db1c9e5044049cef7013512e120f'
+      echo 'corse-rosa-modelo.jpg'
+    when '5f0f6aec4a68bff319456bafafb6', '2504b2ac43de89da51ee865bc89d'
+      echo 'corse-beige-frente.jpg'
+    when 'dd2e16424a3a8c5dd75697cf1fd7'
+      echo 'corse-beige-espalda.jpg'
+    when '9cabf7e340fd8cc2c978b41aaab9'
+      echo 'vestido-negro-frente.jpg'
+    when '9fab4b9f40ca86c2e545ab8853c8'
+      echo 'vestido-gris-frente.jpg'
+    when 'f5e34cfd4bf0b793f2bb2d9da4eb'
+      echo 'short-negro-frente.jpg'
+    when 'aabee483465c96f29711533581fb'
+      echo 'short-negro-espalda.jpg'
+    when '3cacb3e749c19156e45fd464f01e', 'dacbe4494d57b548a35696bbc005'
+      echo 'short-beige-frente.jpg'
+    when '96452dce4fb8b90f9cd77bf1f907'
+      echo 'short-ugc-beige.jpg'
+    when '2b8c055d42db9eb8054105d1398a'
+      echo 'nuvel-short-marron.webp'
+    when 'postura-1-beige-v2'
+      echo 'nuvel-sujetador-beige.webp'
+    when 'postura-1-negro'
+      echo 'nuvel-sujetador-negro.webp'
+    else
+      # Some supplier uploads have separate filenames for each size of the same color.
+      if filename.size == 28 and owner != blank
+        for variant in owner.variants
+          if variant.featured_image.id != image.id
+            continue
+          endif
+          assign color = variant.option1 | downcase
+          case owner.handle
+            when 'faja-moldeadora-invisible-nuvel'
+              echo 'nuvel-faja-frontal.webp'
+            when 'retro-shapewear-top-with-zipper'
+              if color contains 'pink'
+                echo 'corse-rosa-modelo.jpg'
+              elsif color contains 'skin'
+                echo 'corse-beige-frente.jpg'
+              elsif color contains 'black'
+                echo 'corse-negro-frente.jpg'
+              endif
+            when 'seamless-shapewear-panties'
+              if color contains 'brown'
+                echo 'nuvel-short-marron.webp'
+              elsif color contains 'skin'
+                echo 'short-beige-frente.jpg'
+              elsif color contains 'black'
+                echo 'short-negro-frente.jpg'
+              endif
+          endcase
+          break
+        endfor
+      endif
+  endcase
+-%}

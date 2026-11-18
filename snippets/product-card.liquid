@@ -46,6 +46,13 @@
 
     if featured_image != blank
       assign featured_media_url = featured_image | image_url: width: 500
+      assign transition_image = featured_image
+      capture nuvel_file
+        render 'nuvel-photo-file', image: transition_image, owner: product
+      endcapture
+      if nuvel_file != blank
+        assign featured_media_url = nuvel_file | asset_url
+      endif
     endif
   endif
 

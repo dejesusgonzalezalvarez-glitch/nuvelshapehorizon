@@ -48,6 +48,9 @@
           class: 'media-block__media border-style',
           unset_image_tag: unset_image_tag
         %}
+      {% elsif block_settings.nuvel_worn_photo %}
+        <img src="{{ 'nuvel-puesta.webp' | asset_url }}" width="1122" height="1402"
+          loading="lazy" class="media-block__media border-style" alt="Vista lateral con un vestido gris ajustado">
       {% else %}
         <div class="media-block__media border-style">
           {{ 'detailed-apparel-1' | placeholder_svg_tag: 'media-block__placeholder' }}
