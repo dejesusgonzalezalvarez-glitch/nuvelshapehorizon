@@ -3,293 +3,419 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Faja moldeadora invisible Nuvel",
-        "subheading": "Diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal y tejido flexible que se adapta a tu figura.",
-        "button_label": "Ver producto",
-        "button_link": "/products/faja-moldeadora-invisible-nuvel",
-        "image": "hero-principal.jpg",
-        "color_scheme": "scheme-1",
-        "height": "large",
-        "content_alignment": "left",
-        "text_alignment": "left",
-        "overlay_opacity": 25,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+        "media_type_1": "image",
+        "section_height": "large",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "toggle_overlay": true,
+        "overlay_color": "#00000040",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "titulo": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>Faja moldeadora invisible Nuvel</h1>",
+            "type_preset": "h1"
+          }
+        },
+        "texto": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal y tejido flexible que se adapta a tu figura.</p>",
+            "type_preset": "rte"
+          }
+        },
+        "boton": {
+          "type": "button",
+          "settings": {
+            "label": "Ver producto",
+            "link": "/products/faja-moldeadora-invisible-nuvel",
+            "style_class": "button"
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "texto",
+        "boton"
+      ]
     },
-    "vida-real": {
+    "vidareal": {
       "type": "media-with-content",
       "settings": {
-        "media_position": "left",
         "media_width": "medium",
+        "media_position": "left",
         "media_height": "auto",
         "section_width": "page-width",
-        "extend_media": false,
-        "background_color": "",
-        "padding_top": 64,
-        "padding_bottom": 48
+        "padding-block-start": 64,
+        "padding-block-end": 48
       },
-      "blocks": [
-        {
+      "blocks": {
+        "media": {
           "type": "_media-without-appearance",
           "settings": {
             "media_type": "image",
-            "image": "producto-frente.jpg",
-            "link": "",
             "image_position": "cover"
           },
-          "name": "Media"
+          "static": true
         },
-        {
-          "type": "_content-with-appearance",
+        "content": {
+          "type": "_content-without-appearance",
           "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
             "gap": 24
           },
-          "blocks": [
-            {
+          "blocks": {
+            "antetitulo": {
               "type": "text",
               "settings": {
                 "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
-                "text_color": "{{ settings.color_palette.foreground }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "0.875rem",
-                "line_height": "normal",
-                "letter_spacing": "0.16em",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "background": false,
-                "padding_top": 0,
-                "padding_bottom": 0
-              },
-              "name": "Eyebrow"
+                "type_preset": "paragraph"
+              }
             },
-            {
+            "titulo": {
               "type": "text",
               "settings": {
                 "text": "<h2>Cómo queda puesta</h2>",
-                "text_color": "{{ settings.color_palette.foreground }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-heading--family)",
-                "font_size": "2.5rem",
-                "line_height": "1.2",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "padding_top": 0,
-                "padding_bottom": 8
-              },
-              "name": "Heading"
+                "type_preset": "h2"
+              }
             },
-            {
+            "texto": {
               "type": "text",
               "settings": {
                 "text": "<p>Está diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal para ponértela con comodidad y un tejido flexible que se adapta a tu figura.</p>",
-                "text_color": "{{ settings.color_palette.foreground }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1.125rem",
-                "line_height": "1.6",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "padding_top": 0,
-                "padding_bottom": 16
-              },
-              "name": "Text"
+                "type_preset": "paragraph"
+              }
             },
-            {
+            "boton": {
               "type": "button",
               "settings": {
                 "label": "Ver detalles",
-                "link": "/products/faja-moldeadora-inversa-nuvel",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "fit-content"
-              },
-              "name": "Button"
+                "link": "/products/faja-moldeadora-invisible-nuvel",
+                "style_class": "button-secondary"
+              }
             }
-          ],
+          },
           "block_order": [
-            "Eyebrow",
-            "Heading",
-            "Text",
-            "Button"
+            "antetitulo",
+            "titulo",
+            "texto",
+            "boton"
           ],
-          "name": "Content"
+          "static": true
         }
-      ],
-      "block_order": [
-        "Media",
-        "Content"
-      ]
+      }
     },
-    "producto-ancla": {
-      "type": "featured-product",
+    "productoancla": {
+      "type": "featured-product-information",
       "settings": {
+        "gap": 48,
+        "padding-block-start": 64,
+        "padding-block-end": 64,
+        "equal_columns": true,
         "product": "faja-moldeadora-invisible-nuvel",
-        "layout": "media-left",
-        "background_color": "",
-        "padding_top": 64,
-        "padding_bottom": 64
+        "desktop_media_position": "left"
       },
-      "blocks": [
-        {
-          "type": "product-title",
+      "blocks": {
+        "media-gallery": {
+          "type": "_featured-product-information-carousel",
+          "static": true,
           "settings": {
-            "type_preset": "h1",
-            "width": "100%"
-          },
-          "name": "Title",
-          "static": true
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "hide_variants": true,
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44
+          }
         },
-        {
-          "type": "price",
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
           "settings": {
-            "show_sale_price_first": true,
-            "show_installments": false,
-            "show_tax_info": false,
-            "type_preset": "h2",
-            "width": "100%",
-            "alignment": "left"
+            "gap": 28,
+            "sticky_details_desktop": true,
+            "padding-block-start": 24,
+            "padding-block-end": 24
           },
-          "name": "Price",
-          "static": true
-        },
-        {
-          "type": "product-description",
-          "settings": {
-            "type_preset": "paragraph",
-            "width": "100%",
-            "alignment": "left"
+          "blocks": {
+            "header": {
+              "type": "group",
+              "name": "t:names.header",
+              "settings": {
+                "gap": 12
+              },
+              "blocks": {
+                "title": {
+                  "type": "product-title",
+                  "name": "t:names.title",
+                  "settings": {
+                    "type_preset": "h2"
+                  }
+                },
+                "price": {
+                  "type": "price",
+                  "name": "t:names.product_price",
+                  "settings": {
+                    "show_installments": false,
+                    "show_tax_info": false
+                  }
+                }
+              },
+              "block_order": [
+                "title",
+                "price"
+              ]
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "name": "t:names.product_variant_picker"
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true
+                }
+              }
+            },
+            "description": {
+              "type": "product-description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "type_preset": "rte"
+              }
+            }
           },
-          "name": "Description",
-          "static": true
-        },
-        {
-          "type": "variant-picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          },
-          "name": "Variant picker",
-          "static": true
-        },
-        {
-          "type": "buy-buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": false
-          },
-          "name": "Buy buttons",
-          "static": true
+          "block_order": [
+            "header",
+            "description",
+            "variant_picker",
+            "buy_buttons"
+          ]
         }
-      ],
-      "block_order": [
-        "Title",
-        "Price",
-        "Description",
-        "Variant picker",
-        "Buy buttons"
-      ]
+      }
     },
-    "caracteristicas-home": {
-      "type": "multicolumn",
+    "caracteristicashome": {
+      "type": "section",
       "settings": {
-        "heading": "Características principales",
-        "heading_size": "h1",
-        "column_alignment": "center",
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "content_direction": "column",
+        "gap": 24,
+        "padding-block-start": 36,
+        "padding-block-end": 36
       },
-      "blocks": [
-        {
-          "type": "column",
+      "blocks": {
+        "titulo": {
+          "type": "text",
           "settings": {
-            "title": "Diseño sin costuras",
-            "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
-            "image": "tecnica-1-disenada-para-adaptarse.jpg",
-            "link": ""
+            "text": "<h2>Características principales</h2>",
+            "type_preset": "h2"
           }
         },
-        {
-          "type": "column",
+        "columnas": {
+          "type": "group",
           "settings": {
-            "title": "Silueta uniforme",
-            "text": "<p>Pensada para no enrollarse ni molestar.</p>",
-            "image": "tecnica-2-silueta-uniforme.jpg",
-            "link": ""
-          }
-        },
-        {
-          "type": "column",
-          "settings": {
-            "title": "Comodidad a tu ritmo",
-            "text": "<p>Tejido pensado para resistir los lavados.</p>",
-            "image": "tecnica-3-comodidad-ritmo.jpg",
-            "link": ""
-          }
-        },
-        {
-          "type": "column",
-          "settings": {
-            "title": "Tabla de tallas clara",
-            "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>",
-            "image": "producto-detalle.jpg",
-            "link": ""
-          }
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "width": "fill",
+            "width_mobile": "fill",
+            "gap": 16
+          },
+          "blocks": {
+            "columna1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "imagen": {
+                  "type": "image",
+                  "settings": {
+                    "image_ratio": "adapt"
+                  }
+                },
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Diseño sin costuras</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "imagen",
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "imagen": {
+                  "type": "image",
+                  "settings": {
+                    "image_ratio": "adapt"
+                  }
+                },
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Silueta uniforme</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Pensada para no enrollarse ni molestar.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "imagen",
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "imagen": {
+                  "type": "image",
+                  "settings": {
+                    "image_ratio": "adapt"
+                  }
+                },
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Comodidad a tu ritmo</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Tejido pensado para resistir los lavados.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "imagen",
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "imagen": {
+                  "type": "image",
+                  "settings": {
+                    "image_ratio": "adapt"
+                  }
+                },
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Tabla de tallas clara</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "imagen",
+                "titulo",
+                "texto"
+              ]
+            }
+          },
+          "block_order": [
+            "columna1",
+            "columna2",
+            "columna3",
+            "columna4"
+          ]
         }
-      ],
+      },
       "block_order": [
-        "column-1",
-        "column-2",
-        "column-3",
-        "column-4"
+        "titulo",
+        "columnas"
       ]
     },
     "catalogo": {
       "type": "product-list",
       "settings": {
-        "collection": "all",
+        "collection": "todos-los-productos",
+        "max_products": 5,
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
         "columns_gap": 8,
         "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
         "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
         "gap": 28,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "view_all_text": "Ver todos",
-        "view_all_link": "/collections/all"
+        "padding-block-start": 64,
+        "padding-block-end": 64
       },
-      "blocks": [
-        {
+      "blocks": {
+        "static-header": {
           "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
           "settings": {
             "content_direction": "row",
             "vertical_on_mobile": false,
@@ -300,94 +426,81 @@
             "vertical_alignment_flex_direction_column": "center",
             "gap": 12,
             "width": "fill",
+            "custom_width": 100,
             "width_mobile": "fill",
+            "custom_width_mobile": 100,
             "height": "fit",
+            "custom_height": 100,
             "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_left": 0,
-            "padding_right": 0
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": [
-            {
+          "blocks": {
+            "titulo": {
               "type": "text",
               "settings": {
                 "text": "<h3>Nuestro catálogo</h3>",
-                "text_color": "{{ settings.color_palette.foreground }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h1",
-                "font": "var(--font-heading--family)",
-                "font_size": "2.5rem",
-                "line_height": "1.2",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "padding_top": 0,
-                "padding_bottom": 0,
-                "padding_left": 0,
-                "padding_right": 0
-              },
-              "name": "Collection title"
+                "type_preset": "h3"
+              }
             },
-            {
+            "boton": {
               "type": "button",
               "settings": {
                 "label": "Ver todos",
                 "link": "/collections/all",
-                "open_in_new_tab": false,
-                "style_class": "button-primary",
-                "width": "fit-content"
-              },
-              "name": "View all button"
+                "style_class": "button"
+              }
             }
-          ],
+          },
           "block_order": [
-            "Collection title",
-            "View all button"
-          ],
-          "name": "Header"
+            "titulo",
+            "boton"
+          ]
         },
-        {
+        "static-product-card": {
           "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
           "settings": {
             "product_card_gap": 4,
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
             "border_radius": 0,
-            "padding_top": 0,
-            "padding_bottom": 0,
-            "padding_left": 0,
-            "padding_right": 0
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": [
-            {
+          "blocks": {
+            "product-card-gallery": {
               "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
               "settings": {
                 "image_ratio": "adapt",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_radius": 0,
-                "padding_top": 0,
-                "padding_bottom": 0,
-                "padding_left": 0,
-                "padding_right": 0
-              },
-              "name": "Product card media",
-              "static": true
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             },
-            {
+            "product_title": {
               "type": "product-title",
+              "name": "t:names.product_title",
               "settings": {
-                "width": "100%",
+                "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "paragraph",
@@ -398,16 +511,17 @@
                 "case": "none",
                 "wrap": "pretty",
                 "background": false,
-                "padding_top": 8,
-                "padding_bottom": 0,
-                "padding_left": 0,
-                "padding_right": 0
-              },
-              "name": "Product title",
-              "static": true
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             },
-            {
+            "price": {
               "type": "price",
+              "name": "t:names.product_price",
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
@@ -420,201 +534,392 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
-                "padding_top": 0,
-                "padding_bottom": 0,
-                "padding_left": 0,
-                "padding_right": 0
-              },
-              "name": "Price",
-              "static": true
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             }
-          ],
+          },
           "block_order": [
-            "Product card media",
-            "Product title",
-            "Price"
-          ],
-          "name": "Product card"
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
         }
-      ],
-      "block_order": [
-        "Header",
-        "Product card"
-      ]
-    },
-    "por-que": {
-      "type": "multicolumn",
-      "settings": {
-        "heading": "Por qué Nuvel",
-        "heading_size": "h1",
-        "button_label": "",
-        "columns_desktop": 4,
-        "column_alignment": "center",
-        "background_style": "secondary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 64,
-        "padding_bottom": 64
       },
-      "blocks": [
-        {
-          "type": "column",
+      "block_order": []
+    },
+    "porque": {
+      "type": "section",
+      "settings": {
+        "content_direction": "column",
+        "gap": 24,
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      },
+      "blocks": {
+        "titulo": {
+          "type": "text",
           "settings": {
-            "title": "Sin costuras",
-            "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
-            "image": "",
-            "link": ""
+            "text": "<h2>Por qué Nuvel</h2>",
+            "type_preset": "h2"
           }
         },
-        {
-          "type": "column",
+        "columnas": {
+          "type": "group",
           "settings": {
-            "title": "No se enrolla",
-            "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>",
-            "image": "",
-            "link": ""
-          }
-        },
-        {
-          "type": "column",
-          "settings": {
-            "title": "Resiste lavados",
-            "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>",
-            "image": "",
-            "link": ""
-          }
-        },
-        {
-          "type": "column",
-          "settings": {
-            "title": "Guía de tallas",
-            "text": "<p>Selecciona tu talla correcta utilizando nuestra guía.</p>",
-            "image": "",
-            "link": ""
-          }
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "width": "fill",
+            "width_mobile": "fill",
+            "gap": 16
+          },
+          "blocks": {
+            "columna1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Sin costuras</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>No se enrolla</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Resiste lavados</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna4": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Guía de tallas</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Selecciona tu talla correcta utilizando nuestra guía.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            }
+          },
+          "block_order": [
+            "columna1",
+            "columna2",
+            "columna3",
+            "columna4"
+          ]
         }
-      ],
+      },
       "block_order": [
-        "column-1",
-        "column-2",
-        "column-3",
-        "column-4"
+        "titulo",
+        "columnas"
       ]
     },
     "testimonios": {
-      "type": "rich-text",
+      "type": "section",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 72,
-        "padding_bottom": 72
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "padding-block-start": 72,
+        "padding-block-end": 72
       },
-      "blocks": [
-        {
-          "type": "heading",
-          "settings": {
-            "heading": "Opiniones de clientas",
-            "heading_size": "h1"
-          }
-        },
-        {
+      "blocks": {
+        "titulo": {
           "type": "text",
           "settings": {
-            "text": "<p>Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes. En cuanto lo tengamos, los verás tal y como llegan.</p>"
+            "text": "<h2>Opiniones de clientas</h2>",
+            "type_preset": "h2"
           }
         },
-        {
+        "texto1": {
           "type": "text",
           "settings": {
-            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>"
+            "text": "<p>Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes. En cuanto lo tengamos, los verás tal y como llegan.</p>",
+            "type_preset": "rte"
+          }
+        },
+        "texto2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>",
+            "type_preset": "rte"
           }
         }
-      ],
+      },
       "block_order": [
-        "heading",
-        "text-1",
-        "text-2"
+        "titulo",
+        "texto1",
+        "texto2"
       ]
     },
     "confianza": {
-      "type": "multicolumn",
+      "type": "section",
       "settings": {
-        "heading": "Compra con tranquilidad",
-        "heading_size": "h1",
-        "button_label": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "secondary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 64,
-        "padding_bottom": 64
+        "content_direction": "column",
+        "gap": 24,
+        "padding-block-start": 64,
+        "padding-block-end": 64
       },
-      "blocks": [
-        {
-          "type": "column",
+      "blocks": {
+        "titulo": {
+          "type": "text",
           "settings": {
-            "title": "Envío gratis",
-            "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>",
-            "image": "",
-            "link": ""
+            "text": "<h2>Compra con tranquilidad</h2>",
+            "type_preset": "h2"
           }
         },
-        {
-          "type": "column",
+        "columnas": {
+          "type": "group",
           "settings": {
-            "title": "30 días de prueba",
-            "text": "<p>Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.</p>",
-            "image": "",
-            "link": ""
-          }
-        },
-        {
-          "type": "column",
-          "settings": {
-            "title": "Pago seguro",
-            "text": "<p>Tus datos protegidos en cada compra.</p>",
-            "image": "",
-            "link": ""
-          }
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "width": "fill",
+            "width_mobile": "fill",
+            "gap": 16
+          },
+          "blocks": {
+            "columna1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Envío gratis</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>30 días de prueba</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            },
+            "columna3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "width": "fill",
+                "width_mobile": "fill",
+                "gap": 8
+              },
+              "blocks": {
+                "titulo": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h3>Pago seguro</h3>",
+                    "type_preset": "h3"
+                  }
+                },
+                "texto": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Tus datos protegidos en cada compra.</p>",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": [
+                "titulo",
+                "texto"
+              ]
+            }
+          },
+          "block_order": [
+            "columna1",
+            "columna2",
+            "columna3"
+          ]
         }
-      ],
+      },
       "block_order": [
-        "column-1",
-        "column-2",
-        "column-3"
+        "titulo",
+        "columnas"
       ]
     },
-    "cta-final": {
-      "type": "image-banner",
+    "ctafinal": {
+      "type": "hero",
       "settings": {
-        "image": "avatar-athleisure.jpg",
-        "heading": "Sin aros. Sin costuras.",
-        "text": "30 días de prueba: si no te convence, te devolvemos el dinero.",
-        "button_label": "Ver catálogo",
-        "button_link": "/collections/all",
-        "color_scheme": "scheme-3",
-        "overlay_opacity": 50,
-        "text_alignment": "center",
-        "height": "large",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+        "media_type_1": "image",
+        "section_height": "large",
+        "horizontal_alignment_flex_direction_column": "center",
+        "toggle_overlay": true,
+        "overlay_color": "#00000080",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      },
+      "blocks": {
+        "titulo": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Sin aros. Sin costuras.</h2>",
+            "type_preset": "h2"
+          }
+        },
+        "texto": {
+          "type": "text",
+          "settings": {
+            "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
+            "type_preset": "rte"
+          }
+        },
+        "boton": {
+          "type": "button",
+          "settings": {
+            "label": "Ver catálogo",
+            "link": "/collections/all",
+            "style_class": "button"
+          }
+        }
+      },
+      "block_order": [
+        "titulo",
+        "texto",
+        "boton"
+      ]
     }
   },
   "order": [
     "hero",
-    "vida-real",
-    "producto-ancla",
-    "caracteristicas-home",
+    "vidareal",
+    "productoancla",
+    "caracteristicashome",
     "catalogo",
-    "por-que",
+    "porque",
     "testimonios",
     "confianza",
-    "cta-final"
+    "ctafinal"
   ]
 }
