@@ -726,7 +726,7 @@
     "testimonios": {
       "type": "nuvel-opiniones",
       "settings": {
-        "heading": "Opiniones de clientas",
+        "heading": "Clientas reales, mensajes reales",
         "pending": "Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes."
       }
     },

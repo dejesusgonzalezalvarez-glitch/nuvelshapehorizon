@@ -548,6 +548,7 @@
     <div
       class="
         hero__content-wrapper
+        {% if request.page_type == 'index' and section.settings.nuvel_campaign == 'inicio' %}nuvel-home-hero{% endif %}
         layout-panel-flex
         layout-panel-flex--{{ section.settings.content_direction }}
         {% if section.settings.vertical_on_mobile %}mobile-column{% endif %}
@@ -563,6 +564,18 @@
 </div>
 
 {% stylesheet %}
+  .nuvel-home-hero a.button {
+    --button-background-color: #fff;
+    --button-color: #111;
+    --button-border-color: #fff;
+    --button-focus-outline-color: #fff;
+  }
+
+  .nuvel-home-hero a.button:hover {
+    --button-background-color: #f4eee7;
+    --button-border-color: #f4eee7;
+  }
+
   .hero-wrapper {
     --hero-height-offset: 0px;
   }

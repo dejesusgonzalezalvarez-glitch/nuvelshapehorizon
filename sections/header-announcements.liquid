@@ -41,6 +41,21 @@
 </aside>
 
 {% stylesheet %}
+  @media (prefers-reduced-motion: no-preference) {
+    .announcement-bar__slides {
+      overflow: hidden;
+    }
+
+    .announcement-bar__slide[aria-hidden='false'] {
+      animation: nuvel-announcement-enter .45s ease-out;
+    }
+
+    @keyframes nuvel-announcement-enter {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+  }
+
   .announcement-bar {
     border-block-end: var(--border-bottom-width) solid var(--color-border);
   }

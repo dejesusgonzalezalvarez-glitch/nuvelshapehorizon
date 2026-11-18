@@ -44,12 +44,12 @@ export class AnnouncementBar extends Component {
    * @param {number} [interval] - The time interval in seconds between slides.
    */
   play(interval = this.autoplayInterval) {
-    if (!this.autoplay) return;
+    if (!this.autoplay || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     this.paused = false;
 
     this.#interval = setInterval(() => {
-      if (this.matches(':hover') || document.hidden) return;
+      if (this.matches(':hover, :focus-within') || document.hidden) return;
 
       this.next();
     }, interval);
@@ -122,7 +122,7 @@ export class AnnouncementBar extends Component {
   /**
    * Pause the slideshow when the page is hidden.
    */
-  #handleVisibilityChange = () => (document.hidden ? this.pause() : this.resume());
+  #handleVisibilityChange = () => (document.hidden ? this.suspend() : this.resume());
 }
 
 if (!customElements.get('announcement-bar-component')) {
