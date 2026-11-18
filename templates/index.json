@@ -41,7 +41,7 @@
           "name": "Media"
         },
         {
-          "type": "_content-without-appearance",
+          "type": "_content-with-appearance",
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
@@ -93,7 +93,7 @@
             {
               "type": "text",
               "settings": {
-"text": "<p>Está diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal para ponértela con comodidad y un tejido flexible que se adapta a tu figura.</p>",
+                "text": "<p>Está diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal para ponértela con comodidad y un tejido flexible que se adapta a tu figura.</p>",
                 "text_color": "{{ settings.color_palette.foreground }}",
                 "width": "100%",
                 "max_width": "normal",
@@ -209,7 +209,7 @@
     "caracteristicas-home": {
       "type": "multicolumn",
       "settings": {
-"heading": "Características principales",
+        "heading": "Características principales",
         "heading_size": "h1",
         "column_alignment": "center",
         "columns_desktop": 4,
@@ -256,7 +256,7 @@
             "image": "producto-detalle.jpg",
             "link": ""
           }
-        ]
+        }
       ],
       "block_order": [
         "column-1",
@@ -445,7 +445,7 @@
     "por-que": {
       "type": "multicolumn",
       "settings": {
-"heading": "Por qué Nuvel",
+        "heading": "Por qué Nuvel",
         "heading_size": "h1",
         "button_label": "",
         "columns_desktop": 4,
@@ -493,7 +493,7 @@
             "image": "",
             "link": ""
           }
-        ]
+        }
       ],
       "block_order": [
         "column-1",
@@ -520,14 +520,14 @@
             "heading_size": "h1"
           }
         },
-{
-            "type": "text",
-            "settings": {
-              "text": "<p>Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes. En cuanto lo tengamos, los verás tal y como llegan.</p>"
-            }
-          },
-          {
-            "type": "text",
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes. En cuanto lo tengamos, los verás tal y como llegan.</p>"
+          }
+        },
+        {
+          "type": "text",
           "settings": {
             "text": "<p>Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar.</p>"
           }
@@ -542,7 +542,7 @@
     "confianza": {
       "type": "multicolumn",
       "settings": {
-"heading": "Compra con tranquilidad",
+        "heading": "Compra con tranquilidad",
         "heading_size": "h1",
         "button_label": "",
         "columns_desktop": 3,
@@ -592,7 +592,7 @@
     "cta-final": {
       "type": "image-banner",
       "settings": {
-"image": "avatar-athleisure.jpg",
+        "image": "avatar-athleisure.jpg",
         "heading": "Sin aros. Sin costuras.",
         "text": "30 días de prueba: si no te convence, te devolvemos el dinero.",
         "button_label": "Ver catálogo",
