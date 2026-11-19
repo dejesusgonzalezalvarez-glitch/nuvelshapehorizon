@@ -1,0 +1,19 @@
+{% liquid
+  assign titles = 'Producto destacado|Sobre nosotros|Preguntas frecuentes' | split: '|'
+  assign anchors = 'producto-destacado|sobre-nuvel|preguntas-frecuentes' | split: '|'
+  assign existing = menu.links | map: 'title' | join: '|' | downcase | prepend: '|' | append: '|'
+%}
+{% for title in titles %}
+  {% assign needle = title | downcase | prepend: '|' | append: '|' %}
+  {% unless existing contains needle %}
+    <li class="{% if variant == 'desktop' %}menu-list__list-item{% endif %}">
+      <a href="{{ routes.root_url }}#{{ anchors[forloop.index0] }}"
+        {% case variant %}
+          {% when 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist" on:click="/close"
+          {% when 'desktop' %}class="menu-list__link" ref="menuitem"
+          {% else %}class="menu-list__item"
+        {% endcase %}
+      >{{ title }}</a>
+    </li>
+  {% endunless %}
+{% endfor %}

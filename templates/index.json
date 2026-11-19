@@ -998,6 +998,7 @@
         "columnas"
       ]
     },
+    "informacion": { "type": "nuvel-informacion" },
     "ctafinal": {
       "type": "hero",
       "settings": {
@@ -1053,6 +1054,7 @@
     "porque",
     "testimonios",
     "confianza",
+    "informacion",
     "ctafinal"
   ]
 }

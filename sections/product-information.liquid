@@ -28,6 +28,7 @@
 {% endcapture %}
 
 {% capture additional_blocks %}
+  {% render 'nuvel-fotos-producto', product: product %}
   {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
     {% render 'nuvel-faja-informacion', product: product %}
   {% else %}

@@ -1,0 +1,41 @@
+{% liquid
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign garment = 'faja'
+    when 'sujetador-corrector-postura', 'sujetador-corrector-postura-sin-costuras'
+      assign garment = 'sujetador'
+    when 'retro-shapewear-top-with-zipper', 'top-moldeador-retro-con-cremallera', 'top-moldeador-retro-con-cremallera-nuvel'
+      assign garment = 'top'
+    when 'womens-shapewear-dress-jumpsuit', 'body-moldeador-con-falda', 'body-moldeador-con-falda-nuvel'
+      assign garment = 'body'
+    when 'seamless-shapewear-panties', 'bragas-moldeadoras-sin-costuras', 'bragas-moldeadoras-sin-costuras-nuvel'
+      assign garment = 'bragas'
+  endcase
+%}
+{% if garment != blank %}
+  <section class="nuvel-fotos-producto" aria-label="Cómo queda la prenda">
+    <h2>Cómo queda la prenda</h2>
+    <ul role="list">
+      {% assign views = 'frente,estudio,espejo-1,espejo-2,espejo-3' | split: ',' %}
+      {% for view in views %}
+        {% if forloop.first %}
+          {% assign file = 'nuvel-hover-' | append: garment | append: '.webp' %}
+        {% else %}
+          {% assign file = 'nuvel-' | append: garment | append: '-' | append: view | append: '.webp' %}
+        {% endif %}
+        <li>
+          <img src="{{ file | asset_url }}" width="600" height="750" loading="lazy"
+            alt="{{ product.title | escape }} en negro, {% if forloop.index == 1 %}vista frontal en estudio{% elsif forloop.index == 2 %}segunda vista en estudio{% else %}vista ante el espejo {{ forloop.index | minus: 2 }}{% endif %}">
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+{% stylesheet %}
+  .nuvel-fotos-producto { width: 100%; min-width: 0; margin: 1.5rem auto; }
+  .nuvel-fotos-producto ul { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 20rem); overflow-x: auto; scroll-snap-type: x proximity; gap: .75rem; list-style: none; margin: 0; padding: 0 0 .5rem; }
+  .nuvel-fotos-producto li { scroll-snap-align: start; }
+  .nuvel-fotos-producto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; display: block; background: #fff; }
+  @media (min-width: 900px) { .nuvel-fotos-producto ul { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+{% endstylesheet %}

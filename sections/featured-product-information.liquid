@@ -28,7 +28,7 @@
 <featured-product-information id="{{ section.id }}">
   <h2 class="visually-hidden">{{ 'accessibility.featured_product' | t }}</h2>
   {% if section.settings.product.handle == 'faja-moldeadora-invisible-nuvel' %}
-    <div class="nuvel-story page-width">
+    <div class="nuvel-story page-width" id="producto-destacado">
       <h2>No era tu cuerpo. Eran las costuras.</h2>
       <p>Diseñada para que no se marque bajo la ropa, con compresión suave y tejido flexible.</p>
     </div>
@@ -48,6 +48,7 @@
       </div>
 
       {% render 'nuvel-faja-tecnica' %}
+      {% render 'nuvel-fotos-producto', product: section.settings.product %}
 
       <section class="nuvel-entrega" aria-label="Cómo llega tu pedido">
         <h3>Cómo llega tu pedido</h3>

@@ -1,0 +1,24 @@
+<div class="nuvel-informacion page-width">
+  <section id="sobre-nuvel">
+    <h2>Sobre nosotros</h2>
+    <p>En Nuvel nos especializamos en prendas moldeadoras para el día a día. En cada ficha puedes ver cómo queda la prenda puesta y consultar su propia guía de tallas.</p>
+  </section>
+  <section id="preguntas-frecuentes">
+    <h2>Preguntas frecuentes</h2>
+    <details><summary>¿Cómo elijo mi talla?</summary><p>Abre la guía de la prenda que te interesa y compara tus medidas con las de la tabla.</p></details>
+    <details><summary>¿Puedo combinar tallas en un pack?</summary><p>En los packs por unidades, elige la talla y el color de cada prenda antes de añadir el conjunto al carrito.</p></details>
+    <details><summary>¿Dónde introduzco NUVEL10?</summary><p>Copia el código y pégalo en el campo de descuento al finalizar tu primera compra.</p></details>
+  </section>
+</div>
+
+{% stylesheet %}
+  .nuvel-informacion { display: grid; gap: 2rem; padding: 2rem 1rem; max-width: 76rem; margin: auto; }
+  .nuvel-informacion section, #producto-destacado { scroll-margin-top: calc(var(--header-height, 5rem) + 1rem); }
+  .nuvel-informacion summary { padding-block: .8rem; cursor: pointer; }
+  .nuvel-informacion details { border-bottom: 1px solid var(--color-border); }
+  @media (min-width: 750px) { .nuvel-informacion { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+{% endstylesheet %}
+
+{% schema %}
+{"name":"Información de Nuvel","settings":[],"presets":[{"name":"Información de Nuvel"}]}
+{% endschema %}
