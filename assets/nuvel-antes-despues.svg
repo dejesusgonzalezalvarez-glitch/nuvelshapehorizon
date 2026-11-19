@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+  <title id="title">Antes y después de ponerse la faja Nuvel</title>
+  <desc id="desc">Dos vistas frontales de la misma figura sin rasgos faciales. A la izquierda lleva ropa interior clara. A la derecha, un body negro con copas, tirantes finos y panel de ajuste en la cintura.</desc>
+  <defs>
+    <g id="figure" fill="#f2e7de" stroke="#554b47" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Arms, drawn behind the torso -->
+      <path id="arm" d="M-36 95 Q-54 94 -58 116 C-64 144 -61 162 -68 191 Q-72 209 -73 235 L-76 254 Q-78 265 -75 277 Q-72 281 -71 274 L-69 263 Q-67 271 -65 271 Q-62 270 -63 264 L-63 247 Q-61 231 -55 213 Q-49 197 -47 174 L-37 137Z"/>
+      <use href="#arm" transform="scale(-1 1)"/>
+      <!-- Continuous body outline; thighs end at the same level in both views -->
+      <path d="M-11 66 Q-10 82 -16 86 L-39 95 Q-45 99 -44 111 L-45 130 Q-52 142 -48 154 C-46 168 -39 181 -39 195 Q-40 209 -48 226 C-57 245 -57 263 -54 282 L-46 349 Q-30 354 -14 350 L-4 302 Q-2 293 0 288 Q3 296 5 307 L14 350 Q31 354 46 349 L54 282 C57 262 56 247 48 226 Q40 207 39 195 C39 180 47 166 49 152 Q51 140 45 130 L44 111 Q45 99 39 95 L16 86 Q10 82 11 66Z"/>
+      <path fill="none" stroke="#b09e93" stroke-width="1.15" d="M-23 92 Q-13 94 -6 101 M23 92 Q13 94 6 101 M-12 75 Q-2 83 8 77 M-41 261 Q-34 289 -33 305 M41 261 Q34 289 33 305"/>
+      <!-- Hair pulled back and blank oval face -->
+      <ellipse cx="14" cy="24" rx="14" ry="12" fill="#413c3b"/>
+      <path d="M-23 43 C-25 25 -15 16 0 16 C17 16 25 27 23 46 L21 55 Q18 68 6 75 Q0 79 -6 75 Q-19 68 -21 56Z"/>
+      <path fill="#393535" d="M-23 49 C-28 32 -20 16 -5 14 Q11 10 21 25 Q27 33 23 50 L19 45 Q16 36 12 32 Q2 39 -10 38 Q-17 39 -20 48Z"/>
+      <path fill="none" stroke="#79716c" stroke-width="1" d="M-20 35 Q-8 22 6 22 M-13 36 Q0 31 9 24"/>
+    </g>
+    <path id="cups" d="M-46 143 C-43 163 -16 172 -3 149 M46 143 C43 163 16 172 3 149"/>
+    <g id="straps" fill="none" stroke-width="4" stroke-linecap="round"><path d="M-41 135 L-34 98 M41 135 L34 98"/></g>
+  </defs>
+  <rect width="720" height="480" fill="#fff"/>
+  <g fill="none" stroke="#dcd5cc" stroke-width="1">
+    <path d="M360 42V360" stroke-dasharray="2 7"/>
+    <path d="M294 202H331m58 0h37" stroke-dasharray="3 4"/>
+    <circle cx="360" cy="202" r="17" fill="#fff"/>
+    <path d="M352 202h15m-6-6 6 6-6 6" stroke="#73675b" stroke-width="1.5"/>
+    <path d="M66 379H312m96 0h246"/>
+  </g>
+  <g transform="translate(190 7)">
+    <use href="#figure"/>
+    <use href="#straps" stroke="#91867e"/>
+    <path fill="#fbf8f4" stroke="#80736a" stroke-width="1.6" d="M-44 127 Q-40 124 -30 129 Q-8 139 0 143 Q8 139 30 129 Q40 124 44 127 L48 143 Q47 156 39 162 Q20 168 0 164 Q-20 168 -39 162 Q-47 156 -48 143Z"/>
+    <use href="#cups" fill="none" stroke="#a3968d" stroke-width="1.2"/>
+    <path fill="#fbf8f4" stroke="#80736a" stroke-width="1.6" d="M-49 229 Q0 241 49 229 L53 244 Q25 253 9 282 Q0 288 -9 282 Q-24 253 -53 244Z"/>
+    <path fill="none" stroke="#b4a79c" stroke-width="1" d="M-51 235 Q0 247 51 235 M-3 202q3 4 6 0"/>
+  </g>
+  <g transform="translate(530 7)">
+    <use href="#figure"/>
+    <use href="#straps" stroke="#211f20"/>
+    <path fill="#272526" stroke="#161515" stroke-width="1.8" stroke-linejoin="round" d="M-44 127 Q-39 124 -29 130 Q-9 141 0 145 Q9 141 29 130 Q39 124 44 127 Q53 142 47 158 C44 170 38 183 39 196 Q40 211 48 226 L53 244 Q25 254 9 282 Q0 288 -9 282 Q-25 254 -53 244 L-48 226 Q-40 211 -39 196 C-38 183 -44 170 -47 158 Q-53 142 -44 127Z"/>
+    <g fill="none" stroke="#99918a" stroke-width="1.25" stroke-linecap="round">
+      <use href="#cups"/>
+      <path d="M-39 160 C-26 181 -27 211 -40 235 M39 160 C26 181 27 211 40 235 M-50 243 Q-21 255 -7 279 M50 243 Q21 255 7 279"/>
+      <path d="M-28 173 Q0 179 28 173 M-26 221 Q0 228 26 221" stroke="#696364" stroke-dasharray="2 3"/>
+    </g>
+  </g>
+  <g text-anchor="middle" fill="#242222" font-family="Georgia,serif" font-size="34">
+    <text x="190" y="423">Antes</text><text x="530" y="423">Después</text>
+  </g>
+  <g text-anchor="middle" fill="#645d58" font-family="Arial,sans-serif" font-size="19">
+    <text x="190" y="452">Sin faja</text><text x="530" y="452">Con la faja Nuvel</text>
+  </g>
+</svg>
