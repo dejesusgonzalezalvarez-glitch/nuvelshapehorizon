@@ -1,4 +1,4 @@
-{% if duo.available or look.available %}
+{% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
   <section class="nuvel-faja-packs" aria-label="Packs">
     <h3>Packs</h3>
     <div class="nuvel-faja-packs__item">
@@ -32,6 +32,16 @@
           </span>
           <span>{% if pack.price_varies %}Desde {% endif %}{{ pack.price | money }}</span>
         </a>
+      {% else %}
+        <div class="nuvel-faja-packs__item">
+          <span><strong>{{ label }}</strong>{% if pack_type == 'look' %}<small>Short, faja y top</small>{% endif %}</span>
+          <span>
+            {% if cart.currency.iso_code == 'EUR' %}
+              {% if pack_type == 'duo' %}69,90 €{% else %}84,90 €{% endif %}
+            {% endif %}
+            <small>No disponible</small>
+          </span>
+        </div>
       {% endif %}
     {% endfor %}
   </section>

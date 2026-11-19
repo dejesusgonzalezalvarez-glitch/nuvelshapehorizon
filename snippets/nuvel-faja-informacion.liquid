@@ -1,0 +1,88 @@
+<section class="nuvel-faja-informacion" aria-label="Detalles de la faja">
+  <ul class="nuvel-faja-informacion__beneficios">
+    <li><strong>Ajuste Anclado™</strong>Sin costuras, sin marcas</li>
+    <li><strong>Suave y transpirable</strong>Comodidad todo el día</li>
+    <li><strong>Moldea sin oprimir</strong>Realza tu figura</li>
+  </ul>
+
+  <details>
+    <summary>Descripción</summary>
+    <p>Body de una pieza, con cierre frontal y tirantes regulables. Las copas tienen forma definida y la cintura ofrece compresión suave.</p>
+  </details>
+  {% render 'nuvel-guia-tallas', product: product %}
+  <details>
+    <summary>Cuidado y lavado</summary>
+    <p>Lava a mano o en ciclo frío con jabón neutro. No uses secadora ni plancha.</p>
+  </details>
+  <details>
+    <summary>Envío</summary>
+    <p>Entrega estimada en 7–15 días laborables, con seguimiento.</p>
+    {% if shop.shipping_policy != blank %}
+      <a href="{{ shop.shipping_policy.url }}">Consultar la política de envíos</a>
+    {% endif %}
+  </details>
+  <details>
+    <summary>Cambios y devoluciones</summary>
+    <p>Tienes 30 días naturales desde la recepción. La prenda debe estar sin usar ni lavar y conservar sus etiquetas.</p>
+    {% if shop.refund_policy != blank %}
+      <a href="{{ shop.refund_policy.url }}">Consultar la política de devoluciones</a>
+    {% endif %}
+  </details>
+
+  <section class="nuvel-faja-informacion__resenas" aria-label="Reseñas">
+    <h3>Reseñas</h3>
+    {% assign rating = product.metafields.reviews.rating.value %}
+    {% assign count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 %}
+    {% if count > 0 and rating != blank %}
+      <p>{{ rating.rating }} de {{ rating.scale_max }} · {{ count }} {% if count == 1 %}reseña{% else %}reseñas{% endif %}</p>
+    {% else %}
+      <p>Aún no hay reseñas publicadas.</p>
+    {% endif %}
+    {% if shop.email != blank %}
+      {% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}
+      <a href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña por correo</a>
+    {% endif %}
+  </section>
+</section>
+
+{% stylesheet %}
+  .nuvel-faja-informacion {
+    max-width: 46rem;
+    margin: 1.5rem auto;
+    width: 100%;
+  }
+
+  .nuvel-faja-informacion__beneficios {
+    display: grid;
+    gap: .75rem;
+    list-style: none;
+    padding: 1rem;
+    background: #f8f4ef;
+    color: #24211e;
+  }
+
+  .nuvel-faja-informacion__beneficios strong {
+    display: block;
+  }
+
+  .nuvel-faja-informacion details {
+    border-bottom: 1px solid var(--color-border);
+    padding-block: .5rem;
+  }
+
+  .nuvel-faja-informacion summary {
+    padding-block: .65rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .nuvel-faja-informacion__resenas {
+    margin-block: 1.5rem;
+  }
+
+  @media (min-width: 750px) {
+    .nuvel-faja-informacion__beneficios {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+{% endstylesheet %}

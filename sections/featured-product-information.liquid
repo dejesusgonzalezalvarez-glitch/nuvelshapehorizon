@@ -44,18 +44,10 @@
   {% if section.settings.product.handle == 'faja-moldeadora-invisible-nuvel' %}
     <div class="nuvel-featured-extras page-width">
       <div class="nuvel-featured-options">
-        {% render 'nuvel-guia-tallas', product: section.settings.product %}
-        {% render 'nuvel-faja-packs', product: section.settings.product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+        {% render 'nuvel-faja-informacion', product: section.settings.product %}
       </div>
 
-      <div class="nuvel-tech-grid">
-        <figure>
-          <img src="{{ 'nuvel-tecnica-bodysuit.webp' | asset_url }}" alt="Bodysuit negro, comodidad y estilo" loading="lazy" width="1100" height="1100">
-        </figure>
-        <figure>
-          <img src="{{ 'nuvel-tecnica-detalles.webp' | asset_url }}" alt="Cada detalle, una función" loading="lazy" width="1100" height="1100">
-        </figure>
-      </div>
+      {% render 'nuvel-faja-tecnica' %}
 
       <section class="nuvel-entrega" aria-label="Cómo llega tu pedido">
         <h3>Cómo llega tu pedido</h3>
@@ -97,21 +89,6 @@
     margin-inline: auto;
   }
 
-  .nuvel-tech-grid {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .nuvel-tech-grid figure {
-    margin: 0;
-  }
-
-  .nuvel-tech-grid img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
   .nuvel-entrega {
     padding: 1rem;
     background: #f8f4ef;
@@ -131,11 +108,6 @@
     margin-inline-start: 1rem;
   }
 
-  @media (min-width: 750px) {
-    .nuvel-tech-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
 {% endstylesheet %}
 
 {% schema %}

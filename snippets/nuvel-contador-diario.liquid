@@ -1,0 +1,22 @@
+<nuvel-contador-diario hidden>
+  <strong role="timer" aria-live="off"></strong>
+  <span>Reinicio diario a las 00:00 (hora de Madrid)</span>
+</nuvel-contador-diario>
+<script type="module" src="{{ 'nuvel-contador-diario.js' | asset_url }}"></script>
+
+{% stylesheet %}
+  nuvel-contador-diario:not([hidden]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem .8rem;
+    padding: .75rem 1rem;
+    color: #24211e;
+    background: #f8f4ef;
+    border-radius: .5rem;
+  }
+
+  nuvel-contador-diario strong {
+    font-variant-numeric: tabular-nums;
+  }
+{% endstylesheet %}

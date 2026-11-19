@@ -5,6 +5,7 @@
 </script>
 
 {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+  <nav class="page-width" aria-label="Ruta de navegación"><a href="{{ routes.root_url }}">Inicio</a> / <a href="{{ routes.all_products_collection_url }}">Catálogo</a> / {{ product.title | escape }}</nav>
   <div class="nuvel-faja-intro page-width">
     <h2>No era tu cuerpo. Eran las costuras.</h2>
     <p>El diseño sin costuras de Nuvel está pensado para que la faja no se marque bajo la ropa.</p>
@@ -24,16 +25,17 @@
     id: 'product-details',
     closest.product: closest.product
   %}
-  {% render 'nuvel-guia-tallas', product: product %}
+{% endcapture %}
+
+{% capture additional_blocks %}
   {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-    {% render 'nuvel-faja-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+    {% render 'nuvel-faja-informacion', product: product %}
+  {% else %}
+    {% render 'nuvel-guia-tallas', product: product %}
+  {% endif %}
+  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    {% render 'nuvel-faja-tecnica' %}
     <div class="nuvel-faja-benefits">
-      <h2>Diseñada para el día a día</h2>
-      <ul>
-        <li>Diseño sin costuras</li>
-        <li>Compresión suave</li>
-        <li>Tejido flexible</li>
-      </ul>
       <h2>Cómo llega tu pedido</h2>
       <ol>
         <li>Preparamos tu pedido</li>
@@ -48,9 +50,6 @@
       {% endif %}
     </div>
   {% endif %}
-{% endcapture %}
-
-{% capture additional_blocks %}
   {% content_for 'blocks' %}
 {% endcapture %}
 

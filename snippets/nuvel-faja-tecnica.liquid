@@ -1,0 +1,22 @@
+<div class="nuvel-tech-grid">
+  <figure>
+    <img src="{{ 'nuvel-tecnica-bodysuit.webp' | asset_url }}" alt="Bodysuit negro, comodidad y estilo" loading="lazy" width="1100" height="1100">
+  </figure>
+  <figure>
+    <img src="{{ 'nuvel-tecnica-detalles.webp' | asset_url }}" alt="Cada detalle, una función" loading="lazy" width="1100" height="1100">
+  </figure>
+</div>
+
+{% stylesheet %}
+  .nuvel-tech-grid {
+    display: grid;
+    gap: 1rem;
+    width: min(100%, 70rem);
+    margin: 1.5rem auto;
+  }
+  .nuvel-tech-grid figure { margin: 0; }
+  .nuvel-tech-grid img { display: block; width: 100%; height: auto; }
+  @media (min-width: 750px) {
+    .nuvel-tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+{% endstylesheet %}
