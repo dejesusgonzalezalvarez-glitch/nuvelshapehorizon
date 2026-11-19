@@ -1,0 +1,7 @@
+{%- assign key = link.title | handleize -%}
+{%- case key -%}
+  {%- when 'producto-destacado' -%}{{ routes.root_url }}#producto-destacado
+  {%- when 'sobre-nosotros' -%}{{ routes.root_url }}#sobre-nuvel
+  {%- when 'preguntas-frecuentes' -%}{{ routes.root_url }}#preguntas-frecuentes
+  {%- else -%}{{ link.url | escape }}
+{%- endcase -%}

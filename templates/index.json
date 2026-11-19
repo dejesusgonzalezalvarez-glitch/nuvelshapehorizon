@@ -999,6 +999,7 @@
       ]
     },
     "informacion": { "type": "nuvel-informacion" },
+    "preguntas": { "type": "nuvel-preguntas" },
     "ctafinal": {
       "type": "hero",
       "settings": {
@@ -1055,6 +1056,7 @@
     "testimonios",
     "confianza",
     "informacion",
+    "preguntas",
     "ctafinal"
   ]
 }

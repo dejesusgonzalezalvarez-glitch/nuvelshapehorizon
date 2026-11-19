@@ -1,4 +1,8 @@
-<nuvel-contador-diario hidden>
+{% assign timer_variant = product.selected_or_first_available_variant %}
+<nuvel-contador-diario hidden {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}class="nuvel-contador-faja"{% endif %}>
+  {% if product.handle == 'faja-moldeadora-invisible-nuvel' and timer_variant.compare_at_price > timer_variant.price %}
+    <span class="nuvel-contador-faja__titulo">Faja moldeadora invisible en oferta</span>
+  {% endif %}
   <strong role="timer" aria-live="off"></strong>
   <span>Reinicio diario a las 00:00 (hora de Madrid)</span>
 </nuvel-contador-diario>
@@ -15,8 +19,14 @@
     background: #f8f4ef;
     border-radius: .5rem;
   }
-
-  nuvel-contador-diario strong {
-    font-variant-numeric: tabular-nums;
+  nuvel-contador-diario strong { font-variant-numeric: tabular-nums; }
+  nuvel-contador-diario.nuvel-contador-faja:not([hidden]) {
+    display: grid;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    text-align: center;
   }
+  .nuvel-contador-faja strong { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; }
+  .nuvel-contador-faja__titulo { font-weight: 600; }
 {% endstylesheet %}

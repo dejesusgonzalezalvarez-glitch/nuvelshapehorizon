@@ -12,7 +12,13 @@
 %}
 <nuvel-pack-compra data-add="{{ routes.cart_add_url }}.js" data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code | escape }}" data-locale="{{ request.locale.iso_code | escape }}">
   <details>
-    <summary>{{ title }}</summary>
+    <summary>
+      <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}
+        {% if mode == 'look' %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}
+        {% else %}{% render 'nuvel-pack-foto', product: product %}{% if pieces == 3 %}{% render 'nuvel-pack-foto', product: product %}{% endif %}{% endif %}
+      </span>
+      {{ title }}
+    </summary>
     {% for position in (1..pieces) %}
       {% liquid
         assign item = product
@@ -28,11 +34,26 @@
       <label>
         {% if mode == 'look' %}{{ item.title | escape }}{% else %}Unidad {{ position }}{% endif %}
         <select {% unless item.available %}disabled{% endunless %}>
-          {% for variant in item.variants %}
-            {% if variant.available %}
-              <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
-            {% endif %}
-          {% endfor %}
+          {% assign color_option = item.options_by_name['Color'] %}
+          {% if color_option.values.size > 1 and item.options.size > 1 %}
+            {% assign color_index = color_option.position | minus: 1 %}
+            {% for color in color_option.values %}
+              {% assign color_name = color.name | default: color %}
+              <optgroup label="{{ color_name | escape }}">
+                {% for variant in item.variants %}
+                  {% if variant.available and variant.options[color_index] == color_name %}
+                    <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
+                  {% endif %}
+                {% endfor %}
+              </optgroup>
+            {% endfor %}
+          {% else %}
+            {% for variant in item.variants %}
+              {% if variant.available %}
+                <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         </select>
       </label>
     {% endfor %}

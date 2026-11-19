@@ -2,18 +2,19 @@
   <section class="nuvel-product-packs" aria-label="Packs">
     <h3>Packs</h3>
     {% if product.handle == 'faja-moldeadora-invisible-nuvel' and duo.available and duo.id != product.id %}
-      <a href="{{ duo.url }}">Elegir pack de 2 fajas · {% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</a>
+      <a href="{{ duo.url }}"><span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: product %}</span>Elegir pack de 2 fajas · {% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</a>
     {% else %}
       {% render 'nuvel-pack-compra', product: product, mode: 'duo' %}
     {% endif %}
     {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-      {% if look.available and look.id != product.id %}
-        <a href="{{ look.url }}">Elegir look completo · {% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</a>
-      {% else %}
         {% liquid
           assign short_product = all_products['seamless-shapewear-panties'] | default: all_products['bragas-moldeadoras-sin-costuras-nuvel'] | default: all_products['bragas-moldeadoras-sin-costuras']
           assign top_product = all_products['retro-shapewear-top-with-zipper'] | default: all_products['top-moldeador-retro-con-cremallera-nuvel'] | default: all_products['top-moldeador-retro-con-cremallera']
         %}
+      {% if look.available and look.id != product.id %}
+        <a href="{{ look.url }}"><span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}</span>Elegir look completo · {% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</a>
+      {% else %}
+
         {% if short_product != blank and top_product != blank %}
           {% render 'nuvel-pack-compra', product: product, short_product: short_product, top_product: top_product, mode: 'look' %}
         {% endif %}
@@ -34,4 +35,6 @@
   }
 
   .nuvel-product-packs h3 { margin: 0; }
+  .nuvel-pack-fotos { display: inline-flex; gap: .25rem; vertical-align: middle; margin-inline-end: .75rem; }
+  .nuvel-pack-fotos img { width: clamp(2.25rem, 7vw, 3.4rem); height: 4rem; object-fit: contain; background: white; }
 {% endstylesheet %}

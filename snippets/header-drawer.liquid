@@ -192,7 +192,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'nuvel-menu-url', link: link %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"
@@ -246,7 +246,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'nuvel-menu-url', link: link %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"
@@ -304,7 +304,7 @@
                             </span>
                           </button>
                           <a
-                            href="{{ link.url }}"
+                            href="{% render 'nuvel-menu-url', link: link %}"
                             class="menu-drawer__title focus-inset"
                             {% if link.current %}
                               aria-current="page"
@@ -575,7 +575,7 @@
                   {%- endcomment -%}
                   <a
                     id="HeaderDrawer-{{ link.handle }}"
-                    href="{{ link.url }}"
+                    href="{% render 'nuvel-menu-url', link: link %}"
                     class="menu-drawer__menu-item menu-drawer__menu-item--mainlist menu-drawer__animated-element"
                     {% if link.current %}
                       aria-current="page"

@@ -24,6 +24,12 @@
     "
   >
     {% content_for 'blocks' %}
+    {% case page.handle %}
+      {% when 'sobre-nosotros', 'esencia' %}{% render 'nuvel-sobre' %}
+      {% when 'preguntas-frecuentes', 'ayuda' %}{% render 'nuvel-preguntas' %}
+      {% when 'producto', 'producto-destacado' %}
+        <a class="button" href="{{ routes.root_url }}#producto-destacado">Ver la faja moldeadora invisible</a>
+    {% endcase %}
   </div>
 </div>
 
