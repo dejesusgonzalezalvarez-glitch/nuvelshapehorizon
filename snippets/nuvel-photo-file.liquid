@@ -1,8 +1,10 @@
 {% doc %}
   Maps existing catalog photo filenames to their Nuvel artwork. Uploaded replacements pass through unchanged.
   @param {image} image - Original Shopify image
+  @param {boolean} [studio_gallery] - Use the black studio selection in the product gallery
   @param {product} [owner] - Product used to match older variant photos
 {% enddoc %}
+{%- capture mapped_photo -%}
 {%- liquid
   assign filename = image.src | split: '?' | first | split: '/' | last | split: '.' | first | split: '_' | first
   case filename
@@ -31,7 +33,7 @@
     when '9fab4b9f40ca86c2e545ab8853c8'
       echo 'vestido-gris-frente.jpg'
     when 'f5e34cfd4bf0b793f2bb2d9da4eb'
-      echo 'short-negro-frente.jpg'
+      echo 'nuvel-short-blanco.webp'
     when 'aabee483465c96f29711533581fb'
       echo 'short-negro-espalda.jpg'
     when '3cacb3e749c19156e45fd464f01e', 'dacbe4494d57b548a35696bbc005'
@@ -77,3 +79,20 @@
       endif
   endcase
 -%}
+{%- endcapture -%}
+{%- liquid
+  if studio_gallery and owner != blank
+    if mapped_photo == 'nuvel-faja-espejo.webp' or mapped_photo == 'nuvel-faja-con-ropa.webp'
+      assign mapped_photo = 'nuvel-faja-estudio.webp'
+    elsif mapped_photo contains 'beige' or mapped_photo contains 'rosa' or mapped_photo contains 'gris' or mapped_photo contains 'marron'
+      capture mapped_photo
+        render 'nuvel-catalog-front', product: owner
+      endcapture
+    endif
+  endif
+-%}
+{%- if mapped_photo != blank -%}
+  {{- mapped_photo -}}
+{%- elsif owner != blank -%}
+  {%- render 'nuvel-catalog-front', product: owner -%}
+{%- endif -%}

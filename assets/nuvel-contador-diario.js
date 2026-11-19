@@ -1,38 +1,22 @@
-const madrid = new Intl.DateTimeFormat('en-GB', {
-  timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit',
-  hour: '2-digit', hourCycle: 'h23',
-});
-
-function nextMadridMidnight(now) {
-  const parts = Object.fromEntries(madrid.formatToParts(now).map(({ type, value }) => [type, value]));
-  const utcMidnight = Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day) + 1);
-  // Madrid changes its clocks after local midnight, so this UTC instant has the same offset.
-  const offsetHours = Number(madrid.formatToParts(utcMidnight).find(part => part.type === 'hour').value);
-  return utcMidnight - offsetHours * 3600000;
-}
-
-class NuvelDailyTimer extends HTMLElement {
+class NuvelCountdown extends HTMLElement {
   connectedCallback() {
-    this.clock = this.querySelector('[role="timer"]');
-    if (!this.clock) return;
-    this.update();
-    this.hidden = false;
-    this.interval = window.setInterval(() => this.update(), 1000);
-  }
-
-  update() {
-    const now = Date.now();
-    if (!this.deadline || now >= this.deadline) this.deadline = nextMadridMidnight(now);
-    const remaining = Math.ceil((this.deadline - now) / 1000);
-    const parts = [Math.floor(remaining / 3600), Math.floor(remaining / 60) % 60, remaining % 60];
-    this.clock.textContent = parts.map(value => String(value).padStart(2, '0')).join(':');
+    const deadline = Number(this.dataset.end) * 1000;
+    const timer = this.querySelector('[role="timer"]');
+    const tick = () => {
+      const seconds = Math.ceil((deadline - Date.now()) / 1000);
+      this.hidden = !Number.isFinite(seconds) || seconds <= 0;
+      if (this.hidden) return;
+      const days = Math.floor(seconds / 86400);
+      const clock = [Math.floor(seconds / 3600) % 24, Math.floor(seconds / 60) % 60, seconds % 60];
+      timer.textContent = (days ? days + ' d ' : '') + clock.map(n => String(n).padStart(2, '0')).join(':');
+      this.timeout = setTimeout(tick, 1000);
+    };
+    tick();
   }
 
   disconnectedCallback() {
-    window.clearInterval(this.interval);
+    clearTimeout(this.timeout);
   }
 }
 
-if (!customElements.get('nuvel-contador-diario')) {
-  customElements.define('nuvel-contador-diario', NuvelDailyTimer);
-}
+if (!customElements.get('nuvel-contador-diario')) customElements.define('nuvel-contador-diario', NuvelCountdown);

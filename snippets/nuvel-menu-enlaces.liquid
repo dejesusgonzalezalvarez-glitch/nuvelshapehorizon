@@ -1,6 +1,5 @@
 {% liquid
   assign titles = 'Producto destacado|Sobre nosotros|Preguntas frecuentes' | split: '|'
-  assign anchors = 'producto-destacado|sobre-nuvel|preguntas-frecuentes' | split: '|'
   assign existing = menu.links | map: 'title' | join: '|' | downcase | prepend: '|' | append: '|'
 %}
 {% capture extra_links %}
@@ -8,7 +7,7 @@
     {% assign needle = title | downcase | prepend: '|' | append: '|' %}
     {% unless existing contains needle %}
       <li>
-        <a href="{{ routes.root_url }}#{{ anchors[forloop.index0] }}"
+        <a href="{% render 'nuvel-menu-url', nav_title: title %}"
           {% if variant == 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist" on:click="/close"{% endif %}
         >{{ title }}</a>
       </li>

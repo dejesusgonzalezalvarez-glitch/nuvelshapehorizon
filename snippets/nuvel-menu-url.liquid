@@ -1,7 +1,7 @@
-{%- assign key = link.title | handleize -%}
+{%- assign key = nav_title | default: link.title | handleize -%}
 {%- case key -%}
   {%- when 'producto-destacado' -%}{{ routes.root_url }}#producto-destacado
-  {%- when 'sobre-nosotros' -%}{{ routes.root_url }}#sobre-nuvel
-  {%- when 'preguntas-frecuentes' -%}{{ routes.root_url }}#preguntas-frecuentes
+  {%- when 'sobre-nosotros' -%}{% assign target = pages['sobre-nosotros'] | default: pages['esencia'] %}{% if target != blank %}{{ target.url }}{% else %}{{ routes.root_url }}?view=sobre-nosotros{% endif %}
+  {%- when 'preguntas-frecuentes' -%}{% assign target = pages['preguntas-frecuentes'] | default: pages['ayuda'] %}{% if target != blank %}{{ target.url }}{% else %}{{ routes.root_url }}?view=preguntas-frecuentes{% endif %}
   {%- else -%}{{ link.url | escape }}
 {%- endcase -%}

@@ -36,10 +36,10 @@
             {% assign color_index = color_option.position | minus: 1 %}
             {% for color in color_option.values %}
               {% assign color_name = color.name | default: color %}
-              <optgroup label="{{ color_name | escape }}">
+              <optgroup label="{% render 'nuvel-opcion', value: color_name %}">
                 {% for variant in item.variants %}
                   {% if variant.available and variant.options[color_index] == color_name %}
-                    <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
+                    <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
                   {% endif %}
                 {% endfor %}
               </optgroup>
@@ -47,7 +47,7 @@
           {% else %}
             {% for variant in item.variants %}
               {% if variant.available %}
-                <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
+                <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
               {% endif %}
             {% endfor %}
           {% endif %}

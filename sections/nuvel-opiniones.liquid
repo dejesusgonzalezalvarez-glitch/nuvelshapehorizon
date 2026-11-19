@@ -1,26 +1,30 @@
-<section class="nuvel-opiniones section section--page-width">
-  <div>
-    <h2>{{ section.settings.heading | escape }}</h2>
-    {%- capture opinions -%}
+{%- capture opinions -%}
       {%- for block in section.blocks -%}
         {%- if block.settings.quote != blank -%}
           <figure {{ block.shopify_attributes }}>
             <blockquote>{{ block.settings.quote | escape | newline_to_br }}</blockquote>
             {%- if block.settings.author != blank -%}<figcaption>{{ block.settings.author | escape }}</figcaption>{%- endif -%}
+            {%- if block.settings.score > 0 -%}
+              <span aria-hidden="true">{% for i in (1..5) %}{% if i <= block.settings.score %}★{% else %}☆{% endif %}{% endfor %}</span>
+              <span>{{ block.settings.score }} de 5</span>
+            {%- endif -%}
           </figure>
         {%- endif -%}
       {%- endfor -%}
-    {%- endcapture -%}
-    {% if opinions != blank %}
-      <div class="nuvel-opiniones__lista">{{ opinions }}</div>
-    {% elsif section.settings.pending != blank %}
-      <p>{{ section.settings.pending | escape }}</p>
-    {% endif %}
-  </div>
-</section>
+{%- endcapture -%}
+{% if opinions != blank or request.design_mode %}
+<section class="nuvel-opiniones section section--page-width"><div>
+  <h2>{{ section.settings.heading | escape }}</h2>
+  {% if opinions != blank %}
+    <div class="nuvel-opiniones__lista">{{ opinions }}</div>
+  {% else %}
+    <p>Añade una opinión autorizada para mostrar esta sección.</p>
+  {% endif %}
+</div></section>
+{% endif %}
 
 {% stylesheet %}
-  .nuvel-opiniones { padding-block: 2rem; text-align: center; }
+.nuvel-opiniones { padding-block: 2rem; text-align: center; }
   .nuvel-opiniones h2 { margin: 0 0 .75rem; }
   .nuvel-opiniones p { margin: auto; max-width: 48ch; font-size: .94rem; }
   .nuvel-opiniones__lista { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
@@ -52,6 +56,7 @@
       "name": "Opinión autorizada",
       "settings": [
         { "type": "textarea", "id": "quote", "label": "Mensaje original" },
+        { "type": "range", "id": "score", "label": "Estrellas (0 si no hay nota)", "default": 0, "min": 0, "max": 5, "step": 1 },
         { "type": "text", "id": "author", "label": "Firma autorizada (opcional)" }
       ]
     }

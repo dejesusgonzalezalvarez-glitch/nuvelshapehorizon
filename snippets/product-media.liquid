@@ -37,7 +37,7 @@
     endif
     assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
   %}
-  {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: selected_product %}{%- endcapture -%}
+  {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: selected_product, studio_gallery: true %}{%- endcapture -%}
   {% if nuvel_file != blank %}
     {% assign nuvel_ref = image_ref | default: ref_image_to_transition %}
     {% render 'nuvel-photo', file: nuvel_file, alt: selected_product.title, class: 'product-media__image', ref: nuvel_ref, priority: fetch_priority, loading: loading, style: focal_point_style, media_id: media.id %}

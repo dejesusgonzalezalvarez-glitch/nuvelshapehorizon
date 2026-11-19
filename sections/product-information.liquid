@@ -33,6 +33,7 @@
     {% render 'nuvel-guia-tallas', product: product %}
   {% endunless %}
   {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    {% render 'nuvel-faja-video' %}
     <div class="nuvel-faja-benefits">
       <h2>Cómo llega tu pedido</h2>
       <ol>
@@ -78,36 +79,19 @@
       role="region"
       aria-label="{{ 'products.product.sticky_add_to_cart' | t }}"
     >
-      {% liquid
-        assign image_to_show = current_variant.featured_image | default: product.featured_image
-      %}
-      {% if image_to_show %}
-        <div
-          class="sticky-add-to-cart__image"
-        >
-          {% assign image_alt = image_to_show.alt | default: product.title | escape %}
-          {{
-            image_to_show
-            | image_url: width: 120
-            | image_tag:
-              loading: 'lazy',
-              alt: image_alt,
-              class: 'sticky-add-to-cart__image-img',
-              data-testid: 'sticky-product-image',
-              srcset: null,
-              sizes: null,
-              ref: 'productImage'
-          }}
+      {% capture sticky_photo %}{% render 'nuvel-catalog-front', product: product %}{% endcapture %}
+      {% if sticky_photo != blank %}
+        <div class="sticky-add-to-cart__image">
+          <img src="{{ sticky_photo | asset_url }}" width="60" height="60" loading="lazy" alt="{{ product.title | escape }}" class="sticky-add-to-cart__image-img" ref="productImage">
         </div>
       {% endif %}
-
       {% liquid
         assign has_single_option = false
         if product.has_only_default_variant != true and product.options.size == 1
           assign has_single_option = true
         endif
 
-        if image_to_show == blank
+        if sticky_photo == blank
           assign has_image = false
         else
           assign has_image = true
@@ -134,9 +118,8 @@
         >
           {% unless product.has_only_default_variant %}
             {% if current_variant != blank %}
-              {% assign variant_title = current_variant.title | escape %}
+              {% render 'nuvel-opcion', value: current_variant.title %}
             {% endif %}
-            {{ variant_title }}
           {% endunless %}
         </div>
       </div>
@@ -168,11 +151,11 @@
           <span class="add-to-cart-text__content">
             <span>
               {%- if current_variant.available -%}
-                {{- 'products.product.add_to_cart' | t -}}
+                Añadir al carrito
               {%- elsif current_variant == blank -%}
-                {{- 'products.product.unavailable' | t -}}
+                No disponible
               {%- else -%}
-                {{- 'products.product.sold_out' | t -}}
+                Agotado
               {%- endif -%}
             </span>
             <span
@@ -296,7 +279,8 @@
   .sticky-add-to-cart__image-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
   }
 
   .sticky-add-to-cart__info {
@@ -347,7 +331,7 @@
     }
 
     .sticky-add-to-cart__bar .add-to-cart-text__content {
-      display: none;
+      display: inline;
     }
 
     .sticky-add-to-cart__info[data-has-image='false'] {
@@ -359,7 +343,7 @@
     }
 
     .sticky-add-to-cart__button {
-      padding: var(--padding-lg);
+      padding-inline: .75rem;
     }
 
     .sticky-add-to-cart__price {
@@ -367,7 +351,7 @@
     }
 
     .sticky-add-to-cart__button {
-      width: var(--height-buy-buttons);
+      width: auto;
     }
 
     sticky-add-to-cart:not([data-variant-available='true']) .add-to-cart-text__content {

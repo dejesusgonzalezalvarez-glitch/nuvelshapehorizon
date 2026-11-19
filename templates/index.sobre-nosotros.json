@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": {
+      "type": "nuvel-informacion"
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

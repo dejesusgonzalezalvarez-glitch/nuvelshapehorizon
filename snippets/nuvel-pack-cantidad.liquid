@@ -1,0 +1,17 @@
+{% if bundle.available and bundle.id != product.id %}
+  {% assign saving = product.price_min | times: quantity | minus: bundle.price_max | at_least: 0 %}
+  <a class="nuvel-linked-pack" href="{{ bundle.url }}">
+    <span class="nuvel-pack-fotos">{% for i in (1..quantity) %}{% render 'nuvel-pack-foto', product: product %}{% endfor %}</span>
+    <span class="nuvel-pack-name">Pack de {{ quantity }} unidades</span>
+    <span class="nuvel-pack-importes">
+      <strong>{% if bundle.price_varies %}Desde {% endif %}{{ bundle.price | money }}</strong>
+      {% if product.price_varies == false and bundle.price_varies == false %}<small>Ahorro del pack {{ saving | money }}</small>
+      {% elsif saving > 0 %}<small>Ahorras al menos {{ saving | money }}</small>
+      {% else %}<small>Ahorro según variante</small>{% endif %}
+    </span>
+  </a>
+{% elsif quantity == 2 %}
+  {% render 'nuvel-pack-compra', product: product, mode: 'duo' %}
+{% else %}
+  {% render 'nuvel-pack-compra', product: product, mode: 'trio' %}
+{% endif %}

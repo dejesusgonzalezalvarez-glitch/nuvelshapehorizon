@@ -1,0 +1,11 @@
+<figure class="nuvel-demo">
+  <video controls playsinline preload="none" aria-label="La faja bajo la ropa" poster="{{ 'nuvel-faja-con-ropa.webp' | asset_url }}">
+    <source src="{{ 'nuvel-ugc-ropa-ajustada.mp4' | asset_url }}" type="video/mp4">
+  </video>
+  <figcaption>La faja bajo la ropa, en movimiento</figcaption>
+</figure>
+
+{% stylesheet %}
+  .nuvel-demo { margin: 1.5rem auto; width: min(100%, 24rem); text-align: center; }
+  .nuvel-demo video { width: 100%; max-height: 65svh; }
+{% endstylesheet %}

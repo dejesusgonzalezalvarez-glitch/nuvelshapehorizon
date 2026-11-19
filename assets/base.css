@@ -1877,7 +1877,12 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 }
 
 /* Keep the fabric continuous behind both native footer sections. */
-.nuvel-footer { isolation: isolate; }
+.nuvel-footer { position: relative; isolation: isolate; overflow: clip; background: #24211f; color: #fff; }
+.nuvel-footer::before { content: ""; position: absolute; inset: -8px; z-index: -1; background: linear-gradient(#000b, #000c), var(--nuvel-footer-photo) center / cover; filter: blur(4px); }
+.nuvel-footer :is(p, a, h2, h3, small, summary) { color: #fff !important; }
+.nuvel-footer-pages { display: flex; gap: .5rem 1.5rem; flex-wrap: wrap; justify-content: center; }
+.nuvel-footer-pages a { padding: .75rem; }
+.nuvel-footer-signature { font: 600 clamp(4rem, 16vw, 14rem)/1 var(--font-heading--family); text-align: center; padding-block: 1rem; }
 .nuvel-footer .shopify-section:not(.header-section) .section-background {
   background-color: transparent;
 }

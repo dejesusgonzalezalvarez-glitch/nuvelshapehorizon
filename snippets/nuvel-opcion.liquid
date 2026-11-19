@@ -1,0 +1,22 @@
+{%- assign parts = value | append: '' | split: ' / ' -%}
+{%- for part in parts -%}
+  {%- unless forloop.first %} / {% endunless -%}
+  {%- assign key = part | strip | downcase -%}
+  {%- case key -%}
+    {%- when 'black' -%}Negro
+    {%- when 'black a' -%}Negro · modelo A
+    {%- when 'black b' -%}Negro · modelo B
+    {%- when 'pink' -%}Rosa
+    {%- when 'skin' -%}Beige
+    {%- when 'skin color' -%}Beige
+    {%- when 'brown' -%}Marrón
+    {%- when 'white' -%}Blanco
+    {%- when 'gray' -%}Gris
+    {%- when 'grey' -%}Gris
+    {%- when 'no color' -%}Único
+    {%- when 'size' -%}Talla
+    {%- when 'colour' -%}Color
+    {%- when 'default title' -%}Única
+    {%- else -%}{{ part | escape }}
+  {%- endcase -%}
+{%- endfor -%}

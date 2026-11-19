@@ -76,12 +76,12 @@
             class="variant-option"
             data-testid="variant-option-single"
           >
-            {{- product_option.name | escape -}}
+            {% render 'nuvel-opcion', value: product_option.name %}
             <span
               class="variant-option__swatch-value"
               data-testid="variant-option-single-value"
             >
-              {{- product_option.selected_value -}}
+              {% render 'nuvel-opcion', value: product_option.selected_value %}
             </span>
           </div>
         {%- elsif variant_style == 'swatch' or variant_style == 'buttons' -%}
@@ -92,9 +92,9 @@
             {{ option_id_attribute }}
           >
             <legend>
-              {{ product_option.name | escape -}}
+              {% render 'nuvel-opcion', value: product_option.name %}
               {%- if variant_style == 'swatch' -%}
-                <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
+                <span class="variant-option__swatch-value">{% render 'nuvel-opcion', value: product_option.selected_value %}</span>
               {%- endif %}
             </legend>
             {%- for product_option_value in product_option.values -%}
@@ -108,7 +108,7 @@
                   type="radio"
                   name="{{ product_option.name | escape }}-{{ block.id }}-{{ product_resource.id }}"
                   value="{{ product_option_value | escape }}"
-                  aria-label="{{ product_option_value.name | escape }}{% if product_option_value.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}"
+                  aria-label="{% render 'nuvel-opcion', value: product_option_value.name %}{% if product_option_value.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}"
                   {% if product_option_value.available == false %}
                     aria-disabled="true"
                   {% endif %}
@@ -157,7 +157,7 @@
                     class="variant-option__button-label__text"
                     data-key="variant-option-text"
                   >
-                    {{- product_option_value | escape -}}
+                    {% render 'nuvel-opcion', value: product_option_value %}
                   </span>
                 {% endif %}
                 {% render 'strikethrough-variant', product_option: product_option_value %}
@@ -188,7 +188,7 @@
           %}
 
           <div class="variant-option variant-option--dropdowns">
-            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
+            <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{% render 'nuvel-opcion', value: product_option.name %}</label>
             <div
               class="variant-option__select-wrapper"
               style="
@@ -215,9 +215,9 @@
                     {% endif %}
                   >
                     {% if product_option_value.available == false %}
-                      {{ product_option_value | escape }} - {{ 'content.unavailable' | t }}
+                      {% render 'nuvel-opcion', value: product_option_value %} - {{ 'content.unavailable' | t }}
                     {% else %}
-                      {{ product_option_value | escape }}
+                      {% render 'nuvel-opcion', value: product_option_value %}
                     {% endif %}
                   </option>
                 {%- endfor -%}

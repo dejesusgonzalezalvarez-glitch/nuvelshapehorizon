@@ -1,0 +1,20 @@
+{%- liquid
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign catalog_front = 'producto-frente.jpg'
+
+    when 'sujetador-corrector-postura', 'sujetador-corrector-postura-sin-costuras'
+      assign catalog_front = 'nuvel-sujetador-negro.webp'
+
+    when 'retro-shapewear-top-with-zipper', 'top-moldeador-retro-con-cremallera', 'top-moldeador-retro-con-cremallera-nuvel'
+      assign catalog_front = 'corse-negro-frente.jpg'
+
+    when 'womens-shapewear-dress-jumpsuit', 'body-moldeador-con-falda', 'body-moldeador-con-falda-nuvel'
+      assign catalog_front = 'vestido-negro-frente.jpg'
+
+    when 'seamless-shapewear-panties', 'bragas-moldeadoras-sin-costuras', 'bragas-moldeadoras-sin-costuras-nuvel'
+      assign catalog_front = 'nuvel-short-blanco.webp'
+
+  endcase
+  echo catalog_front
+-%}

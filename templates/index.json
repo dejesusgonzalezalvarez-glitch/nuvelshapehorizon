@@ -87,7 +87,7 @@
             "texto": {
               "type": "text",
               "settings": {
-                "text": "<p>Está diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal para ponértela con comodidad y un tejido flexible que se adapta a tu figura.</p>",
+                "text": "<p>Consulta los puntos de ajuste, la sujeción del pecho y el acabado sin costuras.</p>",
                 "type_preset": "paragraph"
               }
             },
@@ -841,7 +841,7 @@
                 "texto": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Selecciona tu talla correcta utilizando nuestra guía.</p>",
+                    "text": "<p>Compara tus medidas con la tabla.</p>",
                     "type_preset": "rte"
                   }
                 }
@@ -946,7 +946,7 @@
                 "texto": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Si no te convence, escríbenos en los primeros 30 días y lo devuelves sin complicaciones.</p>",
+                    "text": "<p>Consulta las condiciones de devolución.</p>",
                     "type_preset": "rte"
                   }
                 }
@@ -998,8 +998,6 @@
         "columnas"
       ]
     },
-    "informacion": { "type": "nuvel-informacion" },
-    "preguntas": { "type": "nuvel-preguntas" },
     "ctafinal": {
       "type": "hero",
       "settings": {
@@ -1032,8 +1030,8 @@
         "boton": {
           "type": "button",
           "settings": {
-            "label": "Ver catálogo",
-            "link": "/collections/all",
+            "label": "Ver la faja invisible",
+            "link": "/products/faja-moldeadora-invisible-nuvel",
             "style_class": "button"
           }
         }
@@ -1047,16 +1045,14 @@
   },
   "order": [
     "hero",
-    "vidareal",
     "productoancla",
+    "vidareal",
     "combinala",
     "caracteristicashome",
     "catalogo",
     "porque",
     "testimonios",
     "confianza",
-    "informacion",
-    "preguntas",
     "ctafinal"
   ]
 }

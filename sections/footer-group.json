@@ -138,30 +138,6 @@
               },
               "blocks": {}
             },
-            "atencion_faqs": {
-              "type": "text",
-              "settings": {
-                "text": "<p style='margin:4px 0;'><a href='/pages/ayuda' style='color:#1a1a1a;text-decoration:none;'>Preguntas frecuentes</a></p>",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "0.9rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "atencion_pedidos": {
               "type": "text",
               "settings": {
@@ -190,7 +166,6 @@
           "block_order": [
             "atencion_title",
             "atencion_contacto",
-            "atencion_faqs",
             "atencion_pedidos"
           ]
         },

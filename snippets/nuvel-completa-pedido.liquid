@@ -1,0 +1,29 @@
+{% liquid
+  assign faja = all_products['faja-moldeadora-invisible-nuvel']
+  assign top = all_products['retro-shapewear-top-with-zipper'] | default: all_products['top-moldeador-retro-con-cremallera-nuvel']
+  assign short = all_products['seamless-shapewear-panties'] | default: all_products['bragas-moldeadoras-sin-costuras-nuvel']
+  assign product_ids = cart.items | map: 'product_id'
+  if product_ids contains faja.id
+    unless product_ids contains short.id
+      assign extra = short
+    endunless
+    unless extra.available or product_ids contains top.id
+      assign extra = top
+    endunless
+  elsif product_ids contains short.id or product_ids contains top.id
+    assign extra = faja
+  endif
+%}
+{% if extra.available %}
+  <aside class="nuvel-complemento" aria-label="Completa tu conjunto">
+    {% render 'nuvel-pack-foto', product: extra %}
+    <div><strong>Completa tu conjunto</strong><br>
+      <a href="{{ extra.url }}">{{ extra.title | escape }}</a><br>
+      {% if extra.price_varies %}Desde {% endif %}{{ extra.price | money }}
+    </div>
+  </aside>
+{% endif %}
+{% stylesheet %}
+  .nuvel-complemento { display: flex; gap: 1rem; align-items: center; padding-block: 1rem; }
+  .nuvel-complemento img { width: 3.5rem; height: 4.5rem; object-fit: contain; background: #fff; }
+{% endstylesheet %}

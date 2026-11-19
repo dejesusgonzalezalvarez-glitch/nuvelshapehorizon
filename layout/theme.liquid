@@ -147,8 +147,13 @@
         {{ content_for_layout }}
       </main>
 
-      <footer class="nuvel-footer" style="background: #f5f0e9 url('{{ 'nuvel-pie.webp' | asset_url }}') center / cover;">
+      <footer class="nuvel-footer" style="--nuvel-footer-photo: url('{{ 'nuvel-pie.webp' | asset_url }}');">
         {% sections 'footer-group' %}
+        <nav class="nuvel-footer-pages" aria-label="Información de Nuvel">
+          <a href="{% render 'nuvel-menu-url', nav_title: 'Sobre nosotros' %}">Sobre nosotros</a>
+          <a href="{% render 'nuvel-menu-url', nav_title: 'Preguntas frecuentes' %}">Preguntas frecuentes</a>
+        </nav>
+        <div class="nuvel-footer-signature" aria-hidden="true">NUVEL</div>
       </footer>
     </div>
 

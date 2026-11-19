@@ -124,7 +124,7 @@
                     assign focal_point_style = 'object-position: ' | append: media.presentation.focal_point | append: ';'
                   endif
                 %}
-                {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: thumbnail_product %}{%- endcapture -%}
+                {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: thumbnail_product, studio_gallery: true %}{%- endcapture -%}
                 {% if nuvel_file != blank %}
                   {% render 'nuvel-photo', file: nuvel_file, alt: thumbnail_product.title %}
                 {% else %}

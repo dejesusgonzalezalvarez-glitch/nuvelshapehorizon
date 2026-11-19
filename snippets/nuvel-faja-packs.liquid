@@ -1,24 +1,14 @@
+{% liquid
+  assign same_product_duo = product.metafields.custom.pack_duo.value
+  if product.handle == 'faja-moldeadora-invisible-nuvel'
+    assign same_product_duo = same_product_duo | default: duo
+  endif
+  assign same_product_trio = product.metafields.custom.pack_trio.value
+%}
 {% unless product.gift_card? %}
   <section class="nuvel-product-packs" aria-label="Packs">
     <h3>Packs</h3>
-    {% if product.handle == 'faja-moldeadora-invisible-nuvel' and duo.available and duo.id != product.id %}
-      {% assign separate_price = product.price_min | times: 2 %}
-      {% assign pack_saving = separate_price | minus: duo.price_max | at_least: 0 %}
-      <a class="nuvel-linked-pack" href="{{ duo.url }}">
-        <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: product %}</span>
-        <span class="nuvel-pack-name">Pack de 2 fajas</span>
-        <span class="nuvel-pack-importes">
-          <strong>{% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</strong>
-          {% if product != blank %}
-            {% if product.price_varies == false and duo.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
-            {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
-            {% else %}<small>Ahorro según variante</small>{% endif %}
-          {% endif %}
-        </span>
-      </a>
-    {% else %}
-      {% render 'nuvel-pack-compra', product: product, mode: 'duo' %}
-    {% endif %}
+    {% render 'nuvel-pack-cantidad', product: product, bundle: same_product_duo, quantity: 2 %}
     {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
         {% liquid
           assign short_product = all_products['seamless-shapewear-panties'] | default: all_products['bragas-moldeadoras-sin-costuras-nuvel'] | default: all_products['bragas-moldeadoras-sin-costuras']
@@ -46,7 +36,7 @@
         {% endif %}
       {% endif %}
     {% else %}
-      {% render 'nuvel-pack-compra', product: product, mode: 'trio' %}
+      {% render 'nuvel-pack-cantidad', product: product, bundle: same_product_trio, quantity: 3 %}
     {% endif %}
   </section>
 {% endunless %}
