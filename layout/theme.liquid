@@ -168,5 +168,24 @@
     {% unless request.design_mode %}
       {% render 'nuvel-welcome-discount' %}
     {% endunless %}
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;pointer-events:none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="nuvel-studio-white" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
+          <!-- Select bright pixels, then exclude warm tones such as skin. -->
+          <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 18 0 -14.8" result="lights"/>
+          <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -22 0 22 0 2.6" result="neutral"/>
+          <feComposite in="lights" in2="neutral" operator="in" result="backdrop"/>
+          <feComposite in="backdrop" in2="SourceGraphic" operator="over"/>
+        </filter>
+      </defs>
+    </svg>
+    <style>
+img[src*="/short-negro-espalda.jpg"],
+img[src*="/corse-negro-frente.jpg"],
+img[src*="/corse-negro-modelo.jpg"],
+img[src*="/corse-negro-modelo-espalda.jpg"] {
+  filter: url(#nuvel-studio-white);
+}
+    </style>
   </body>
 </html>
