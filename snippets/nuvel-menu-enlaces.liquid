@@ -3,17 +3,35 @@
   assign anchors = 'producto-destacado|sobre-nuvel|preguntas-frecuentes' | split: '|'
   assign existing = menu.links | map: 'title' | join: '|' | downcase | prepend: '|' | append: '|'
 %}
-{% for title in titles %}
-  {% assign needle = title | downcase | prepend: '|' | append: '|' %}
-  {% unless existing contains needle %}
-    <li class="{% if variant == 'desktop' %}menu-list__list-item{% endif %}">
-      <a href="{{ routes.root_url }}#{{ anchors[forloop.index0] }}"
-        {% case variant %}
-          {% when 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist" on:click="/close"
-          {% when 'desktop' %}class="menu-list__link" ref="menuitem"
-          {% else %}class="menu-list__item"
-        {% endcase %}
-      >{{ title }}</a>
+{% capture extra_links %}
+  {% for title in titles %}
+    {% assign needle = title | downcase | prepend: '|' | append: '|' %}
+    {% unless existing contains needle %}
+      <li>
+        <a href="{{ routes.root_url }}#{{ anchors[forloop.index0] }}"
+          {% if variant == 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist" on:click="/close"{% endif %}
+        >{{ title }}</a>
+      </li>
+    {% endunless %}
+  {% endfor %}
+{% endcapture %}
+{% assign extra_links = extra_links | strip %}
+{% if extra_links != blank %}
+  {% if variant == 'drawer' %}
+    {{ extra_links }}
+  {% elsif variant == 'desktop' %}
+    <li class="menu-list__list-item nuvel-discover">
+      <button type="button" class="menu-list__link button-unstyled" popovertarget="NuvelDiscover-{{ section.id }}">Descubrir ▾</button>
+      <ul popover id="NuvelDiscover-{{ section.id }}" class="nuvel-discover-links" onclick="if(event.target.closest('a'))this.hidePopover()">{{ extra_links }}</ul>
     </li>
-  {% endunless %}
-{% endfor %}
+  {% endif %}
+{% endif %}
+
+{% stylesheet %}
+  .nuvel-discover button { anchor-name: --nuvel-discover; white-space: nowrap; }
+  .nuvel-discover-links { list-style: none; padding: .5rem; border: 1px solid #ddd; background: #fff; color: #111; }
+  .nuvel-discover-links a { display: block; padding: .75rem 1rem; color: inherit; }
+  @supports (top: anchor(bottom)) {
+    .nuvel-discover-links { position-anchor: --nuvel-discover; inset: auto; top: anchor(bottom); left: anchor(left); margin: 0; }
+  }
+{% endstylesheet %}

@@ -2,7 +2,20 @@
   <section class="nuvel-product-packs" aria-label="Packs">
     <h3>Packs</h3>
     {% if product.handle == 'faja-moldeadora-invisible-nuvel' and duo.available and duo.id != product.id %}
-      <a href="{{ duo.url }}"><span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: product %}</span>Elegir pack de 2 fajas · {% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</a>
+      {% assign separate_price = product.price_min | times: 2 %}
+      {% assign pack_saving = separate_price | minus: duo.price_max | at_least: 0 %}
+      <a class="nuvel-linked-pack" href="{{ duo.url }}">
+        <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: product %}</span>
+        <span class="nuvel-pack-name">Pack de 2 fajas</span>
+        <span class="nuvel-pack-importes">
+          <strong>{% if duo.price_varies %}Desde {% endif %}{{ duo.price | money }}</strong>
+          {% if product != blank %}
+            {% if product.price_varies == false and duo.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
+            {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
+            {% else %}<small>Ahorro según variante</small>{% endif %}
+          {% endif %}
+        </span>
+      </a>
     {% else %}
       {% render 'nuvel-pack-compra', product: product, mode: 'duo' %}
     {% endif %}
@@ -12,7 +25,20 @@
           assign top_product = all_products['retro-shapewear-top-with-zipper'] | default: all_products['top-moldeador-retro-con-cremallera-nuvel'] | default: all_products['top-moldeador-retro-con-cremallera']
         %}
       {% if look.available and look.id != product.id %}
-        <a href="{{ look.url }}"><span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}</span>Elegir look completo · {% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</a>
+      {% assign separate_price = product.price_min | plus: short_product.price_min | plus: top_product.price_min %}
+      {% assign pack_saving = separate_price | minus: look.price_max | at_least: 0 %}
+      <a class="nuvel-linked-pack" href="{{ look.url }}">
+        <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}</span>
+        <span class="nuvel-pack-name">Look completo · Faja, short y top</span>
+        <span class="nuvel-pack-importes">
+          <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>
+          {% if short_product != blank and top_product != blank %}
+            {% if product.price_varies == false and short_product.price_varies == false and top_product.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
+            {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
+            {% else %}<small>Ahorro según variante</small>{% endif %}
+          {% endif %}
+        </span>
+      </a>
       {% else %}
 
         {% if short_product != blank and top_product != blank %}
@@ -34,6 +60,7 @@
     text-align: start;
   }
 
+  .nuvel-linked-pack { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; border: 1px solid currentColor; padding: .85rem; }
   .nuvel-product-packs h3 { margin: 0; }
   .nuvel-pack-fotos { display: inline-flex; gap: .25rem; vertical-align: middle; margin-inline-end: .75rem; }
   .nuvel-pack-fotos img { width: clamp(2.25rem, 7vw, 3.4rem); height: 4rem; object-fit: contain; background: white; }
