@@ -726,8 +726,8 @@
     "testimonios": {
       "type": "nuvel-opiniones",
       "settings": {
-        "heading": "Opiniones de clientas",
-        "pending": "Hemos solicitado permiso a nuestras clientas para publicar aquí sus mensajes."
+        "heading": "Clientas reales, mensajes reales",
+        "pending": "Estamos pidiendo permiso a nuestras clientas para publicar aquí sus mensajes tal cual. En cuanto lo tengamos, los verás sin retocar."
       }
     },
     "confianza": {

@@ -1,0 +1,25 @@
+{%- liquid
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign guide_image = 'nuvel-guia-faja.svg'
+      assign guide_alt = 'Talla S, Cintura (cm) 62–70, Cadera (cm) 88–96. Talla M, Cintura (cm) 71–79, Cadera (cm) 97–105. Talla L, Cintura (cm) 80–89, Cadera (cm) 106–115. Talla XL, Cintura (cm) 90–99, Cadera (cm) 116–125.'
+    when 'sujetador-corrector-postura', 'sujetador-corrector-postura-sin-costuras'
+      assign guide_image = 'nuvel-guia-sujetador.svg'
+      assign guide_alt = 'Talla S, Peso (kg) 42,5–50. Talla M, Peso (kg) 50–57,5. Talla L, Peso (kg) 57,5–65. Talla XL, Peso (kg) 65–72,5.'
+    when 'retro-shapewear-top-with-zipper', 'top-moldeador-retro-con-cremallera', 'top-moldeador-retro-con-cremallera-nuvel'
+      assign guide_image = 'nuvel-guia-top.svg'
+      assign guide_alt = 'Talla XS, Cintura (cm) 62–65, Largo frontal (cm) 31. Talla S, Cintura (cm) 66–71, Largo frontal (cm) 31. Talla M, Cintura (cm) 72–75, Largo frontal (cm) 31. Talla L, Cintura (cm) 76–79, Largo frontal (cm) 31. Talla XL, Cintura (cm) 80–83, Largo frontal (cm) 31. Talla 2XL, Cintura (cm) 84–88, Largo frontal (cm) 31.'
+    when 'womens-shapewear-dress-jumpsuit', 'body-moldeador-con-falda', 'body-moldeador-con-falda-nuvel'
+      assign guide_image = 'nuvel-guia-body.svg'
+      assign guide_alt = 'Talla S, Pecho (cm) 82–88, Cintura (cm) 62–70, Cadera (cm) 86–94. Talla M, Pecho (cm) 89–95, Cintura (cm) 71–79, Cadera (cm) 95–103. Talla L, Pecho (cm) 96–103, Cintura (cm) 80–88, Cadera (cm) 104–112. Talla XL, Pecho (cm) 104–111, Cintura (cm) 89–97, Cadera (cm) 113–121. Talla 2XL, Pecho (cm) 112–120, Cintura (cm) 98–107, Cadera (cm) 122–131. Talla 3XL, Pecho (cm) 121–130, Cintura (cm) 108–117, Cadera (cm) 132–141.'
+    when 'seamless-shapewear-panties', 'bragas-moldeadoras-sin-costuras', 'bragas-moldeadoras-sin-costuras-nuvel'
+      assign guide_image = 'nuvel-guia-bragas.svg'
+      assign guide_alt = 'Talla S, Cintura (cm) 60–68, Cadera (cm) 86–94. Talla M, Cintura (cm) 69–77, Cadera (cm) 95–103. Talla L, Cintura (cm) 78–87, Cadera (cm) 104–113. Talla XL, Cintura (cm) 88–97, Cadera (cm) 114–123. Talla 2XL, Cintura (cm) 98–108, Cadera (cm) 124–134.'
+  endcase
+-%}
+{% if guide_image != blank %}
+  <details class="nuvel-size-guide">
+    <summary>Guía de tallas</summary>
+    <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="lazy" style="display:block;width:100%;height:auto">
+  </details>
+{% endif %}

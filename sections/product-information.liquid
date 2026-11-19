@@ -4,6 +4,12 @@
   {{ closest.product | structured_data }}
 </script>
 
+{% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+  <div class="nuvel-faja-intro page-width">
+    <h2>No era tu cuerpo. Eran las costuras.</h2>
+    <p>El diseño sin costuras de Nuvel está pensado para que la faja no se marque bajo la ropa.</p>
+  </div>
+{% endif %}
 {% capture media_gallery %}
   {%- content_for 'block',
     type: '_product-media-gallery',
@@ -18,6 +24,30 @@
     id: 'product-details',
     closest.product: closest.product
   %}
+  {% render 'nuvel-guia-tallas', product: product %}
+  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    {% render 'nuvel-faja-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+    <div class="nuvel-faja-benefits">
+      <h2>Diseñada para el día a día</h2>
+      <ul>
+        <li>Diseño sin costuras</li>
+        <li>Compresión suave</li>
+        <li>Tejido flexible</li>
+      </ul>
+      <h2>Cómo llega tu pedido</h2>
+      <ol>
+        <li>Preparamos tu pedido</li>
+        <li>En camino</li>
+        <li>Recibido</li>
+      </ol>
+      {% if shop.shipping_policy != blank %}
+        <a href="{{ shop.shipping_policy.url }}">Envíos</a>
+      {% endif %}
+      {% if shop.refund_policy != blank %}
+        <a href="{{ shop.refund_policy.url }}">Devoluciones</a>
+      {% endif %}
+    </div>
+  {% endif %}
 {% endcapture %}
 
 {% capture additional_blocks %}
@@ -184,6 +214,17 @@
 %}
 
 {% stylesheet %}
+  .nuvel-faja-intro {
+    padding-block: 1.5rem;
+    text-align: center;
+  }
+
+  .nuvel-faja-benefits {
+    display: grid;
+    gap: .75rem;
+    margin-block: 1rem;
+  }
+
   .sticky-add-to-cart__bar {
     position: fixed;
     bottom: max(20px, var(--safe-area-inset-bottom));
@@ -387,6 +428,16 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "product",
+      "id": "nuvel_duo",
+      "label": "Pack de 2 fajas Nuvel"
+    },
+    {
+      "type": "product",
+      "id": "nuvel_look",
+      "label": "Pack Look completo Nuvel"
+    },
     {
       "type": "header",
       "content": "t:content.layout"

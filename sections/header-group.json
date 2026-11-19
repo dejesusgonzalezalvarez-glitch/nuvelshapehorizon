@@ -8,7 +8,19 @@
         "announcement_envio": {
           "type": "_announcement",
           "settings": {
-            "text": "Envío gratis a todo el mundo",
+            "text": "Envíos a toda España",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "announcement_faja": {
+          "type": "_announcement",
+          "settings": {
+            "text": "La que no se nota en el espejo",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",
@@ -32,7 +44,8 @@
       },
       "block_order": [
         "announcement_descuento",
-        "announcement_envio"
+        "announcement_envio",
+        "announcement_faja"
       ],
       "name": "Barra de anuncios",
       "settings": {

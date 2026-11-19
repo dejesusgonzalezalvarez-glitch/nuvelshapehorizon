@@ -1,0 +1,85 @@
+<dialog id="nuvel-welcome-discount" aria-labelledby="nuvel-welcome-title">
+  <h2 id="nuvel-welcome-title">10 % de descuento con NUVEL10</h2>
+  <p>Copia el código y aplícalo al finalizar tu compra.</p>
+  <input aria-label="Código de descuento" type="text" value="NUVEL10" readonly>
+  <p class="nuvel-welcome-status" role="status"></p>
+  <div class="nuvel-welcome-actions">
+    <button type="button" class="button" data-copy>Copiar código</button>
+    <form method="dialog">
+      <button class="button-secondary" autofocus>Cerrar</button>
+    </form>
+  </div>
+</dialog>
+
+{% stylesheet %}
+  #nuvel-welcome-discount {
+    width: min(28rem, calc(100% - 2rem));
+    max-height: calc(100% - 2rem);
+    padding: 1.5rem;
+    border: 1px solid #ded2c4;
+    border-radius: .75rem;
+    background: #fff;
+    color: #111;
+  }
+
+  #nuvel-welcome-discount::backdrop {
+    background: rgb(0 0 0 / 45%);
+  }
+
+  #nuvel-welcome-discount input {
+    width: 100%;
+    padding: .75rem;
+    border: 1px solid #a18a73;
+    border-radius: .25rem;
+    background: #f8f4ef;
+    color: #111;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .nuvel-welcome-status {
+    min-height: 1.5em;
+  }
+
+  .nuvel-welcome-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+{% endstylesheet %}
+
+<script>
+  (() => {
+    const dialog = document.getElementById('nuvel-welcome-discount');
+    if (!dialog?.showModal) return;
+
+    const storageKey = 'nuvel-welcome-discount-v1';
+    for (const storageName of ['localStorage', 'sessionStorage']) {
+      try {
+        const storage = window[storageName];
+        if (storage.getItem(storageKey)) return;
+        storage.setItem(storageKey, 'seen');
+        break;
+      } catch {
+        // Try session storage when persistent storage is unavailable.
+      }
+    }
+
+    const input = dialog.querySelector('input');
+    const status = dialog.querySelector('[role="status"]');
+    dialog.querySelector('[data-copy]').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(input.value);
+        status.textContent = 'Código copiado.';
+      } catch {
+        input.focus();
+        input.select();
+        status.textContent = 'Código seleccionado. Cópialo para usarlo en tu pedido.';
+      }
+    });
+
+    const previousFocus = document.activeElement;
+    dialog.addEventListener('close', () => previousFocus?.focus(), { once: true });
+    dialog.showModal();
+  })();
+</script>

@@ -27,6 +27,12 @@
 
 <featured-product-information id="{{ section.id }}">
   <h2 class="visually-hidden">{{ 'accessibility.featured_product' | t }}</h2>
+  {% if section.settings.product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    <div class="nuvel-story page-width">
+      <h2>No era tu cuerpo. Eran las costuras.</h2>
+      <p>Diseñada para que no se marque bajo la ropa, con compresión suave y tejido flexible.</p>
+    </div>
+  {% endif %}
   {% render 'product-information-content',
     product: section.settings.product,
     section_id: section.id,
@@ -35,7 +41,102 @@
     product_details: product_details,
     additional_blocks: additional_blocks
   %}
+  {% if section.settings.product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    <div class="nuvel-featured-extras page-width">
+      <div class="nuvel-featured-options">
+        {% render 'nuvel-guia-tallas', product: section.settings.product %}
+        {% render 'nuvel-faja-packs', product: section.settings.product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+      </div>
+
+      <div class="nuvel-tech-grid">
+        <figure>
+          <img src="{{ 'nuvel-tecnica-bodysuit.webp' | asset_url }}" alt="Bodysuit negro, comodidad y estilo" loading="lazy" width="1100" height="1100">
+        </figure>
+        <figure>
+          <img src="{{ 'nuvel-tecnica-detalles.webp' | asset_url }}" alt="Cada detalle, una función" loading="lazy" width="1100" height="1100">
+        </figure>
+      </div>
+
+      <section class="nuvel-entrega" aria-label="Cómo llega tu pedido">
+        <h3>Cómo llega tu pedido</h3>
+        <ol>
+          <li>Preparamos</li>
+          <li>En camino</li>
+          <li>Recibido</li>
+        </ol>
+        {% if shop.shipping_policy != blank %}
+          <a href="{{ shop.shipping_policy.url }}">Envíos</a>
+        {% endif %}
+        {% if shop.refund_policy != blank %}
+          <a href="{{ shop.refund_policy.url }}">Devoluciones</a>
+        {% endif %}
+      </section>
+    </div>
+  {% endif %}
 </featured-product-information>
+
+{% stylesheet %}
+  .nuvel-story {
+    padding-block: 1.5rem;
+    text-align: center;
+  }
+
+  .nuvel-story p {
+    margin: .75rem auto 0;
+    max-width: 46ch;
+  }
+
+  .nuvel-featured-extras {
+    display: grid;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+  }
+
+  .nuvel-featured-options {
+    width: min(100%, 38rem);
+    margin-inline: auto;
+  }
+
+  .nuvel-tech-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .nuvel-tech-grid figure {
+    margin: 0;
+  }
+
+  .nuvel-tech-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .nuvel-entrega {
+    padding: 1rem;
+    background: #f8f4ef;
+    color: #24211e;
+    text-align: center;
+  }
+
+  .nuvel-entrega ol {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem 2rem;
+    padding-inline-start: 1.25rem;
+  }
+
+  .nuvel-entrega a + a {
+    margin-inline-start: 1rem;
+  }
+
+  @media (min-width: 750px) {
+    .nuvel-tech-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -56,6 +157,16 @@
       "type": "product",
       "id": "product",
       "label": "t:settings.product"
+    },
+    {
+      "type": "product",
+      "id": "nuvel_duo",
+      "label": "Pack de 2 fajas Nuvel"
+    },
+    {
+      "type": "product",
+      "id": "nuvel_look",
+      "label": "Pack Look completo Nuvel"
     },
     {
       "type": "header",

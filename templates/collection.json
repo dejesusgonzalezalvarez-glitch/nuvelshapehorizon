@@ -15,7 +15,7 @@
           "type": "text",
           "name": "t:names.title",
           "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "text": "<h1>{% if closest.collection.handle == 'all' %}Catálogo{% else %}{{ closest.collection.title | escape }}{% endif %}</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -134,7 +134,7 @@
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
-                "image_ratio": "adapt",
+                "image_ratio": "portrait",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,

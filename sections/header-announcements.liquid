@@ -126,6 +126,29 @@
     position: absolute;
     inset: 0;
   }
+  @media (prefers-reduced-motion: no-preference) {
+    .announcement-bar__slides {
+      overflow: hidden;
+    }
+
+    .announcement-bar__slide {
+      transition: transform .45s ease-out, opacity .45s ease-out, visibility .45s ease-out;
+    }
+
+    .announcement-bar__slide[aria-hidden='true'] {
+      transform: translateX(-100%);
+    }
+
+    .announcement-bar__slide[aria-hidden='false'] {
+      animation: nuvel-announcement-enter .45s ease-out;
+    }
+
+    @keyframes nuvel-announcement-enter {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+  }
+
 {% endstylesheet %}
 
 {% schema %}
