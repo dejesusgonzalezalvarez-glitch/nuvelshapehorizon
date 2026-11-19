@@ -1,0 +1,56 @@
+{% liquid
+  assign pieces = 2
+  assign title = 'Pack de 2 unidades'
+  if mode == 'trio'
+    assign pieces = 3
+    assign title = 'Pack de 3 unidades'
+  elsif mode == 'look'
+    assign pieces = 3
+    assign title = 'Look completo · Faja, short y top'
+  endif
+  assign pack_available = true
+%}
+<nuvel-pack-compra data-add="{{ routes.cart_add_url }}.js" data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code | escape }}" data-locale="{{ request.locale.iso_code | escape }}">
+  <details>
+    <summary>{{ title }}</summary>
+    {% for position in (1..pieces) %}
+      {% liquid
+        assign item = product
+        if mode == 'look' and position == 2
+          assign item = short_product
+        elsif mode == 'look' and position == 3
+          assign item = top_product
+        endif
+        unless item.available
+          assign pack_available = false
+        endunless
+      %}
+      <label>
+        {% if mode == 'look' %}{{ item.title | escape }}{% else %}Unidad {{ position }}{% endif %}
+        <select {% unless item.available %}disabled{% endunless %}>
+          {% for variant in item.variants %}
+            {% if variant.available %}
+              <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title | escape }} · {{ variant.price | money }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </label>
+    {% endfor %}
+    {% if pack_available %}
+      <p>Total del pack <strong data-total></strong></p>
+      <button type="button" class="button" data-add-pack disabled>Añadir pack al carrito</button>
+    {% else %}
+      <p>Pack agotado</p>
+    {% endif %}
+    <span role="status"></span>
+  </details>
+</nuvel-pack-compra>
+<script type="module" src="{{ 'nuvel-pack-compra.js' | asset_url }}"></script>
+
+{% stylesheet %}
+  nuvel-pack-compra { display: block; padding: .85rem; border: 1px solid #000; background: #fff; color: #000; }
+  nuvel-pack-compra summary { font-weight: 600; cursor: pointer; }
+  nuvel-pack-compra label { display: grid; gap: .25rem; margin-block: .75rem; }
+  nuvel-pack-compra select { width: 100%; min-height: 44px; font: inherit; color: #000; background: #fff; }
+  nuvel-pack-compra [role="status"]:not(:empty) { display: block; margin-top: .75rem; }
+{% endstylesheet %}

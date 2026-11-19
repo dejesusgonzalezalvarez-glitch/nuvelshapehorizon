@@ -38,9 +38,7 @@
 
 {% if product != blank %}
   {% render 'nuvel-contador-diario' %}
-  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-    {% render 'nuvel-faja-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
-  {% endif %}
+  {% render 'nuvel-faja-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
 {% endif %}
 
 <span

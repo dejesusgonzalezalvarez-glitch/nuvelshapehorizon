@@ -18,7 +18,7 @@
   endcase
 -%}
 {% if guide_image != blank %}
-  <details class="nuvel-size-guide">
+  <details class="nuvel-size-guide" open>
     <summary>Guía de tallas</summary>
     <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="lazy" style="display:block;width:100%;height:auto">
   </details>
