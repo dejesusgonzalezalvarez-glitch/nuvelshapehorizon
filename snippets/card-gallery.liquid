@@ -10,6 +10,26 @@
 
 {% liquid
   assign product = closest.product
+  assign catalog_front = blank
+  assign catalog_model = blank
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign catalog_front = 'producto-frente.jpg'
+      assign catalog_model = 'catalogo-faja-modelo.webp'
+    when 'sujetador-corrector-postura', 'sujetador-corrector-postura-sin-costuras'
+      assign catalog_front = 'nuvel-sujetador-negro.webp'
+      assign catalog_model = 'catalogo-sujetador-modelo.webp'
+    when 'retro-shapewear-top-with-zipper', 'top-moldeador-retro-con-cremallera', 'top-moldeador-retro-con-cremallera-nuvel'
+      assign catalog_front = 'corse-negro-frente.jpg'
+      assign catalog_model = 'corse-negro-modelo.jpg'
+    when 'womens-shapewear-dress-jumpsuit', 'body-moldeador-con-falda', 'body-moldeador-con-falda-nuvel'
+      assign catalog_front = 'vestido-negro-frente.jpg'
+      assign catalog_model = 'vestido-modelo-blanco.jpg'
+    when 'seamless-shapewear-panties', 'bragas-moldeadoras-sin-costuras', 'bragas-moldeadoras-sin-costuras-nuvel'
+      assign catalog_front = 'short-negro-frente.jpg'
+      assign catalog_model = 'short-modelo-blanco.jpg'
+  endcase
+
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
 
@@ -77,7 +97,7 @@
     --gallery-aspect-ratio: {{ ratio }};
   "
   data-product-id="{{ product.id }}"
-  {% if settings.show_second_image_on_hover and product.media.size > 1 %}
+  {% if catalog_front == blank and settings.show_second_image_on_hover and product.media.size > 1 %}
     on:pointerenter="/previewImage"
     on:pointerleave="/resetImage"
   {% endif %}
@@ -87,7 +107,39 @@
   data-image-ratio="{{ block_settings.image_ratio }}"
   {{ block.shopify_attributes }}
 >
-  {%- if product.media.size > 0 -%}
+  {%- if catalog_front != blank -%}
+    {% liquid
+      assign catalog_loading = 'lazy'
+      if section.index == null or section.index < 5
+        assign catalog_loading = 'eager'
+      endif
+    %}
+    <a
+      class="card-gallery__catalog"
+      ref="cardGalleryLink"
+      href="{{ product.url }}"
+      aria-label="{{ product.title | escape }}"
+    >
+      <img
+        class="card-gallery__catalog-front"
+        src="{{ catalog_front | asset_url }}"
+        alt="{{ product.title | escape }} en negro"
+        loading="{{ catalog_loading }}"
+        decoding="async"
+        width="800"
+        height="1000"
+      >
+      <img
+        class="card-gallery__catalog-model"
+        src="{{ catalog_model | asset_url }}"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        width="800"
+        height="1000"
+      >
+    </a>
+  {%- elsif product.media.size > 0 -%}
     <a
       class="contents"
       ref="cardGalleryLink"
@@ -245,6 +297,37 @@
 {% render 'product-media-container-styles' %}
 
 {% stylesheet %}
+  .card-gallery__catalog {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: #fff;
+  }
+
+  .card-gallery__catalog img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+  }
+
+  .card-gallery__catalog-model {
+    opacity: 0;
+  }
+
+  .card-gallery__catalog:focus-visible .card-gallery__catalog-model {
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    product-card:hover .card-gallery__catalog-model,
+    .card-gallery__catalog:hover .card-gallery__catalog-model {
+      opacity: 1;
+    }
+  }
+
   .card-gallery {
     position: relative;
     overflow: hidden;
