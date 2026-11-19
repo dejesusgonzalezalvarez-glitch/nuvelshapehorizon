@@ -8,7 +8,7 @@
     {% unless existing contains needle %}
       <li>
         <a href="{% render 'nuvel-menu-url', nav_title: title %}"
-          {% if variant == 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist" on:click="/close"{% endif %}
+          {% if variant == 'drawer' %}class="menu-drawer__menu-item menu-drawer__menu-item--mainlist"{% endif %}
         >{{ title }}</a>
       </li>
     {% endunless %}
@@ -21,7 +21,7 @@
   {% elsif variant == 'desktop' %}
     <li class="menu-list__list-item nuvel-discover">
       <button type="button" class="menu-list__link button-unstyled" popovertarget="NuvelDiscover-{{ section.id }}">Descubrir ▾</button>
-      <ul popover id="NuvelDiscover-{{ section.id }}" class="nuvel-discover-links" onclick="if(event.target.closest('a'))this.hidePopover()">{{ extra_links }}</ul>
+      <ul popover id="NuvelDiscover-{{ section.id }}" class="nuvel-discover-links">{{ extra_links }}</ul>
     </li>
   {% endif %}
 {% endif %}

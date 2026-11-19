@@ -1,6 +1,6 @@
 {%- assign key = nav_title | default: link.title | handleize -%}
 {%- case key -%}
-  {%- when 'producto-destacado' -%}{{ routes.root_url }}#producto-destacado
+  {%- when 'producto-destacado' -%}{{ routes.root_url | append: '/products/faja-moldeadora-invisible-nuvel' | replace: '//', '/' }}
   {%- when 'sobre-nosotros' -%}{% assign target = pages['sobre-nosotros'] | default: pages['esencia'] %}{% if target != blank %}{{ target.url }}{% else %}{{ routes.root_url }}?view=sobre-nosotros{% endif %}
   {%- when 'preguntas-frecuentes' -%}{% assign target = pages['preguntas-frecuentes'] | default: pages['ayuda'] %}{% if target != blank %}{{ target.url }}{% else %}{{ routes.root_url }}?view=preguntas-frecuentes{% endif %}
   {%- else -%}{{ link.url | escape }}
