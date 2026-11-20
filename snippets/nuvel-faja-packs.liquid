@@ -50,7 +50,7 @@
           {% if second != blank and third != blank %}
             {% if product.price_varies == false and second.price_varies == false and third.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
             {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
-            {% else %}<small>Ahorro según variante</small>{% endif %}
+            {% else %}<small>Ahorro mínimo {{ pack_saving | money }}</small>{% endif %}
           {% endif %}
         </span>
       </a>

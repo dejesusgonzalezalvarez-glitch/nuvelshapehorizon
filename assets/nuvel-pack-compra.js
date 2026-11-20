@@ -19,6 +19,8 @@ class NuvelPackCompra extends HTMLElement {
 
   updateTotal = () => {
     const cents = this.selects.reduce((sum, select) => sum + Number(select.selectedOptions[0].dataset.price), 0);
+    const reference = this.selects.reduce((sum, select) => sum + Number(select.selectedOptions[0].dataset.reference), 0);
+    this.querySelector('[data-saving]').textContent = this.money.format((reference - cents) / 100);
     this.querySelector('[data-total]').textContent = this.money.format(cents / 100);
   };
 

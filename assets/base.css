@@ -1890,3 +1890,12 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 .nuvel-footer :is(.policy-list-trigger, .footer-utilities__group-copyright, .footer-utilities__group-copyright span, .footer-utilities__group-copyright a) { color: #fff !important; opacity: 1; }
 .nuvel-footer .nuvel-policy-links { background: #fff; }
 .nuvel-footer .nuvel-policy-links a { color: #171717 !important; }
+
+@media screen and (max-width: 749px) {
+  :is([id$="__porque"], [id$="__confianza"]) .text-block {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    --text-align: center;
+  }
+}

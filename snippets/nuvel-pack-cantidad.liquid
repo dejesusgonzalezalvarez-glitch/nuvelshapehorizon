@@ -7,7 +7,7 @@
       <strong>{% if bundle.price_varies %}Desde {% endif %}{{ bundle.price | money }}</strong>
       {% if product.price_varies == false and bundle.price_varies == false %}<small>Ahorro del pack {{ saving | money }}</small>
       {% elsif saving > 0 %}<small>Ahorras al menos {{ saving | money }}</small>
-      {% else %}<small>Ahorro según variante</small>{% endif %}
+      {% else %}<small>Ahorro mínimo {{ saving | money }}</small>{% endif %}
     </span>
   </a>
 {% elsif quantity == 2 %}
