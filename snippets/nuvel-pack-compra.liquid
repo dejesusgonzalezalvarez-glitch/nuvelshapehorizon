@@ -54,7 +54,7 @@
       </span>
       <span class="nuvel-pack-name">{{ title }}</span>
       {% if pack_available %}
-        <span class="nuvel-pack-importes"><strong data-total>{{ pack_total | money }}</strong><small>Ahorras <b data-saving>{{ pack_saving | money }}</b> sobre el precio de referencia</small></span>
+        <span class="nuvel-pack-importes"><strong data-total>{{ pack_total | money }}</strong><small data-reference-saving {% if pack_saving == 0 %}hidden{% endif %}>Ahorras <b data-saving>{{ pack_saving | money }}</b> sobre el precio de referencia</small>{% render 'nuvel-ahorro-bienvenida', total: pack_total %}</span>
       {% else %}
         <span>Agotado</span>
       {% endif %}

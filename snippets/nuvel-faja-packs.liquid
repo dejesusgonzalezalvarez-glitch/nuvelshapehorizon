@@ -46,7 +46,7 @@
         <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% render 'nuvel-pack-foto', product: third %}</span>
         <span class="nuvel-pack-name">Look completo · Faja, short y top</span>
         <span class="nuvel-pack-importes">
-          <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>
+          <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>{% render 'nuvel-ahorro-bienvenida', total: look.price %}
           {% if second != blank and third != blank %}
             {% if product.price_varies == false and second.price_varies == false and third.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
             {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>

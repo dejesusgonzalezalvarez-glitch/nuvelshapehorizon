@@ -1,0 +1,8 @@
+<span class="nuvel-ahorro-bienvenida">
+  Ahorro estimado con NUVEL10: <b data-welcome-saving>{{ total | times: 0.1 | round | money }}</b>
+  <small>10 % en tu primera compra si se aplica el código al pagar.</small>
+</span>
+{% stylesheet %}
+  .nuvel-ahorro-bienvenida { display: block; padding: .4rem .6rem; background: #f3f3f3; color: #111; font-size: 1rem; font-weight: 600; }
+  .nuvel-ahorro-bienvenida small { display: block; font-size: .8rem; font-weight: 400; }
+{% endstylesheet %}

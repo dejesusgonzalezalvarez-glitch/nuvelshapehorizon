@@ -4,7 +4,7 @@
     <span class="nuvel-pack-fotos">{% for i in (1..quantity) %}{% render 'nuvel-pack-foto', product: product %}{% endfor %}</span>
     <span class="nuvel-pack-name">Pack de {{ quantity }} unidades</span>
     <span class="nuvel-pack-importes">
-      <strong>{% if bundle.price_varies %}Desde {% endif %}{{ bundle.price | money }}</strong>
+      <strong>{% if bundle.price_varies %}Desde {% endif %}{{ bundle.price | money }}</strong>{% render 'nuvel-ahorro-bienvenida', total: bundle.price %}
       {% if product.price_varies == false and bundle.price_varies == false %}<small>Ahorro del pack {{ saving | money }}</small>
       {% elsif saving > 0 %}<small>Ahorras al menos {{ saving | money }}</small>
       {% else %}<small>Ahorro mínimo {{ saving | money }}</small>{% endif %}
