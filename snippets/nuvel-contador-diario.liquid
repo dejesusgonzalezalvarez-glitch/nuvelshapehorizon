@@ -1,28 +1,63 @@
 {% assign deadline = product.metafields.custom.fin_oferta %}
-<nuvel-contador-diario hidden {% if deadline.type == 'date_time' and deadline.value != blank %}data-end="{{ deadline.value | date: '%s' }}"{% else %}data-daily{% endif %} class="nuvel-contador-faja">
-  <span class="nuvel-contador-faja__titulo">{% if deadline.value != blank %}La oferta termina en{% else %}Aprovecha la promoción de hoy{% endif %}</span>
-  <strong role="timer" aria-live="off"></strong>
+<nuvel-contador-diario class="flipdeal" hidden {% if deadline.type == 'date_time' and deadline.value != blank %}data-end="{{ deadline.value | date: '%s' }}"{% else %}data-daily{% endif %}>
+  <p class="flipdeal__title">¡APROVECHA LA PROMOCIÓN!</p>
+  <span class="visually-hidden" role="timer" aria-live="off"></span>
+  <div class="flipdeal__row" aria-hidden="true">
+    <div class="flipdeal__col"><div class="flip" data-u="h"></div><div class="flipdeal__label">Horas</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="m"></div><div class="flipdeal__label">Minutos</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="s"></div><div class="flipdeal__label">Segundos</div></div>
+  </div>
+  <p class="flipdeal__foot">{% if deadline.type == 'date_time' and deadline.value != blank %}Tiempo limitado · {% endif %}No dejes pasar esta oferta</p>
 </nuvel-contador-diario>
 <script type="module" src="{{ 'nuvel-contador-diario.js' | asset_url }}"></script>
 {% stylesheet %}
-  nuvel-contador-diario:not([hidden]) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: .4rem .8rem;
-    padding: .75rem 1rem;
-    color: #24211e;
-    background: #f8f4ef;
-    border-radius: .5rem;
+nuvel-contador-diario.flipdeal:not([hidden]) { display:block; width:100%; }
+nuvel-contador-diario.flipdeal[hidden] { display:none; }
+
+  .flipdeal {
+    --bg: #101216; --card-top: #424850; --card-bot: #252a31; --digit: #f4f6f8;
+    --silver: #cbd2da; --muted: #f1f3f5;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    max-width: 400px; box-sizing: border-box; padding: 18px 16px 16px;
+    background: radial-gradient(120% 140% at 50% 0%, #303640 0%, var(--bg) 68%);
+    border-radius: 12px; text-align: center; color: var(--digit); text-shadow: 0 1px 2px rgba(0,0,0,.45);
   }
-  nuvel-contador-diario strong { font-variant-numeric: tabular-nums; }
-  nuvel-contador-diario.nuvel-contador-faja:not([hidden]) {
-    display: grid;
-    width: 100%;
-    background: #000;
-    color: #fff;
-    text-align: center;
+  .flipdeal * { box-sizing: border-box; }
+  .flipdeal__title { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #ffffff; text-shadow: 0 1px 8px rgba(255,255,255,.12); }
+  .flipdeal__row { display: flex; gap: 10px; }
+  .flipdeal__col { flex: 1; min-width: 0; }
+  .flipdeal__label { margin-top: 8px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); font-weight: 650; }
+  .flipdeal__foot { margin: 14px 0 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #e7ebf0; opacity: 1; font-weight: 600; }
+
+  /* ---- tarjeta ---- */
+  .flipdeal .flip { position: relative; height: 76px; perspective: 500px; font-variant-numeric: tabular-nums; }
+  .flipdeal .flip__half, .flipdeal .flip__leaf { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; }
+  .flipdeal .flip__half span, .flipdeal .flip__leaf span {
+    position: absolute; left: 0; right: 0; height: 200%; line-height: 76px; text-align: center;
+    font-size: clamp(40px, 12vw, 50px); font-weight: 600; letter-spacing: .01em; color: var(--digit);
   }
-  .nuvel-contador-faja strong { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; }
-  .nuvel-contador-faja__titulo { font-weight: 600; }
+  .flipdeal .flip__top, .flipdeal .flip__leaf--top { top: 0; border-radius: 8px 8px 0 0; background: linear-gradient(var(--card-top), #232325); }
+  .flipdeal .flip__top span, .flipdeal .flip__leaf--top span { top: 0; }
+  .flipdeal .flip__bot, .flipdeal .flip__leaf--bot { bottom: 0; border-radius: 0 0 8px 8px; background: linear-gradient(#1f1f21, var(--card-bot)); }
+  .flipdeal .flip__bot span, .flipdeal .flip__leaf--bot span { top: -100%; }
+
+  /* línea central y muescas laterales */
+  .flipdeal .flip::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: #0c0c0c; z-index: 6; box-shadow: 0 1px 0 rgba(255,255,255,.05); }
+  .flipdeal .flip::after { content: ""; position: absolute; left: -3px; right: -3px; top: 50%; height: 6px; margin-top: -3px; z-index: 7; pointer-events: none;
+    background: radial-gradient(circle at 3px 3px, var(--bg) 3px, transparent 3.5px) left / 6px 6px no-repeat,
+                radial-gradient(circle at 3px 3px, var(--bg) 3px, transparent 3.5px) right / 6px 6px no-repeat; }
+
+  /* hoja que gira */
+  .flipdeal .flip__leaf { display: none; z-index: 5; backface-visibility: hidden; }
+  .flipdeal .flip.is-flipping .flip__leaf { display: block; }
+  .flipdeal .flip__leaf--top { transform-origin: bottom; }
+  .flipdeal .flip__leaf--bot { transform-origin: top; transform: rotateX(90deg); }
+  .flipdeal .flip.is-flipping .flip__leaf--top { animation: nuvelFoldTop .22s ease-in forwards; }
+  .flipdeal .flip.is-flipping .flip__leaf--bot { animation: nuvelFoldBot .22s ease-out .22s forwards; }
+  @keyframes nuvelFoldTop { to { transform: rotateX(-90deg); } }
+  @keyframes nuvelFoldBot { to { transform: rotateX(0deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flipdeal .flip.is-flipping .flip__leaf { display: none; }
+  }
 {% endstylesheet %}
