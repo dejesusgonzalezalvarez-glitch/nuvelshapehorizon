@@ -107,8 +107,8 @@
         class="product-information__media"
         data-testid="product-information-media"
       >
-        {{ media_gallery }}
         {% render 'nuvel-fotos-producto', product: product %}
+        <div class="nuvel-original-gallery">{{ media_gallery }}</div>
       </div>
     {% endcapture %}
 

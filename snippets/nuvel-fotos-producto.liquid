@@ -15,21 +15,16 @@
 {% if garment != blank %}
   <section class="nuvel-fotos-producto" aria-label="La prenda en uso">
     <h2>La prenda en uso</h2>
-    {% capture slides %}
+    <div class="nuvel-modelos">
       {% assign views = 'ugc-1,ugc-2,estudio-1,estudio-2' | split: ',' %}
       {% for view in views %}
         {% assign file = 'nuvel-catalogo-' | append: garment | append: '-' | append: view | append: '.webp' %}
-        {% capture photo %}
+        <a href="{{ file | asset_url }}">
           <img src="{{ file | asset_url }}" width="1080" height="1920" loading="lazy"
             alt="{{ product.title | escape }} en negro. {% if view contains 'estudio' %}Fotografía de estudio{% else %}Escena cotidiana{% endif %}, vista {{ view | split: '-' | last }}.">
-        {% endcapture %}
-        {% render 'slideshow-slide', index: forloop.index0, children: photo, media_fit: 'contain' %}
+        </a>
       {% endfor %}
-      {% capture guide %}{% render 'nuvel-guia-tallas', product: product, gallery: true %}{% endcapture %}
-      {% render 'slideshow-slide', index: 4, children: guide, media_fit: 'contain' %}
-    {% endcapture %}
-    {% capture controls %}{% render 'slideshow-controls', style: 'dots', item_count: 5, pagination_position: 'center' %}{% endcapture %}
-    {% render 'slideshow', slides: slides, slide_count: 5, controls: controls, show_arrows: true, animate_arrows: false %}
+      </div><details><summary>Guía de tallas</summary>{% render 'nuvel-guia-tallas', product: product, gallery: true %}</details>
 
   </section>
 {% endif %}
@@ -37,9 +32,9 @@
 {% stylesheet %}
   .nuvel-fotos-producto { min-width: 0; margin-block: 1.5rem; }
   .nuvel-fotos-producto h2 { font-size: 1.3rem; margin: 0 0 .75rem; }
-  .nuvel-fotos-producto slideshow-slide { align-content: center; background: #fff; }
-  .nuvel-fotos-producto img { display: block; width: 100%; height: clamp(20rem,65svh,40rem); object-fit: contain; }
-  .nuvel-fotos-producto img[src*="-estudio-"] { filter: brightness(1.015); }
+  .nuvel-modelos { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
+  .nuvel-modelos img { display:block; width:100%; height:auto; }
+  .nuvel-original-gallery { position:relative; isolation:isolate; overflow:clip; }
   .nuvel-guide-slide { display: grid; gap: .5rem; text-align: center; padding: 1rem; }
   .nuvel-guide-slide img { height: auto; }
 {% endstylesheet %}
