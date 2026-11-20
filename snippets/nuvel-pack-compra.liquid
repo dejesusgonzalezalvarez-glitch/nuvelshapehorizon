@@ -27,7 +27,11 @@
       <label>
         {% if second != blank %}{{ item.title | escape }}{% else %}Unidad {{ position }}{% endif %}
         <select>
-          {% for variant in item.variants %}
+          {% assign pack_variants = item.variants %}
+          {% if item.handle == 'faja-moldeadora-invisible-nuvel' %}
+            {% assign pack_variants = pack_variants | reject: 'option2', '3XL' | reject: 'option2', 'XXXL' %}
+          {% endif %}
+          {% for variant in pack_variants %}
             {% unless variant.available %}{% continue %}{% endunless %}
             {% if item.handle == 'sujetador-corrector-postura' %}
               {% unless variant.option1 contains '1 Sujetador' %}{% continue %}{% endunless %}
