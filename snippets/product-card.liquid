@@ -119,7 +119,10 @@
       {% if block_settings.padding-block-end > 0 %}--zoom-out-padding-block-end: min(var(--padding-xs), {{ block_settings.padding-block-end | times: 0.7}}px);{% endif %}
     "
   >
-    {{ children }}
+    {% assign card_name = product.title | remove: ' — Nuvel' | remove: ' — NUVEL' | remove: ' -- Nuvel' | remove: ' --NUVEL' %}
+    {% assign full_text = product.title | prepend: '>' | append: '<' %}
+    {% assign short_text = card_name | prepend: '>' | append: '<' %}
+    {{ children | replace: full_text, short_text }}
   </div>
 </product-card>
 

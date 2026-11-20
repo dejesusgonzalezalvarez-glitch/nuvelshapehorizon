@@ -27,6 +27,17 @@
         {% if product.options.size == 1 %}{% assign raw_color = '' %}{% endif %}
         {% assign size = variant.options[size_index] %}
         {% assign value = size_axis.values | where: 'name', size | first %}
+        {% if product.options.size == 1 %}
+          {% assign parts = size | split: '/' %}
+          {% if parts.size > 1 %}
+            {% assign raw_color = parts.first | strip %}
+            {% assign size = parts.last | strip %}
+          {% elsif size contains '(' %}
+            {% assign parts = size | split: '(' %}
+            {% assign raw_color = parts.first | strip %}
+            {% assign size = parts.last | remove: ')' | strip %}
+          {% endif %}
+        {% endif %}
         <option value="{{ variant.id }}" data-nuvel-variant="{{ variant.id }}" data-variant-id="{{ variant.id }}" data-option-value-id="{{ value.id }}"
           data-lot="{% if product.options.size == 3 %}{% for val in variant.options %}{% unless forloop.index0 == size_index or forloop.index0 == color_index %}{{ val | escape }}{% endunless %}{% endfor %}{% endif %}" data-raw="{{ raw_color | escape }}" data-size="{{ size | escape }}"
           {% unless variant.available %}disabled{% endunless %} {% if variant.id == selected_id %}selected{% endif %}>{{ variant.title | escape }}</option>

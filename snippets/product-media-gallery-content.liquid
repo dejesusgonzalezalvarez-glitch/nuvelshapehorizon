@@ -144,6 +144,9 @@
   capture catalog_front
     render 'nuvel-catalog-front', product: selected_product
   endcapture
+  if selected_product.handle == 'faja-moldeadora-invisible-nuvel'
+    assign sorted_media = selected_product.media
+  endif
   if catalog_front != blank
     assign unique_media = '' | split: ','
     assign seen_files = '|'

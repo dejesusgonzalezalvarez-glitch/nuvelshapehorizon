@@ -9,11 +9,11 @@
   assign filename = image.src | split: '?' | first | split: '/' | last | split: '.' | first | split: '_' | first
   case filename
     when 'ad0c4e0e47f9adb3e2957826db54', '621971c145818920ccfd34569be5'
-      echo 'nuvel-faja-frontal.webp'
+      echo 'producto-frente.jpg'
     when '45ff059f43acb77c434dc97147f4'
-      echo 'nuvel-catalogo-faja-estudio-1.webp'
+      echo 'nuvel-hover-faja.webp'
     when 'e073cc344fd0bc6d18d1fa378bcb'
-      echo 'nuvel-catalogo-faja-estudio-2.webp'
+      echo 'nuvel-hover-faja.webp'
     when 'f621a8194e708b7f29e94d3ba0cd', '4aabf4564fd49d9941d4a43ceb1a'
       echo 'producto-espalda.jpg'
     when 'ba522be74c478d96d2bdcf045185'
@@ -56,7 +56,7 @@
           assign color = variant.option1 | downcase
           case owner.handle
             when 'faja-moldeadora-invisible-nuvel'
-              echo 'nuvel-faja-frontal.webp'
+              echo 'producto-frente.jpg'
             when 'retro-shapewear-top-with-zipper'
               if color contains 'pink'
                 echo 'corse-rosa-modelo.jpg'
