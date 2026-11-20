@@ -12,7 +12,7 @@
 %}
 <nuvel-pack-compra data-add="{{ routes.cart_add_url }}.js" data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code | escape }}" data-locale="{{ request.locale.iso_code | escape }}">
   <details>
-    {% assign pack_total = 0 %}{% assign pack_saving = 0 %}
+    {% assign pack_total = 0 %}
     {% capture pack_choices %}
     {% for position in (1..pieces) %}
       {% liquid
@@ -37,13 +37,13 @@
               {% unless variant.option1 contains '1 Sujetador' %}{% continue %}{% endunless %}
             {% endif %}
             {% if item.handle == 'faja-moldeadora-invisible-nuvel' and variant.option1 != 'Black' %}{% continue %}{% endif %}
-            {% assign reference_price = variant.compare_at_price | default: variant.price | at_least: variant.price %}
+
             {% if first_choice %}
               {% assign pack_total = pack_total | plus: variant.price %}
-              {% assign pack_saving = pack_saving | plus: reference_price | minus: variant.price %}
+
               {% assign first_choice = false %}
             {% endif %}
-            <option value="{{ variant.id }}" data-price="{{ variant.price }}" data-reference="{{ reference_price }}">{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
+            <option value="{{ variant.id }}" data-price="{{ variant.price }}">{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
           {% endfor %}
         </select>
         {% if first_choice %}{% assign pack_available = false %}{% endif %}
@@ -58,7 +58,7 @@
       </span>
       <span class="nuvel-pack-name">{{ title }}</span>
       {% if pack_available %}
-        <span class="nuvel-pack-importes"><strong data-total>{{ pack_total | money }}</strong><small data-reference-saving {% if pack_saving == 0 %}hidden{% endif %}>Ahorras <b data-saving>{{ pack_saving | money }}</b> sobre el precio de referencia</small>{% render 'nuvel-ahorro-bienvenida', total: pack_total %}</span>
+        <span class="nuvel-pack-importes"><strong data-total>{{ pack_total | money }}</strong><small>Ahorro del pack <b>{{ 0 | money }}</b></small></span>
       {% else %}
         <span>Agotado</span>
       {% endif %}

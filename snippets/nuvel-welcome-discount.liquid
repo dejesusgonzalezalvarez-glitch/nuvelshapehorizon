@@ -20,6 +20,7 @@
     <button class="dismiss" id="nuvel-popup-dismiss" type="button">No, gracias</button>
   </div>
 </dialog>
+<button id="nuvel-welcome-reopen" type="button" aria-haspopup="dialog" aria-controls="nuvel-welcome">Mi descuento</button>
 {% stylesheet %}
 
   #nuvel-welcome {
@@ -101,7 +102,11 @@
   @keyframes nuvel-fade { from { opacity: 0; } }
   @keyframes nuvel-rise { from { opacity: 0; transform: translateY(14px); } }
 
-  @media (max-width: 520px) {
+  #nuvel-welcome-reopen { display: none; }
+  @media (max-width: 749px) {
+    #nuvel-welcome:not([open]) + #nuvel-welcome-reopen { display: block; position: fixed; bottom: max(1rem, env(safe-area-inset-bottom)); left: 1rem; z-index: 5; padding: .65rem 1rem; border-radius: 2rem; border: 1px solid #dedbd6; background: #fff; color: #17150f; }
+  }
+  @media (max-width: 749px) {
     #nuvel-welcome { place-items: end center; padding: 0; background: rgba(12,10,8,.3); }
     #nuvel-welcome .popup { width: 100%; border-radius: 20px 20px 0 0; padding-bottom: max(10px, env(safe-area-inset-bottom)); }
   }
@@ -117,9 +122,11 @@
 (() => {
   const dialog = document.getElementById('nuvel-welcome');
   if (!dialog?.showModal) return;
+  let seen = false;
+  document.getElementById('nuvel-welcome-reopen').addEventListener('click', () => dialog.showModal());
   for (const name of ['localStorage', 'sessionStorage']) {
     try {
-      if (window[name].getItem('nuvel-welcome-discount-v1')) return;
+      seen = Boolean(window[name].getItem('nuvel-welcome-discount-v1'));
       window[name].setItem('nuvel-welcome-discount-v1', 'seen');
       break;
     } catch { /* El navegador puede restringir el almacenamiento. */ }
@@ -154,7 +161,6 @@
   $('dismiss').addEventListener('click', close);
   dialog.addEventListener('click', e => { if (e.target === dialog) close(); });
 
-  dialog.showModal();
-  $('copy').focus();
+  if (!seen) { dialog.showModal(); $('copy').focus(); }
 })();
 </script>

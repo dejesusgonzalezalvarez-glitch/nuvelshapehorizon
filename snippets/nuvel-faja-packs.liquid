@@ -46,7 +46,7 @@
         <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% render 'nuvel-pack-foto', product: third %}</span>
         <span class="nuvel-pack-name">Look completo · Faja, short y top</span>
         <span class="nuvel-pack-importes">
-          <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>{% render 'nuvel-ahorro-bienvenida', total: look.price %}
+          <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>
           {% if second != blank and third != blank %}
             {% if product.price_varies == false and second.price_varies == false and third.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
             {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
@@ -77,4 +77,6 @@
   .nuvel-product-packs h3 { margin: 0; }
   .nuvel-pack-fotos { display: inline-flex; gap: .25rem; vertical-align: middle; margin-inline-end: .75rem; }
   .nuvel-pack-fotos img { width: clamp(2.25rem, 7vw, 3.4rem); height: 4rem; object-fit: contain; background: white; }
+  .nuvel-product-packs :is(nuvel-pack-compra, .nuvel-linked-pack) { border: 1px solid #dedbd6; border-radius: 16px; padding: 1rem; }
+  .nuvel-product-packs .nuvel-pack-importes small { display: inline-block; background: #f4f2ee; color: #37332d; border-radius: 12px; padding: .35rem .65rem; font-size: .875rem; }
 {% endstylesheet %}

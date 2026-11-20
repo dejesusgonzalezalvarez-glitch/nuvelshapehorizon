@@ -32,7 +32,7 @@
         "announcement_descuento": {
           "type": "_announcement",
           "settings": {
-            "text": "10 % de descuento con el código NUVEL10",
+            "text": "10 % de descuento en tu primera compra",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",
