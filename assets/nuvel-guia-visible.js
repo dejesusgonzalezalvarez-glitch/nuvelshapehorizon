@@ -7,7 +7,12 @@ function removeGuideControls(section) {
     const label = (control.getAttribute('aria-label') || control.textContent).trim();
     if (!guideLabel.test(label)) continue;
     if (control.matches('summary') && control.parentElement.matches('details')) {
-      control.parentElement.open = true;
+      const details = control.parentElement;
+      if (details.closest('.product-information__media')) {
+        details.hidden = true;
+        continue;
+      }
+      details.open = true;
     }
     control.style.display = 'none';
   }

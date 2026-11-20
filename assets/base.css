@@ -1899,3 +1899,11 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
     --text-align: center;
   }
 }
+
+/* The size chart belongs beside the variant picker, including in the featured product. */
+.product-information__media :is(.nuvel-size-guide, .nuvel-guide-slide),
+.product-information__media details:has(img[src*="nuvel-guia-"]),
+.product-information__media figure:has(img[src*="nuvel-guia-"]),
+.product-information__media img[src*="nuvel-guia-"] {
+  display: none;
+}
