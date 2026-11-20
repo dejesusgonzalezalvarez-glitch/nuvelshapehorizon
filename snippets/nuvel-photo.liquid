@@ -11,6 +11,9 @@
 {% enddoc %}
 {%- liquid
   case file
+    when 'nuvel-faja-modelo-espalda.webp', 'nuvel-hover-faja.webp'
+      assign w = 800
+      assign h = 1000
     when 'nuvel-faja-frontal.webp'
       assign w = 1400
       assign h = 1435
@@ -32,7 +35,7 @@
     when 'corse-rosa-modelo.jpg', 'corse-beige-frente.jpg', 'corse-beige-espalda.jpg'
       assign w = 1024
       assign h = 1536
-    when 'vestido-negro-frente.jpg', 'vestido-gris-frente.jpg', 'short-negro-frente.jpg', 'short-negro-espalda.jpg', 'short-beige-frente.jpg'
+    when 'nuvel-vestido-negro-blanco.webp', 'nuvel-vestido-gris-blanco.webp', 'short-negro-frente.jpg', 'short-negro-espalda.jpg', 'short-beige-frente.jpg'
       assign w = 1400
       assign h = 1875
     when 'short-ugc-beige.jpg'

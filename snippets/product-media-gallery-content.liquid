@@ -144,8 +144,30 @@
   capture catalog_front
     render 'nuvel-catalog-front', product: selected_product
   endcapture
-  if selected_product.handle == 'faja-moldeadora-invisible-nuvel'
-    assign sorted_media = selected_product.media
+  if selected_product.handle == 'faja-moldeadora-invisible-nuvel' or selected_product.handle == 'womens-shapewear-dress-jumpsuit'
+    assign ordered = '' | split: ','
+    assign order = 'producto-frente.jpg,nuvel-hover-faja.webp,producto-espalda.jpg,nuvel-faja-modelo-espalda.webp'
+    if selected_product.handle == 'womens-shapewear-dress-jumpsuit'
+      assign selected_color = selected_product.selected_variant.title | downcase
+      assign order = 'nuvel-vestido-negro-blanco.webp,nuvel-vestido-gris-blanco.webp'
+      if selected_color contains 'grey' or selected_color contains 'gray' or selected_color contains 'gris'
+        assign order = 'nuvel-vestido-gris-blanco.webp,nuvel-vestido-negro-blanco.webp'
+      endif
+    endif
+    assign wanted_files = order | split: ','
+    for wanted in wanted_files
+      for medium in selected_product.media
+        capture file
+          render 'nuvel-photo-file', image: medium.preview_image, owner: selected_product, studio_gallery: true
+        endcapture
+        if file == wanted
+          assign entry = selected_product.media | where: 'id', medium.id
+          assign ordered = ordered | concat: entry
+          break
+        endif
+      endfor
+    endfor
+    assign sorted_media = ordered | concat: selected_product.media
   endif
   if catalog_front != blank
     assign unique_media = '' | split: ','

@@ -13,7 +13,7 @@
     when '45ff059f43acb77c434dc97147f4'
       echo 'nuvel-hover-faja.webp'
     when 'e073cc344fd0bc6d18d1fa378bcb'
-      echo 'nuvel-hover-faja.webp'
+      echo 'nuvel-faja-modelo-espalda.webp'
     when 'f621a8194e708b7f29e94d3ba0cd', '4aabf4564fd49d9941d4a43ceb1a'
       echo 'producto-espalda.jpg'
     when 'ba522be74c478d96d2bdcf045185'
@@ -29,9 +29,9 @@
     when 'dd2e16424a3a8c5dd75697cf1fd7'
       echo 'corse-beige-espalda.jpg'
     when '9cabf7e340fd8cc2c978b41aaab9'
-      echo 'vestido-negro-frente.jpg'
+      echo 'nuvel-vestido-negro-blanco.webp'
     when '9fab4b9f40ca86c2e545ab8853c8'
-      echo 'vestido-gris-frente.jpg'
+      echo 'nuvel-vestido-gris-blanco.webp'
     when 'f5e34cfd4bf0b793f2bb2d9da4eb'
       echo 'nuvel-short-blanco.webp'
     when 'aabee483465c96f29711533581fb'
@@ -81,7 +81,7 @@
 -%}
 {%- endcapture -%}
 {%- liquid
-  if studio_gallery and owner != blank and owner.selected_variant.featured_image.id != image.id
+  if studio_gallery and owner != blank and owner.selected_variant.featured_image.id != image.id and owner.handle != 'womens-shapewear-dress-jumpsuit'
     if mapped_photo == 'nuvel-faja-espejo.webp' or mapped_photo == 'nuvel-faja-con-ropa.webp'
       assign mapped_photo = 'nuvel-faja-estudio.webp'
     elsif mapped_photo contains 'beige' or mapped_photo contains 'rosa' or mapped_photo contains 'gris' or mapped_photo contains 'marron'
