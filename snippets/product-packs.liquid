@@ -1,4 +1,31 @@
 {% liquid
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign companion = all_products['seamless-shapewear-panties']
+      assign extra = all_products['retro-shapewear-top-with-zipper']
+      assign pair_title = 'Faja y short'
+      assign set_title = 'Faja, short y top'
+    when 'seamless-shapewear-panties'
+      assign companion = all_products['sujetador-corrector-postura']
+      assign extra = all_products['retro-shapewear-top-with-zipper']
+      assign pair_title = 'Short y sujetador'
+      assign set_title = 'Short, sujetador y top'
+    when 'retro-shapewear-top-with-zipper'
+      assign companion = all_products['seamless-shapewear-panties']
+      assign extra = all_products['faja-moldeadora-invisible-nuvel']
+      assign pair_title = 'Top y short'
+      assign set_title = 'Top, short y faja'
+    when 'womens-shapewear-dress-jumpsuit'
+      assign companion = all_products['seamless-shapewear-panties']
+      assign extra = all_products['sujetador-corrector-postura']
+      assign pair_title = 'Vestido y short'
+      assign set_title = 'Vestido, short y sujetador'
+    when 'sujetador-corrector-postura'
+      assign companion = all_products['seamless-shapewear-panties']
+      assign extra = all_products['womens-shapewear-dress-jumpsuit']
+      assign pair_title = 'Sujetador y short'
+      assign set_title = 'Sujetador, short y vestido'
+  endcase
   assign duo = product.metafields.custom.pack_duo.value | default: duo
   assign trio = product.metafields.custom.pack_trio.value
   assign recommended = product.metafields.custom.pack_recomendado.value
@@ -24,7 +51,25 @@
         assign second = all_products['seamless-shapewear-panties']
         assign third = all_products['retro-shapewear-top-with-zipper']
       endif
-      if pack == blank or pack.available == false or pack.id == product.id
+      if pack == blank
+        if companion == blank
+          continue
+        endif
+        assign title = 'Pack de 2 unidades'
+        assign qty = 2
+        if kind == 2
+          assign second = companion
+          assign title = pair_title
+        elsif kind == 3
+          assign second = companion
+          assign third = extra
+          assign title = set_title
+          assign qty = 3
+        endif
+        render 'nuvel-component-pack', product: product, second: second, third: third, qty: qty, title: title, kind: kind
+        continue
+      endif
+      if pack.available == false or pack.id == product.id
         continue
       endif
       assign variant = pack.selected_or_first_available_variant
@@ -64,10 +109,10 @@
 {% endcapture %}
 {% assign cards = cards | strip %}
 {% if cards != blank %}
-  <nuvel-pack-action><form method="post" action="{{ routes.cart_add_url }}" class="nuvel-controls nv-packs" data-pack-picker>
+  <nuvel-pack-action><form method="post" action="{{ routes.cart_add_url }}" class="nuvel-controls nv-packs" data-pack-picker data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code }}">
     <h3>Packs</h3><p>Primera compra: −10 % con el código NUVEL10</p>
     {% if cards contains 'checked' %}{{ cards }}{% else %}{{ cards | replace_first: 'data-first', 'checked' }}{% endif %}
-    <div class="nv-pack-action"><label>Cantidad <input type="number" name="quantity" min="1" step="1" value="1" required></label><button type="submit" class="button">Añadir al carrito</button></div>
+    <div class="nv-pack-action"><label>Cantidad <input type="number" name="quantity" min="1" step="1" value="1" required></label><button type="submit" class="button">Añadir al carrito</button></div><span role="status"></span>
   </form></nuvel-pack-action>
   <script type="module" src="{{ 'nuvel-product-options.js' | asset_url }}"></script>
 {% endif %}

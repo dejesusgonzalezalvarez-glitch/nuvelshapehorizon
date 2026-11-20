@@ -44,6 +44,7 @@
 %}
 
 {% if product != blank %}
+  <a href="#NuvelReviews-{{ section.id }}">Ver reseñas de la prenda</a>
   {% render 'nuvel-contador-diario', product: product %}
   {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
 {% endif %}

@@ -40,3 +40,5 @@
 .nv-pack-action label:not([hidden]) {display:flex;align-items:center;gap:4px;font-size:.8rem}
 .nv-pack-action input {width:3rem;min-height:44px;border:1px solid var(--line);border-radius:8px;text-align:center}
 .nv-pack-action button {flex:1;border-radius:8px;min-height:44px}
+
+[data-component-pack]>.nv-pack{display:grid}.nv-pack-sizes{display:none;margin:.4rem 0}.nv-pack-sizes summary{cursor:pointer}.nv-pack-sizes label{display:grid;margin:.45rem 0}.nv-pack-sizes select{min-height:40px;width:100%}[data-component-pack]:has(input:checked)>.nv-pack-sizes{display:block}

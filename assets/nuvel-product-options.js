@@ -101,13 +101,38 @@ class NuvelPackAction extends HTMLElement {
   refresh = () => {
     const choice = this.querySelector('input[type=radio]:checked');
     if (!choice) return;
+    const group = choice.closest('[data-component-pack]');
+    if (group) {
+      const cents = Array.from(group.querySelectorAll('select')).reduce((sum,s) => sum + Number(s.selectedOptions[0].dataset.price),0);
+      const money = new Intl.NumberFormat('es-ES',{style:'currency',currency:this.querySelector('form').dataset.currency || 'EUR'});
+      choice.dataset.price = money.format(cents / 100);
+      group.querySelector('[data-unit]').textContent = choice.dataset.price;
+      group.querySelector('[data-code]').textContent = money.format(Math.round(cents * .9)/100) + ' con código';
+    }
     const needsOptions = choice.hasAttribute('data-options');
     this.querySelector('label:has([name=quantity])').hidden = needsOptions;
     this.querySelector('button[type=submit]').textContent =
       (needsOptions ? 'Elegir opciones' : 'Añadir al carrito') + ' · ' + choice.dataset.price;
   };
-  submit = event => {
+  submit = async event => {
     const choice = this.querySelector('input[type=radio]:checked');
+    if (choice?.hasAttribute('data-component')) {
+      event.preventDefault();
+      const form = this.querySelector('form');
+      const button = form.querySelector('button[type=submit]');
+      if (button.disabled) return;
+      button.disabled = true;
+      const quantities = new Map();
+      for (const field of choice.closest('[data-component-pack]').querySelectorAll('select')) {
+        quantities.set(field.value,(quantities.get(field.value)||0)+Number(form.elements.quantity.value));
+      }
+      try {
+        const response = await fetch(form.action+'.js',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({items:Array.from(quantities,([id,quantity])=>({id,quantity}))})});
+        if (!response.ok) throw Error('Comprueba las tallas y la disponibilidad del pack.');
+        location.assign(form.dataset.cart);
+      } catch (error) {form.querySelector('[role=status]').textContent=error.message; button.disabled=false;}
+      return;
+    }
     if (choice?.hasAttribute('data-options')) {
       event.preventDefault();
       location.assign(choice.dataset.url);
