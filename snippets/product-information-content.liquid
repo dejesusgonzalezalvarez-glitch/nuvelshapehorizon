@@ -109,6 +109,11 @@
       >
         {% render 'nuvel-fotos-producto', product: product %}
         <div class="nuvel-original-gallery">{{ media_gallery }}</div>
+        {% if request.page_type == 'index' and product.handle == 'faja-moldeadora-invisible-nuvel' %}
+          <a class="nuvel-soporte-moldeado" href="{{ 'nuvel-soporte-moldeado.webp' | asset_url }}" aria-label="Ampliar la imagen de soporte y moldeado de la faja">
+      <img src="{{ 'nuvel-soporte-moldeado.webp' | asset_url }}" width="1672" height="941" loading="eager" decoding="async" alt="Faja negra con copas integradas, tirantes regulables y confección moldeadora.">
+    </a>
+        {% endif %}
       </div>
     {% endcapture %}
 

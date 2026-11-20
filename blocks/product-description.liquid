@@ -8,7 +8,12 @@
   endif
 %}
 
-{% render 'text', fallback_text: text, block: block %}
+{% capture description_block %}{% render 'text', fallback_text: text, block: block %}{% endcapture %}
+{% if closest.product.handle == 'faja-moldeadora-invisible-nuvel' %}
+  {{ description_block | replace: '3XL', '2XL' }}
+{% else %}
+  {{ description_block }}
+{% endif %}
 
 {% schema %}
 {
