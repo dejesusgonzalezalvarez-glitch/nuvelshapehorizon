@@ -18,15 +18,8 @@
   endcase
 -%}
 {% if guide_image != blank %}
-  {% if gallery %}
-    <a href="{{ guide_image | asset_url }}" target="_blank" rel="noopener" class="nuvel-guide-slide">
-      <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="lazy">
-      <span>Ampliar la guía de tallas</span>
-    </a>
-  {% else %}
-  <details class="nuvel-size-guide" open>
-    <summary>Guía de tallas</summary>
-    <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="lazy" style="display:block;width:100%;height:auto">
-  </details>
-  {% endif %}
+  <figure class="nuvel-size-guide" style="margin:0">
+    <figcaption>Guía de tallas</figcaption>
+    <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="eager" style="display:block;width:100%;height:auto">
+  </figure>
 {% endif %}

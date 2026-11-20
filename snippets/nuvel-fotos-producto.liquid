@@ -24,7 +24,7 @@
             alt="{{ product.title | escape }} en negro. {% if view contains 'estudio' %}Fotografía de estudio{% else %}Escena cotidiana{% endif %}, vista {{ view | split: '-' | last }}.">
         </a>
       {% endfor %}
-      </div><details><summary>Guía de tallas</summary>{% render 'nuvel-guia-tallas', product: product, gallery: true %}</details>
+    </div>
 
   </section>
 {% endif %}
@@ -35,6 +35,4 @@
   .nuvel-modelos { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
   .nuvel-modelos img { display:block; width:100%; height:auto; }
   .nuvel-original-gallery { position:relative; isolation:isolate; overflow:clip; }
-  .nuvel-guide-slide { display: grid; gap: .5rem; text-align: center; padding: 1rem; }
-  .nuvel-guide-slide img { height: auto; }
 {% endstylesheet %}
