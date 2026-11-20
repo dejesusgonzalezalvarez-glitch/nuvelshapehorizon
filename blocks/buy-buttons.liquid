@@ -45,7 +45,7 @@
 
 {% if product != blank %}
   {% render 'nuvel-contador-diario', product: product %}
-  {% render 'nuvel-faja-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+  {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
 {% endif %}
 
 <span

@@ -81,7 +81,7 @@
 -%}
 {%- endcapture -%}
 {%- liquid
-  if studio_gallery and owner != blank
+  if studio_gallery and owner != blank and owner.selected_variant.featured_image.id != image.id
     if mapped_photo == 'nuvel-faja-espejo.webp' or mapped_photo == 'nuvel-faja-con-ropa.webp'
       assign mapped_photo = 'nuvel-faja-estudio.webp'
     elsif mapped_photo contains 'beige' or mapped_photo contains 'rosa' or mapped_photo contains 'gris' or mapped_photo contains 'marron'

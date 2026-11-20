@@ -1,0 +1,29 @@
+.nuvel-controls { --ink:#1d1d1f; --muted:#6e6e73; --line:#e4e2dd; --soft:#f6f5f2; --green:#3f6a52; --green-bg:#eaf1ec; display:block; color:var(--ink); font:inherit; }
+.nv-group { display:flex; gap:8px; flex-wrap:wrap; margin-block:12px; }
+.nv-heading { flex-basis:100%; display:flex; justify-content:space-between; font-weight:600; }
+.nv-heading span { color:var(--muted); font-weight:400; }
+.nv-group label, .nv-pack { position:relative; cursor:pointer; }
+.nv-group input,.nv-pack input { position:absolute; width:1px; height:1px; opacity:0; }
+.nv-chip,.nv-swatch { display:grid; place-items:center; min-width:52px; min-height:40px; padding:4px 8px; border:1px solid var(--line); border-radius:8px; }
+.nv-swatch { border-radius:50%; min-width:32px; min-height:32px; }
+.nv-group input:checked + .nv-chip,.nv-pack:has(input:checked) { border-color:var(--ink); box-shadow:0 0 0 1px var(--ink); font-weight:600; }
+.nv-group input:checked + .nv-swatch { box-shadow:0 0 0 2px white,0 0 0 4px var(--ink); }
+.nv-group input:disabled + span { opacity:.35; cursor:not-allowed; }
+.nv-group input:focus-visible + span,.nv-pack:has(input:focus-visible) { outline:2px solid var(--ink); outline-offset:5px; }
+.nv-packs { display:grid; gap:10px; }
+.nv-packs h3,.nv-packs p { margin:0; }
+.nv-packs p,.nv-meta,.nv-price s { color:var(--muted); font-weight:400; }
+.nv-pack { display:grid; grid-template-columns:12px 50px minmax(0,1fr) auto; gap:8px; align-items:center; border:1px solid var(--line); border-radius:8px; padding:16px 10px; }
+.nv-pack:before { content:''; width:12px; height:12px; border-radius:50%; border:1px solid var(--muted); }
+.nv-pack:has(input:checked):before { background:var(--ink); box-shadow:inset 0 0 0 2px white; }
+.nv-thumbs { display:flex; width:50px; }
+.nv-thumbs img { background:white; width:22px; height:38px; object-fit:contain; }
+.nv-thumbs img + img { margin-left:-8px; }
+.nv-price { text-align:end; display:grid; font-weight:600; }
+.nv-price small,.nv-save { color:var(--green); }
+.nv-meta { display:flex; gap:4px; align-items:center; flex-wrap:wrap; font-size:.78rem; }
+.nv-save { border-radius:8px; padding:2px 4px; background:var(--green-bg); white-space:nowrap; }
+.nv-popular { position:absolute; top:-8px; right:8px; background:var(--ink); color:white; border-radius:8px; padding:1px 6px; font-size:.7rem; }
+.nv-pack strong { font-weight:600; }
+@media(max-width:420px){.nv-pack{gap:5px;grid-template-columns:12px 40px minmax(0,1fr) auto}.nv-price{font-size:.9rem}.nv-thumbs{width:40px}}
+

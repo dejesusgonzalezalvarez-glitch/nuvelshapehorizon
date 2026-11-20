@@ -1,0 +1,37 @@
+{% liquid
+  assign variants = product.variants
+  if product.handle == 'faja-moldeadora-invisible-nuvel'
+    assign variants = variants | where: 'option1', 'Black' | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
+  endif
+  capture choice
+    render 'nuvel-selected-variant-id', product: product
+  endcapture
+  assign selected_id = choice | plus: 0
+  assign size_index = product.options.size | minus: 1
+  assign color_index = 0
+  for axis in product.options_with_values
+    assign key = axis.name | downcase
+    if key contains 'color' or key contains 'colour'
+      assign color_index = forloop.index0
+    elsif key contains 'talla' or key contains 'size'
+      assign size_index = forloop.index0
+    endif
+  endfor
+  assign size_axis = product.options_with_values[size_index]
+%}
+<nuvel-product-options class="nuvel-controls">
+  <label data-fallback>Color y talla
+    <select aria-label="Color y talla">
+      {% for variant in variants %}
+        {% assign raw_color = variant.options[color_index] | split: ' (' | first %}
+        {% assign size = variant.options[size_index] %}
+        {% assign value = size_axis.values | where: 'name', size | first %}
+        <option value="{{ variant.id }}" data-nuvel-variant="{{ variant.id }}" data-variant-id="{{ variant.id }}" data-option-value-id="{{ value.id }}"
+          data-lot="{% if product.options.size == 3 %}{% for val in variant.options %}{% unless forloop.index0 == size_index or forloop.index0 == color_index %}{{ val | escape }}{% endunless %}{% endfor %}{% endif %}" data-raw="{{ raw_color | escape }}" data-size="{{ size | escape }}"
+          {% unless variant.available %}disabled{% endunless %} {% if variant.id == selected_id %}selected{% endif %}>{{ variant.title | escape }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <div data-options-ui></div>
+</nuvel-product-options>
+<script type="module" src="{{ 'nuvel-product-options.js' | asset_url }}"></script>

@@ -18,9 +18,10 @@
   endcase
 -%}
 {% if guide_image != blank %}
+  <details><summary>Guía de tallas</summary>
   <figure class="nuvel-size-guide" style="margin:0">
     <figcaption class="visually-hidden">Guía de tallas</figcaption>
     <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="eager" style="display:block;width:100%;height:auto">
   </figure>
-  <script type="module" src="{{ 'nuvel-guia-visible.js' | asset_url }}"></script>
+  </details>
 {% endif %}

@@ -1,0 +1,73 @@
+{% liquid
+  assign duo = product.metafields.custom.pack_duo.value | default: duo
+  assign trio = product.metafields.custom.pack_trio.value
+  assign recommended = product.metafields.custom.pack_recomendado.value
+  if product.handle != 'faja-moldeadora-invisible-nuvel'
+    assign look = nil
+    assign duo = product.metafields.custom.pack_duo.value
+  endif
+%}
+{% capture cards %}
+  {% assign rendered = 0 %}
+  {% for kind in (1..3) %}
+    {% liquid
+      assign qty = 2
+      assign pack = duo
+      assign second = product
+      assign third = product
+      if kind == 2
+        assign pack = trio
+        assign qty = 3
+      elsif kind == 3
+        assign pack = look
+        assign qty = 3
+        assign second = all_products['seamless-shapewear-panties']
+        assign third = all_products['retro-shapewear-top-with-zipper']
+      endif
+      if pack == blank or pack.available == false or pack.id == product.id
+        continue
+      endif
+      assign variant = pack.selected_or_first_available_variant
+      assign separate = product.price_min | plus: second.price_min
+      if qty == 3
+        assign separate = separate | plus: third.price_min
+      endif
+      assign comparable = true
+      if product.price_varies or second.price_varies or second == blank
+        assign comparable = false
+      endif
+      if qty == 3
+        if third.price_varies or third == blank
+          assign comparable = false
+        endif
+      endif
+      assign popular = false
+      if recommended.id == pack.id
+        assign popular = true
+      elsif recommended == blank and kind == 3
+        assign popular = true
+      endif
+      assign pct = 0
+      if comparable and separate > variant.price and separate > 0
+        assign pct = separate | minus: variant.price | times: 100.0 | divided_by: separate | round
+      endif
+    %}
+    {% assign rendered = rendered | plus: 1 %}
+    <label class="nv-pack">
+      <input type="radio" name="pack" {% if rendered == 1 %}checked{% endif %} required value="{{ variant.url | escape }}" aria-label="{{ pack.title | escape }}">
+      <span class="nv-thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% if qty == 3 %}{% render 'nuvel-pack-foto', product: third %}{% endif %}</span>
+      <span><strong>{{ pack.title | escape }}</strong><span class="nv-meta">{{ qty }} piezas {% if pct > 0 %}<span class="nv-save">Ahorras {{ pct }} %</span>{% endif %}</span></span>
+      <span class="nv-price">{{ variant.price | money }}{% if pct > 0 %}<s>{{ separate | money }}</s>{% endif %}<small>{{ variant.price | times: 0.9 | round | money }} con código</small></span>
+      {% if popular %}<span class="nv-popular">Más popular</span>{% endif %}
+    </label>
+  {% endfor %}
+{% endcapture %}
+{% assign cards = cards | strip %}
+{% if cards != blank %}
+  <form class="nuvel-controls nv-packs" data-pack-picker>
+    <h3>Packs</h3><p>Primera compra: −10 % con el código NUVEL10</p>
+    {{ cards }}
+    <button type="submit" class="button">Elegir opciones del pack</button>
+  </form>
+  <script type="module" src="{{ 'nuvel-product-options.js' | asset_url }}"></script>
+{% endif %}
