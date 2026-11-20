@@ -19,7 +19,8 @@
 -%}
 {% if guide_image != blank %}
   <figure class="nuvel-size-guide" style="margin:0">
-    <figcaption>Guía de tallas</figcaption>
+    <figcaption class="visually-hidden">Guía de tallas</figcaption>
     <img src="{{ guide_image | asset_url }}" alt="{{ guide_alt | escape }}" width="640" height="410" loading="eager" style="display:block;width:100%;height:auto">
   </figure>
+  <script type="module" src="{{ 'nuvel-guia-visible.js' | asset_url }}"></script>
 {% endif %}
