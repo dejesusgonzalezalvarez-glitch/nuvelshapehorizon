@@ -131,6 +131,22 @@
     {% endfor %}
   </product-component>
 
+  {%- capture nuvel_sticky_photo -%}{%- render 'nuvel-catalog-front', product: product -%}{%- endcapture -%}
+  {%- if request.page_type == 'product' and nuvel_sticky_photo != blank -%}
+    <script>
+      (() => {
+        const src = {{ nuvel_sticky_photo | asset_url | json }};
+        const apply = () => document.querySelectorAll('sticky-add-to-cart .sticky-add-to-cart__image-img').forEach((img) => {
+          if (img.getAttribute('src') !== src) { img.removeAttribute('srcset'); img.setAttribute('src', src); }
+        });
+        const watch = () => {
+          apply();
+          document.querySelectorAll('sticky-add-to-cart').forEach((bar) => new MutationObserver(apply).observe(bar, { childList: true, subtree: true }));
+        };
+        document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', watch) : watch();
+      })();
+    </script>
+  {%- endif -%}
   {% render 'nuvel-resenas', product: product, section_id: section_id %}
   {{ additional_blocks }}
 </div>
