@@ -1,6 +1,7 @@
 {%- doc -%}
   Renders a card for displaying various resource types (products, collections, articles, pages).
 
+  @param {boolean} [drawer_images] - Use the black catalogue covers in the navigation drawer.
   @param {object} resource - The product or collection resource to render
   @param {string} resource_type - The type of resource to render.
   @param {string} [collection_thumbnails] - The style of the collection card. Can be 'single' or 'multiple'. Defaults to 'single'
@@ -26,6 +27,11 @@
     assign single_thumbnail_collection = true
   endif
 
+  if drawer_images and resource_type == 'product'
+    capture drawer_front
+      render 'nuvel-catalog-front', product: resource
+    endcapture
+  endif
   if resource_type == 'product'
     assign product_wrapper_tag = 'product-component'
     if settings.transition_to_main_product
@@ -38,7 +44,9 @@
       capture nuvel_file
         render 'nuvel-photo-file', image: transition_image, owner: resource
       endcapture
-      if nuvel_file != blank
+      if drawer_front != blank
+        assign featured_media_url = drawer_front | asset_url
+      elsif nuvel_file != blank
         assign featured_media_url = nuvel_file | asset_url
       endif
     endif
@@ -79,7 +87,9 @@
       data-view-transition-to-main-product
     {% endif %}
   >
-    {%- if resource_type == 'product' or single_thumbnail_collection -%}
+    {% if drawer_front != blank %}
+      {% render 'nuvel-photo', file: drawer_front, alt: resource.title, class: 'resource-card__image', loading: 'eager', ref: 'imagesToTransition[]' %}
+    {%- elsif resource_type == 'product' or single_thumbnail_collection -%}
       {% comment %}
         In a search context, product.featured_media is updated to reflect the most appropriate variant
         Use featured_media.preview_image over featured_image
@@ -155,7 +165,7 @@
         <div class="resource-card__image-wrapper">
           {% assign resource_products = resource.products | where: 'featured_image' %}
           {% for product in resource_products limit: 4 %}
-            {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: product.featured_image, owner: product %}{%- endcapture -%}
+            {%- capture nuvel_file -%}{% if drawer_images %}{% render 'nuvel-catalog-front', product: product %}{% else %}{% render 'nuvel-photo-file', image: product.featured_image, owner: product %}{% endif %}{%- endcapture -%}
             {% if nuvel_file != blank %}
               {% render 'nuvel-photo', file: nuvel_file, alt: product.title, class: 'resource-card__collection-image' %}
             {% else %}

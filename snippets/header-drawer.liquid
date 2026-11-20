@@ -24,19 +24,7 @@
     assign ratio = block_settings.featured_products_aspect_ratio
   endif
 
-  ##
-  # We only eager load heavy elements of the page when rendering this template
-  # through the Section Rendering API.
-  #
-  # This keeps the initial render lightweight, minimizing the impact on TTFB.
-  # The second render then refreshes the page with additional content.
-  #
-  # At the moment, we check if the Section Rendering API is being used by
-  # checking if section.index is blank.
-  assign eager_loading = false
-  if section.index == blank
-    assign eager_loading = true
-  endif
+
 
   if block_settings.background_color != blank or block_settings.text_color != blank
     render 'contrast-override', background_color: block_settings.background_color, text_color: block_settings.text_color, section_id: block.id
@@ -515,7 +503,6 @@
                           {%- endfor -%}
                         </ul>
                         {% liquid
-                          if eager_loading
                             if block_settings.menu_style == 'featured_collections'
                               assign featured_collections = link.links | where: 'type', 'collection_link'
                             endif
@@ -524,10 +511,7 @@
                               assign collection_linklist = link.links | where: 'type', 'collection_link' | first
                               assign featured_products_collection = collection_linklist.object
                             endif
-                          else
-                            assign featured_collections = null | sort
-                            assign featured_products_collection = null | sort
-                          endif
+
                         -%}
 
                         {% if featured_collections.size > 0 or featured_products_collection.products_count > 0 %}
@@ -540,6 +524,7 @@
                                 {%- for collection in featured_collections limit: max_featured_items -%}
                                   <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--collection">
                                     {% render 'resource-card',
+                                      drawer_images: true,
                                       resource: collection.object,
                                       resource_type: 'collection',
                                       style: 'overlay',
@@ -553,6 +538,7 @@
                                   {%- for product in featured_products_collection.products limit: max_featured_items -%}
                                     <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--product">
                                       {% render 'resource-card',
+                                        drawer_images: true,
                                         resource: product,
                                         resource_type: 'product',
                                         image_aspect_ratio: ratio,
@@ -728,7 +714,7 @@
           assign top_level_featured_collections = linklist.links | where: 'type', 'collection_link'
         endif
 
-        if eager_loading and block_settings.menu_style == 'featured_products'
+        if block_settings.menu_style == 'featured_products'
           for link in linklist.links
             if link.type == 'collection_link'
               assign collection_linklist = link
@@ -751,6 +737,7 @@
               {%- for collection in top_level_featured_collections limit: max_featured_items -%}
                 <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--collection">
                   {% render 'resource-card',
+                    drawer_images: true,
                     resource: collection.object,
                     resource_type: 'collection',
                     style: 'overlay',
@@ -764,6 +751,7 @@
                 {%- for product in top_level_featured_products_collection.products limit: max_featured_items -%}
                   <li class="menu-drawer__featured-content-list-item menu-drawer__featured-content-list-item--product">
                     {% render 'resource-card',
+                      drawer_images: true,
                       resource: product,
                       resource_type: 'product',
                       image_aspect_ratio: ratio,
@@ -1081,15 +1069,8 @@
     padding-inline: 0;
   }
 
-  .menu-drawer-container[open] .menu-drawer__animated-element {
-    animation: menu-drawer-nav-open var(--drawer-animation-speed) ease-in-out;
-    animation-delay: calc(var(--drawer-animation-speed) + (var(--menu-drawer-animation-index) - 1) * 0.1s);
-    animation-fill-mode: backwards;
-  }
-
-  [dir='rtl'] .menu-drawer-container[open] .menu-drawer__animated-element {
-    animation-name: menu-drawer-nav-open-rtl;
-  }
+  .menu-drawer-container[open] .menu-drawer__animated-element,
+  .menu-drawer-container .resource-card { animation: none; opacity: 1; }
 
   .menu-drawer__menu accordion-custom .details-content--no-animation {
     animation: none;

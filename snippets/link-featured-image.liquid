@@ -30,7 +30,10 @@
   {% endif %}
 {% elsif link.type == 'catalog_link' %}
   {% assign product_object = collections.all.products | where: 'featured_image' | first %}
-  {% if product_object.featured_image %}
+  {% capture catalog_front %}{% render 'nuvel-catalog-front', product: product_object %}{% endcapture %}
+  {% if catalog_front != blank %}
+    {% render 'nuvel-photo', file: catalog_front, class: class, alt: product_object.title %}
+  {% elsif product_object.featured_image %}
     {{
       product_object.featured_image
       | image_url: width: 800
