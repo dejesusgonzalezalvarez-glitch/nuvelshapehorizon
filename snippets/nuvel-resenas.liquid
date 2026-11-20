@@ -3,6 +3,8 @@
 {% assign reviews = product.metafields.custom.resenas.value %}
 <section class="nuvel-resenas" aria-label="Reseñas de la prenda">
   <h3>Reseñas de la prenda</h3>
+  {% capture catalog_reviews %}{% render 'nuvel-resenas-catalogo', product: product %}{% endcapture %}
+  {{ catalog_reviews }}
   {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
     {% render 'nuvel-resenas-faja' %}
   {% endif %}
@@ -16,7 +18,7 @@
       {% if review.autor.value != blank %}<figcaption>{{ review.autor.value | escape }}</figcaption>{% endif %}
     </figure>{% endif %}
   {% endfor %}
-  {% if count == 0 and reviews == blank and product.handle != 'faja-moldeadora-invisible-nuvel' %}<p>Aún no hay reseñas publicadas.</p>{% endif %}
+  {% if catalog_reviews == blank and count == 0 and reviews == blank and product.handle != 'faja-moldeadora-invisible-nuvel' %}<p>Aún no hay reseñas publicadas.</p>{% endif %}
   {% if shop.email != blank %}{% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}<a href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña</a>{% endif %}
 </section>
 {% stylesheet %}
