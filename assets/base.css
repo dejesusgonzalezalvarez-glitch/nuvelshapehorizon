@@ -1909,9 +1909,6 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 }
 .nuvel-review-stars { color: #f5b800; }
 
-/* Ficha de la faja: ilustración antes/después bajo la galería, solo en escritorio */
-.nuvel-ficha-antes-despues { display: none; }
-@media screen and (min-width: 750px) {
-  .nuvel-ficha-antes-despues { display: block; margin: 2rem 0 0; }
-  .nuvel-ficha-antes-despues img { display: block; width: min(100%, 720px); height: auto; margin-inline: auto; background: #fff; }
-}
+/* Inicio: ilustración antes/después bajo la imagen de soporte y moldeado de la faja */
+.nuvel-ficha-antes-despues { margin: 1rem 0 0; }
+.nuvel-ficha-antes-despues img { display: block; width: 100%; height: auto; background: #fff; }
