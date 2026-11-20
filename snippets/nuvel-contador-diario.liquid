@@ -1,12 +1,10 @@
 {% assign deadline = product.metafields.custom.fin_oferta %}
-{% if deadline.type == 'date_time' and deadline.value != blank %}
-  <nuvel-contador-diario hidden data-end="{{ deadline.value | date: '%s' }}"{% if product.handle == 'faja-moldeadora-invisible-nuvel' %} class="nuvel-contador-faja"{% endif %}>
-    <span class="nuvel-contador-faja__titulo">La oferta termina en</span>
-    <strong role="timer" aria-live="off"></strong>
-  </nuvel-contador-diario>
-  <script type="module" src="{{ 'nuvel-contador-diario.js' | asset_url }}"></script>
-{% endif %}
-
+<nuvel-contador-diario hidden {% if deadline.type == 'date_time' and deadline.value != blank %}data-end="{{ deadline.value | date: '%s' }}"{% else %}data-daily{% endif %} class="nuvel-contador-faja">
+  <span class="nuvel-contador-faja__titulo">{% if deadline.value != blank %}La oferta termina en{% else %}Promoción diaria · Próxima renovación{% endif %}</span>
+  <strong role="timer" aria-live="off"></strong>
+  {% if deadline.value == blank %}<small>Se renueva a las 00:00, hora de Madrid.</small>{% endif %}
+</nuvel-contador-diario>
+<script type="module" src="{{ 'nuvel-contador-diario.js' | asset_url }}"></script>
 {% stylesheet %}
   nuvel-contador-diario:not([hidden]) {
     display: flex;

@@ -53,6 +53,27 @@
     {% endif %}
   >
     <form class="variant-picker__form">
+      {% assign current_choice = product_resource.selected_or_first_available_variant %}
+      {% if product_resource.handle == 'faja-moldeadora-invisible-nuvel' or product_resource.handle == 'seamless-shapewear-panties' or product_resource.handle == 'womens-shapewear-dress-jumpsuit' %}
+        {% capture choice_id %}{% render 'nuvel-selected-variant-id', product: product_resource %}{% endcapture %}
+        {% assign numeric_id = choice_id | plus: 0 %}
+        {% assign current_choice = product_resource.variants | where: 'id', numeric_id | first %}
+        {% assign last_option = product_resource.options_with_values | last %}
+        <div class="variant-option variant-option--dropdowns">
+          <label for="Choice-{{ block.id }}-{{ product_resource.id }}">{% if product_resource.handle == 'faja-moldeadora-invisible-nuvel' %}Talla · Negro{% else %}Color y talla{% endif %}</label>
+          <select class="variant-option__select" id="Choice-{{ block.id }}-{{ product_resource.id }}">
+            {% for v in product_resource.variants %}
+              {% unless v.available %}{% continue %}{% endunless %}
+              {% if product_resource.handle == 'faja-moldeadora-invisible-nuvel' and v.option1 != 'Black' %}{% continue %}{% endif %}
+              {% assign last_value = v.options | last %}
+              {% assign option_value = last_option.values | where: 'name', last_value | first %}
+              <option value="{{ v.id }}" data-nuvel-variant="{{ v.id }}" data-variant-id="{{ v.id }}" data-option-value-id="{{ option_value.id }}" {% if v.id == current_choice.id %}selected{% endif %}>
+                {% if product_resource.handle == 'faja-moldeadora-invisible-nuvel' %}{{ v.option2 | escape }}{% else %}{% render 'nuvel-opcion', value: v.title %}{% endif %}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% else %}
       {%- for product_option in product_resource.options_with_values -%}
         {%- liquid
           assign swatch_count = product_option.values | map: 'swatch' | compact | size
@@ -98,6 +119,7 @@
               {%- endif %}
             </legend>
             {%- for product_option_value in product_option.values -%}
+                {%- if product_option_value.name == '3XL' and product_option_value.available == false -%}{%- continue -%}{%- endif -%}
               {% if product_option_value.size > longest_value and option_id_attribute %}
                 {% assign longest_value = product_option_value.size %}
               {% endif %}
@@ -203,6 +225,7 @@
                 class="variant-option__select"
               >
                 {%- for product_option_value in product_option.values -%}
+                {%- if product_option_value.name == '3XL' and product_option_value.available == false -%}{%- continue -%}{%- endif -%}
                   <option
                     value="{{ product_option_value | escape }}"
                     data-input-id="{{ product_option.position }}-{{ forloop.index0 }}"
@@ -235,8 +258,9 @@
         {%- endif -%}
       {%- endfor -%}
 
+      {% endif %}
       <script type="application/json">
-        {{ product_resource.selected_or_first_available_variant | json }}
+        {{ current_choice | json }}
       </script>
     </form>
   </variant-picker>

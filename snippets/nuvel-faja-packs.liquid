@@ -4,42 +4,65 @@
     assign same_product_duo = same_product_duo | default: duo
   endif
   assign same_product_trio = product.metafields.custom.pack_trio.value
+  case product.handle
+    when 'faja-moldeadora-invisible-nuvel'
+      assign second = all_products['seamless-shapewear-panties']
+      assign third = all_products['retro-shapewear-top-with-zipper']
+      assign pair_title = 'Faja y short'
+      assign set_title = 'Faja, short y top'
+    when 'seamless-shapewear-panties'
+      assign second = all_products['sujetador-corrector-postura']
+      assign third = all_products['retro-shapewear-top-with-zipper']
+      assign pair_title = 'Short y sujetador'
+      assign set_title = 'Short, sujetador y top'
+    when 'retro-shapewear-top-with-zipper'
+      assign second = all_products['seamless-shapewear-panties']
+      assign third = all_products['faja-moldeadora-invisible-nuvel']
+      assign pair_title = 'Top y short'
+      assign set_title = 'Top, short y faja'
+    when 'womens-shapewear-dress-jumpsuit'
+      assign second = all_products['seamless-shapewear-panties']
+      assign third = all_products['sujetador-corrector-postura']
+      assign pair_title = 'Vestido y short'
+      assign set_title = 'Vestido, short y sujetador'
+    when 'sujetador-corrector-postura'
+      assign second = all_products['seamless-shapewear-panties']
+      assign third = all_products['womens-shapewear-dress-jumpsuit']
+      assign pair_title = 'Sujetador y short'
+      assign set_title = 'Sujetador, short y vestido'
+  endcase
 %}
 {% unless product.gift_card? %}
   <section class="nuvel-product-packs" aria-label="Packs">
     <h3>Packs</h3>
     {% render 'nuvel-pack-cantidad', product: product, bundle: same_product_duo, quantity: 2 %}
-    {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-        {% liquid
-          assign short_product = all_products['seamless-shapewear-panties'] | default: all_products['bragas-moldeadoras-sin-costuras-nuvel'] | default: all_products['bragas-moldeadoras-sin-costuras']
-          assign top_product = all_products['retro-shapewear-top-with-zipper'] | default: all_products['top-moldeador-retro-con-cremallera-nuvel'] | default: all_products['top-moldeador-retro-con-cremallera']
-        %}
-      {% if look.available and look.id != product.id %}
-      {% assign separate_price = product.price_min | plus: short_product.price_min | plus: top_product.price_min %}
+    {% if second.available %}
+      {% render 'nuvel-pack-compra', product: product, second: second, pack_name: pair_title %}
+    {% endif %}
+      {% if product.handle == 'faja-moldeadora-invisible-nuvel' and look.available and look.id != product.id %}
+      {% assign separate_price = product.price_min | plus: second.price_min | plus: third.price_min %}
       {% assign pack_saving = separate_price | minus: look.price_max | at_least: 0 %}
       <a class="nuvel-linked-pack" href="{{ look.url }}">
-        <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}</span>
+        <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% render 'nuvel-pack-foto', product: third %}</span>
         <span class="nuvel-pack-name">Look completo · Faja, short y top</span>
         <span class="nuvel-pack-importes">
           <strong>{% if look.price_varies %}Desde {% endif %}{{ look.price | money }}</strong>
-          {% if short_product != blank and top_product != blank %}
-            {% if product.price_varies == false and short_product.price_varies == false and top_product.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
+          {% if second != blank and third != blank %}
+            {% if product.price_varies == false and second.price_varies == false and third.price_varies == false and look.price_varies == false %}<small>Ahorro del pack {{ pack_saving | money }}</small>
             {% elsif pack_saving > 0 %}<small>Ahorras al menos {{ pack_saving | money }}</small>
             {% else %}<small>Ahorro según variante</small>{% endif %}
           {% endif %}
         </span>
       </a>
-      {% else %}
-
-        {% if short_product != blank and top_product != blank %}
-          {% render 'nuvel-pack-compra', product: product, short_product: short_product, top_product: top_product, mode: 'look' %}
-        {% endif %}
+      {% elsif second.available and third.available %}
+        {% render 'nuvel-pack-compra', product: product, second: second, third: third, pack_name: set_title %}
       {% endif %}
-    {% else %}
-      {% render 'nuvel-pack-cantidad', product: product, bundle: same_product_trio, quantity: 3 %}
-    {% endif %}
+      {% if same_product_trio.available %}
+        {% render 'nuvel-pack-cantidad', product: product, bundle: same_product_trio, quantity: 3 %}
+      {% endif %}
   </section>
 {% endunless %}
+
 
 {% stylesheet %}
   .nuvel-product-packs {

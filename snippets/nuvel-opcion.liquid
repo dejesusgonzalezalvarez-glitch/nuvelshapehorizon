@@ -2,13 +2,15 @@
 {%- for part in parts -%}
   {%- unless forloop.first %} / {% endunless -%}
   {%- assign key = part | strip | downcase -%}
+  {%- assign packed = key | split: ' (' -%}
+  {%- if packed.size > 1 -%}{%- assign key = packed.first -%}{%- endif -%}
   {%- case key -%}
     {%- when 'black' -%}Negro
     {%- when 'black a' -%}Negro · modelo A
     {%- when 'black b' -%}Negro · modelo B
     {%- when 'pink' -%}Rosa
     {%- when 'skin' -%}Beige
-    {%- when 'skin color' -%}Beige
+    {%- when 'skin color', 'skin colour', 'skintone' -%}Beige
     {%- when 'brown' -%}Marrón
     {%- when 'white' -%}Blanco
     {%- when 'gray' -%}Gris
@@ -19,4 +21,8 @@
     {%- when 'default title' -%}Única
     {%- else -%}{{ part | escape }}
   {%- endcase -%}
+  {%- if packed.size > 1 and parts.size == 1 -%}
+    {%- assign size = packed.last | remove: ')' | replace: 'medium', 'm' | replace: 'large', 'l' | replace: 'small', 's' -%}
+    {{- ' · ' | append: size | upcase | escape -}}
+  {%- endif -%}
 {%- endfor -%}

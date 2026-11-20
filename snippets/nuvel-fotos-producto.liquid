@@ -7,36 +7,39 @@
     when 'retro-shapewear-top-with-zipper', 'top-moldeador-retro-con-cremallera', 'top-moldeador-retro-con-cremallera-nuvel'
       assign garment = 'top'
     when 'womens-shapewear-dress-jumpsuit', 'body-moldeador-con-falda', 'body-moldeador-con-falda-nuvel'
-      assign garment = 'body'
+      assign garment = 'vestido'
     when 'seamless-shapewear-panties', 'bragas-moldeadoras-sin-costuras', 'bragas-moldeadoras-sin-costuras-nuvel'
-      assign garment = 'bragas'
+      assign garment = 'short'
   endcase
 %}
 {% if garment != blank %}
-  <section class="nuvel-fotos-producto" aria-label="Cómo queda la prenda">
-    <h2>Cómo queda la prenda</h2>
-    <ul role="list">
-      {% assign views = 'frente,estudio' | split: ',' %}
+  <section class="nuvel-fotos-producto" aria-label="La prenda en uso">
+    <h2>La prenda en uso</h2>
+    {% capture slides %}
+      {% assign views = 'ugc-1,ugc-2,estudio-1,estudio-2' | split: ',' %}
       {% for view in views %}
-        {% if forloop.first %}
-          {% assign file = 'nuvel-hover-' | append: garment | append: '.webp' %}
-        {% else %}
-          {% assign file = 'nuvel-' | append: garment | append: '-' | append: view | append: '.webp' %}
-        {% endif %}
-        <li>
-          <img src="{{ file | asset_url }}" width="600" height="750" loading="lazy"
-            alt="{{ product.title | escape }} en negro, {% if forloop.first %}vista frontal en estudio{% else %}segunda vista en estudio{% endif %}">
-        </li>
+        {% assign file = 'nuvel-catalogo-' | append: garment | append: '-' | append: view | append: '.webp' %}
+        {% capture photo %}
+          <img src="{{ file | asset_url }}" width="1080" height="1920" loading="lazy"
+            alt="{{ product.title | escape }} en negro. {% if view contains 'estudio' %}Fotografía de estudio{% else %}Escena cotidiana{% endif %}, vista {{ view | split: '-' | last }}.">
+        {% endcapture %}
+        {% render 'slideshow-slide', index: forloop.index0, children: photo, media_fit: 'contain' %}
       {% endfor %}
-    </ul>
+      {% capture guide %}{% render 'nuvel-guia-tallas', product: product, gallery: true %}{% endcapture %}
+      {% render 'slideshow-slide', index: 4, children: guide, media_fit: 'contain' %}
+    {% endcapture %}
+    {% capture controls %}{% render 'slideshow-controls', style: 'dots', item_count: 5, pagination_position: 'center' %}{% endcapture %}
+    {% render 'slideshow', slides: slides, slide_count: 5, controls: controls, show_arrows: true, animate_arrows: false %}
+
   </section>
 {% endif %}
 
 {% stylesheet %}
-  .nuvel-fotos-producto { width: 100%; min-width: 0; margin: 1.5rem auto; }
-  .nuvel-fotos-producto ul { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 20rem); overflow-x: auto; scroll-snap-type: x proximity; gap: .75rem; list-style: none; margin: 0; padding: 0 0 .5rem; }
-  .nuvel-fotos-producto li { scroll-snap-align: start; background: #fff; }
-  .nuvel-fotos-producto li:nth-child(2) img { filter: brightness(1.01); }
-  .nuvel-fotos-producto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; display: block; background: #fff; }
-  @media (min-width: 900px) { .nuvel-fotos-producto ul { grid-template-columns: repeat(2, minmax(0, 22rem)); justify-content: center; } }
+  .nuvel-fotos-producto { min-width: 0; margin-block: 1.5rem; }
+  .nuvel-fotos-producto h2 { font-size: 1.3rem; margin: 0 0 .75rem; }
+  .nuvel-fotos-producto slideshow-slide { align-content: center; background: #fff; }
+  .nuvel-fotos-producto img { display: block; width: 100%; height: clamp(20rem,65svh,40rem); object-fit: contain; }
+  .nuvel-fotos-producto img[src*="-estudio-"] { filter: brightness(1.015); }
+  .nuvel-guide-slide { display: grid; gap: .5rem; text-align: center; padding: 1rem; }
+  .nuvel-guide-slide img { height: auto; }
 {% endstylesheet %}

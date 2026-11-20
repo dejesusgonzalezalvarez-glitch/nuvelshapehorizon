@@ -3,7 +3,7 @@ class NuvelPackCompra extends HTMLElement {
     this.button = this.querySelector('[data-add-pack]');
     if (!this.button) return;
     this.selects = Array.from(this.querySelectorAll('select'));
-    this.money = new Intl.NumberFormat(this.dataset.locale || 'es-ES', {
+    this.money = new Intl.NumberFormat('es-ES', {
       style: 'currency', currency: this.dataset.currency || 'EUR',
     });
     this.addEventListener('change', this.updateTotal);

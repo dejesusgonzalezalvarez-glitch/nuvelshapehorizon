@@ -29,20 +29,7 @@
     {% endif %}
   </details>
 
-  <section class="nuvel-faja-informacion__resenas" aria-label="Reseñas">
-    <h3>Reseñas</h3>
-    {% assign rating = product.metafields.reviews.rating.value %}
-    {% assign count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 %}
-    {% if count > 0 and rating != blank %}
-      <p>{{ rating.rating }} de {{ rating.scale_max }} · {{ count }} {% if count == 1 %}reseña{% else %}reseñas{% endif %}</p>
-    {% else %}
-      <p>Aún no hay reseñas publicadas.</p>
-    {% endif %}
-    {% if shop.email != blank %}
-      {% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}
-      <a href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña por correo</a>
-    {% endif %}
-  </section>
+
 </section>
 
 {% stylesheet %}

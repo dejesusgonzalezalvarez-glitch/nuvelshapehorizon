@@ -268,7 +268,9 @@ export default class VariantPicker extends Component {
     // preserve view parameter, if it exists, for alternative product view testing
     if (viewParamValue) params.push(`view=${viewParamValue}`);
 
-    if (this.selectedOptionsValues.length && !source) {
+    if (selectedOption.dataset.nuvelVariant) {
+      params.push(`variant=${encodeURIComponent(selectedOption.dataset.nuvelVariant)}`);
+    } else if (this.selectedOptionsValues.length && !source) {
       params.push(`option_values=${this.selectedOptionsValues.join(',')}`);
     } else if (source === 'product-card') {
       if (this.selectedOptionsValues.length) {

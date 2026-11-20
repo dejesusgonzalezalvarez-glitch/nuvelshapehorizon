@@ -1,0 +1,8 @@
+{%- liquid
+  assign selected = product.selected_or_first_available_variant
+  if product.handle == 'faja-moldeadora-invisible-nuvel' and selected.option1 != 'Black'
+    assign allowed = product.variants | where: 'option1', 'Black' | where: 'available', true
+    assign selected = allowed | where: 'option2', selected.option2 | first | default: allowed.first
+  endif
+  echo selected.id
+-%}

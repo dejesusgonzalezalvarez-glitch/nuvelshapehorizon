@@ -25,8 +25,8 @@
   >
     {% content_for 'blocks' %}
     {% case page.handle %}
-      {% when 'sobre-nosotros', 'esencia' %}{% render 'nuvel-sobre' %}
-      {% when 'preguntas-frecuentes', 'ayuda' %}{% render 'nuvel-preguntas' %}
+      {% when 'sobre-nosotros', 'esencia' %}{% render 'nuvel-sobre', page_heading_shown: true %}
+      {% when 'preguntas-frecuentes', 'ayuda' %}{% render 'nuvel-preguntas', page_heading_shown: true %}
       {% when 'producto', 'producto-destacado' %}
         <a class="button" href="{{ routes.root_url }}#producto-destacado">Ver la faja moldeadora invisible</a>
     {% endcase %}

@@ -98,7 +98,7 @@
   </div>
 {% elsif plain_text != blank %}
   <{{ element }} {{ attributes | strip_newlines | strip }}>
-    {{ block.settings.text }}
+    {{ block.settings.text | replace: 'Join our email list', 'Suscríbete a nuestro boletín' | replace: 'Get exclusive deals and early access to new products.', 'Recibe ofertas exclusivas y descubre las novedades antes que nadie.' }}
   </{{ element }}>
 {% endif %}
 

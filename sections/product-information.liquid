@@ -28,7 +28,6 @@
 {% endcapture %}
 
 {% capture additional_blocks %}
-  {% render 'nuvel-fotos-producto', product: product %}
   {% unless product.handle == 'faja-moldeadora-invisible-nuvel' %}
     {% render 'nuvel-guia-tallas', product: product %}
   {% endunless %}
@@ -60,6 +59,13 @@
 
   {% liquid
     assign current_variant = product.selected_or_first_available_variant
+    if product.handle == 'faja-moldeadora-invisible-nuvel'
+      capture choice_id
+        render 'nuvel-selected-variant-id', product: product
+      endcapture
+      assign numeric_id = choice_id | plus: 0
+      assign current_variant = product.variants | where: 'id', numeric_id | first
+    endif
     # Get the initial quantity based on quantity rules
     assign initial_quantity = current_variant.quantity_rule.min | default: 1
   %}

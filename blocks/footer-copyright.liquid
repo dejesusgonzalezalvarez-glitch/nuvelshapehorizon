@@ -16,7 +16,7 @@
     &copy; {{ 'now' | date: '%Y' }}
     {{ shop.name | link_to: routes.root_url -}}
     {%- if block_settings.show_powered_by -%}
-      , {{ powered_by_link }}
+       · <a href="https://www.shopify.com/es">Tecnología de Shopify</a>
     {%- endif -%}
   </span>
 </div>

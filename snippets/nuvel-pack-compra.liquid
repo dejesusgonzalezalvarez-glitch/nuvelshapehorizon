@@ -1,13 +1,13 @@
 {% liquid
   assign pieces = 2
   assign title = 'Pack de 2 unidades'
-  if mode == 'trio'
+  if third != blank
+    assign pieces = 3
+  elsif mode == 'trio'
     assign pieces = 3
     assign title = 'Pack de 3 unidades'
-  elsif mode == 'look'
-    assign pieces = 3
-    assign title = 'Look completo · Faja, short y top'
   endif
+  assign title = pack_name | default: title
   assign pack_available = true
 %}
 <nuvel-pack-compra data-add="{{ routes.cart_add_url }}.js" data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code | escape }}" data-locale="{{ request.locale.iso_code | escape }}">
@@ -17,48 +17,38 @@
     {% for position in (1..pieces) %}
       {% liquid
         assign item = product
-        if mode == 'look' and position == 2
-          assign item = short_product
-        elsif mode == 'look' and position == 3
-          assign item = top_product
+        if position == 2 and second != blank
+          assign item = second
+        elsif position == 3 and third != blank
+          assign item = third
         endif
-        assign reference_variant = item.selected_or_first_available_variant
-        assign pack_total = pack_total | plus: reference_variant.price
-        unless item.available
-          assign pack_available = false
-        endunless
+        assign first_choice = true
       %}
       <label>
-        {% if mode == 'look' %}{{ item.title | escape }}{% else %}Unidad {{ position }}{% endif %}
-        <select {% unless item.available %}disabled{% endunless %}>
-          {% assign color_option = item.options_by_name['Color'] %}
-          {% if color_option.values.size > 1 and item.options.size > 1 %}
-            {% assign color_index = color_option.position | minus: 1 %}
-            {% for color in color_option.values %}
-              {% assign color_name = color.name | default: color %}
-              <optgroup label="{% render 'nuvel-opcion', value: color_name %}">
-                {% for variant in item.variants %}
-                  {% if variant.available and variant.options[color_index] == color_name %}
-                    <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
-                  {% endif %}
-                {% endfor %}
-              </optgroup>
-            {% endfor %}
-          {% else %}
-            {% for variant in item.variants %}
-              {% if variant.available %}
-                <option value="{{ variant.id }}" data-price="{{ variant.price }}" {% if variant.id == item.selected_or_first_available_variant.id %}selected{% endif %}>{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
-              {% endif %}
-            {% endfor %}
-          {% endif %}
+        {% if second != blank %}{{ item.title | escape }}{% else %}Unidad {{ position }}{% endif %}
+        <select>
+          {% for variant in item.variants %}
+            {% unless variant.available %}{% continue %}{% endunless %}
+            {% if item.handle == 'sujetador-corrector-postura' %}
+              {% unless variant.option1 contains '1 Sujetador' %}{% continue %}{% endunless %}
+            {% endif %}
+            {% if item.handle == 'faja-moldeadora-invisible-nuvel' and variant.option1 != 'Black' %}{% continue %}{% endif %}
+            {% if first_choice %}
+              {% assign pack_total = pack_total | plus: variant.price %}
+              {% assign first_choice = false %}
+            {% endif %}
+            <option value="{{ variant.id }}" data-price="{{ variant.price }}">{% render 'nuvel-opcion', value: variant.title %} · {{ variant.price | money }}</option>
+          {% endfor %}
         </select>
+        {% if first_choice %}{% assign pack_available = false %}{% endif %}
       </label>
     {% endfor %}
     {% endcapture %}
     <summary>
       <span class="nuvel-pack-fotos">{% render 'nuvel-pack-foto', product: product %}
-        {% if mode == 'look' %}{% render 'nuvel-pack-foto', product: short_product %}{% render 'nuvel-pack-foto', product: top_product %}
-        {% else %}{% render 'nuvel-pack-foto', product: product %}{% if pieces == 3 %}{% render 'nuvel-pack-foto', product: product %}{% endif %}{% endif %}
+        {% assign second_photo = second | default: product %}
+        {% render 'nuvel-pack-foto', product: second_photo %}
+        {% if pieces == 3 %}{% assign third_photo = third | default: product %}{% render 'nuvel-pack-foto', product: third_photo %}{% endif %}
       </span>
       <span class="nuvel-pack-name">{{ title }}</span>
       {% if pack_available %}

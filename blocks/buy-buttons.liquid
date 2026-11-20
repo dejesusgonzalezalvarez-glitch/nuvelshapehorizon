@@ -8,6 +8,13 @@
   endif
 
   assign variant = closest.product.selected_or_first_available_variant
+    if product.handle == 'faja-moldeadora-invisible-nuvel'
+      capture choice_id
+        render 'nuvel-selected-variant-id', product: product
+      endcapture
+      assign numeric_id = choice_id | plus: 0
+      assign variant = product.variants | where: 'id', numeric_id | first
+    endif
   assign inventory_quantity = variant.inventory_quantity
   assign inventory_policy = variant.inventory_policy
 
@@ -70,7 +77,7 @@
           type="hidden"
           name="id"
           ref="variantId"
-          value="{{ product.selected_or_first_available_variant.id }}"
+          value="{{ variant.id }}"
         >
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}
@@ -266,6 +273,7 @@
   {% render 'nuvel-faja-tecnica' %}
   {% render 'nuvel-faja-informacion', product: product %}
 {% endif %}
+{% if product != blank %}{% render 'nuvel-resenas', product: product %}{% endif %}
 
 {% if block_settings.show_pickup_availability or block_settings.show_physical_stores %}
   <script

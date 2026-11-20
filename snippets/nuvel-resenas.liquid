@@ -1,0 +1,24 @@
+{% assign rating = product.metafields.reviews.rating.value %}
+{% assign count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 %}
+{% assign reviews = product.metafields.custom.resenas.value %}
+<section class="nuvel-resenas" aria-label="Reseñas de la prenda">
+  <h3>Reseñas de la prenda</h3>
+  {% if count > 0 and rating.rating != blank %}
+    {% assign percent = rating.rating | times: 100.0 | divided_by: rating.scale_max | at_most: 100 %}
+    <p><span class="nuvel-stars" style="--filled: {{ percent }}%" aria-hidden="true">★★★★★</span>
+    {{ rating.rating | replace: '.', ',' }} de {{ rating.scale_max }} · {{ count }} {% if count == 1 %}reseña{% else %}reseñas{% endif %}</p>
+  {% endif %}
+  {% for review in reviews %}
+    {% if review.texto.value != blank %}<figure><blockquote>{{ review.texto.value | escape | newline_to_br }}</blockquote>
+      {% if review.autor.value != blank %}<figcaption>{{ review.autor.value | escape }}</figcaption>{% endif %}
+    </figure>{% endif %}
+  {% endfor %}
+  {% if count == 0 and reviews == blank %}<p>Aún no hay reseñas publicadas.</p>{% endif %}
+  {% if shop.email != blank %}{% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}<a href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña</a>{% endif %}
+</section>
+{% stylesheet %}
+  .nuvel-resenas { margin-block: 1.5rem; }
+  .nuvel-resenas figure { margin: 1rem 0; }
+  .nuvel-resenas blockquote { margin: 0; }
+  .nuvel-stars { color: transparent; background: linear-gradient(to right,#78531d var(--filled),#dcd6cc var(--filled)); background-clip: text; }
+{% endstylesheet %}
