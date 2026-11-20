@@ -54,7 +54,8 @@
   >
     <form class="variant-picker__form">
       {% assign current_choice = product_resource.selected_or_first_available_variant %}
-      {% if product_resource.options.size >= 2 %}
+      {% assign first_axis = product_resource.options.first | downcase %}
+      {% if product_resource.options.size >= 2 or first_axis contains 'talla' or first_axis contains 'size' %}
         {% capture choice_id %}{% render 'nuvel-selected-variant-id', product: product_resource %}{% endcapture %}
         {% assign numeric_id = choice_id | plus: 0 %}
         {% assign current_choice = product_resource.variants | where: 'id', numeric_id | first %}
