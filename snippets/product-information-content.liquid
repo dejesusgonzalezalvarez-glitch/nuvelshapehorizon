@@ -114,6 +114,11 @@
       <img src="{{ 'nuvel-soporte-moldeado.webp' | asset_url }}" width="1672" height="941" loading="eager" decoding="async" alt="Faja negra con copas integradas, tirantes regulables y confección moldeadora.">
     </a>
         {% endif %}
+        {% if request.page_type == 'product' and product.handle == 'faja-moldeadora-invisible-nuvel' %}
+          <figure class="nuvel-ficha-antes-despues">
+            <img src="{{ 'nuvel-antes-despues.svg' | asset_url }}" width="720" height="480" loading="lazy" alt="La misma figura antes, en ropa interior, y después, con la faja moldeadora negra de copas y tirantes.">
+          </figure>
+        {% endif %}
       </div>
     {% endcapture %}
 

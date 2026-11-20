@@ -67,13 +67,16 @@
         "content": {
           "type": "_content-without-appearance",
           "settings": {
-            "gap": 24
+            "gap": 24,
+            "horizontal_alignment_flex_direction_column": "center"
           },
           "blocks": {
             "antetitulo": {
               "type": "text",
               "settings": {
                 "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
+                "width": "100%",
+                "alignment": "center",
                 "type_preset": "paragraph"
               }
             },
@@ -81,6 +84,8 @@
               "type": "text",
               "settings": {
                 "text": "<h2>Cómo queda puesta</h2>",
+                "width": "100%",
+                "alignment": "center",
                 "type_preset": "h2"
               }
             },
@@ -88,6 +93,8 @@
               "type": "text",
               "settings": {
                 "text": "<p>Así se ajusta la faja al pecho, la cintura y la cadera.</p>",
+                "width": "100%",
+                "alignment": "center",
                 "type_preset": "paragraph"
               }
             },
