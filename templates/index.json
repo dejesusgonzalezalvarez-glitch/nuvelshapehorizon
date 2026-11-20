@@ -774,6 +774,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Sin costuras</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -781,6 +783,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -803,6 +807,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>No se enrolla</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -810,6 +816,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -832,6 +840,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Resiste lavados</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -839,6 +849,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -861,6 +873,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Guía de tallas</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -868,6 +882,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Compara tus medidas con la tabla.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -939,6 +955,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Envío gratis</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -946,6 +964,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -968,6 +988,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>30 días de prueba</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -975,6 +997,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Consulta las condiciones de devolución.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
@@ -997,6 +1021,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Pago seguro</h3>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "h3"
                   }
                 },
@@ -1004,6 +1030,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Tus datos protegidos en cada compra.</p>",
+                    "width": "100%",
+                    "alignment": "center",
                     "type_preset": "rte"
                   }
                 }
