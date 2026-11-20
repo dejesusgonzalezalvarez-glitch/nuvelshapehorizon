@@ -1907,3 +1907,4 @@ main > .shopify-section:first-child .section:not(.disable-section-top-offset) {
 .product-information__media img[src*="nuvel-guia-"] {
   display: none;
 }
+.nuvel-review-stars { color: #f5b800; }

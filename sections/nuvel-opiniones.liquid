@@ -5,7 +5,7 @@
             <blockquote>{{ block.settings.quote | escape | newline_to_br }}</blockquote>
             {%- if block.settings.author != blank -%}<figcaption>{{ block.settings.author | escape }}</figcaption>{%- endif -%}
             {%- if block.settings.score > 0 -%}
-              <span aria-hidden="true">{% for i in (1..5) %}{% if i <= block.settings.score %}★{% else %}☆{% endif %}{% endfor %}</span>
+              <span class="nuvel-review-stars" aria-hidden="true">{% for i in (1..5) %}{% if i <= block.settings.score %}★{% else %}☆{% endif %}{% endfor %}</span>
               <span>{{ block.settings.score }} de 5</span>
             {%- endif -%}
           </figure>
