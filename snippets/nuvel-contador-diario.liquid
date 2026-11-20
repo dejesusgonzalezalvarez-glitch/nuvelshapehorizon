@@ -1,6 +1,6 @@
 {% assign deadline = product.metafields.custom.fin_oferta %}
 <nuvel-contador-diario class="flipdeal" hidden {% if deadline.type == 'date_time' and deadline.value != blank %}data-end="{{ deadline.value | date: '%s' }}"{% else %}data-daily{% endif %}>
-  <p class="flipdeal__title">¡APROVECHA LA PROMOCIÓN!</p>
+  <p class="flipdeal__title">LA OFERTA CIERRA EN</p>
   <span class="visually-hidden" role="timer" aria-live="off"></span>
   <div class="flipdeal__row" aria-hidden="true">
     <div class="flipdeal__col"><div class="flip" data-u="h"></div><div class="flipdeal__label">Horas</div></div>
