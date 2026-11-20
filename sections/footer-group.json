@@ -381,7 +381,7 @@
             "redes_newsletter": {
               "type": "text",
               "settings": {
-                "text": "<p style='margin:4px 0;font-size:0.9rem;color:#666;'>Suscríbete para novedades y ofertas.</p>",
+                "text": "<h3>Suscríbete a nuestro boletín</h3><p>Recibe ofertas exclusivas y descubre las novedades antes que nadie.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -425,11 +425,19 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "newsletter_form": {
+              "type": "email-signup",
+              "settings": {
+                "width": "fill",
+                "label": "Suscribirme"
+              }
             }
           },
           "block_order": [
             "redes_title",
             "redes_newsletter",
+            "newsletter_form",
             "redes_instagram"
           ]
         }

@@ -37,7 +37,8 @@ class NuvelPackCompra extends HTMLElement {
         body: JSON.stringify({ items }),
       });
       if (!response.ok) {
-        const result = await response.json();
+        if (response.status === 429) throw new Error('Shopify está limitando las solicitudes. Espera un momento y vuelve a intentarlo.');
+        const result = await response.json().catch(() => ({}));
         throw new Error(result.description || 'Comprueba las tallas y las unidades disponibles.');
       }
       window.location.assign(this.dataset.cart);
