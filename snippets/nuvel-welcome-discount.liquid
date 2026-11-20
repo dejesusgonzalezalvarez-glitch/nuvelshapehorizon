@@ -29,7 +29,9 @@
     --mist: #eef0ea;
     --sage: #4f5d4b;
     --muted: #6b6d63;
-    --ok: #1f6b3a;
+    --ok: #7a6346;
+    --beige: #e8dcc8;
+    --beige-line: #c9b79a;
     --font: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   #nuvel-welcome * { box-sizing: border-box; margin: 0; }
@@ -75,7 +77,7 @@
     transition: border-color .2s, background .2s;
   }
   #nuvel-welcome .code:hover { background: #e6e9e0; }
-  #nuvel-welcome .code.done { border-style: solid; border-color: var(--ok); }
+  #nuvel-welcome .code.done { border-style: solid; border-color: var(--beige-line); }
 
   /* Nivel 2a: acción principal */
   #nuvel-welcome .copy {
@@ -87,7 +89,7 @@
   }
   #nuvel-welcome .copy:hover { background: #2e2b22; }
   #nuvel-welcome .copy svg { width: 18px; height: 18px; }
-  #nuvel-welcome .copy.done { background: var(--ok); }
+  #nuvel-welcome .copy.done, #nuvel-welcome .copy.done:hover { background: var(--beige); color: var(--ink); }
 
   /* Siguiente paso: aparece solo tras copiar, reserva su espacio para no mover el layout */
   #nuvel-welcome .hint { min-height: 1.4em; margin-top: 10px; font-size: .92rem; color: var(--ok); font-weight: 500; }
