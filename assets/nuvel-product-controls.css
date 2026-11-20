@@ -35,3 +35,8 @@
 .nv-price s { font-size:.8rem; margin-inline-start:.25em; }
 .nv-save,.nv-popular { border-radius:99px; }
 @media(max-width:420px){.nv-pack{grid-template-columns:12px auto minmax(0,1fr) auto;gap:6px;padding:12px 8px}.nv-thumbs img{width:24px;height:38px}.nv-price>span{display:flex;flex-wrap:wrap;justify-content:flex-end}.nv-price{max-width:90px}}
+
+.nv-pack-action {display:flex;align-items:stretch;gap:8px}
+.nv-pack-action label:not([hidden]) {display:flex;align-items:center;gap:4px;font-size:.8rem}
+.nv-pack-action input {width:3rem;min-height:44px;border:1px solid var(--line);border-radius:8px;text-align:center}
+.nv-pack-action button {flex:1;border-radius:8px;min-height:44px}

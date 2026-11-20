@@ -88,9 +88,30 @@ class NuvelProductOptions extends HTMLElement {
 }
 if (!customElements.get('nuvel-product-options')) customElements.define('nuvel-product-options', NuvelProductOptions);
 
-document.addEventListener('submit', event => {
-  if (!event.target.matches('form[data-pack-picker]')) return;
-  event.preventDefault();
-  const selected = event.target.querySelector('input:checked');
-  if (selected) window.location.assign(selected.value);
-});
+class NuvelPackAction extends HTMLElement {
+  connectedCallback() {
+    this.addEventListener('change', this.refresh);
+    this.addEventListener('submit', this.submit);
+    this.refresh();
+  }
+  disconnectedCallback() {
+    this.removeEventListener('change', this.refresh);
+    this.removeEventListener('submit', this.submit);
+  }
+  refresh = () => {
+    const choice = this.querySelector('input[type=radio]:checked');
+    if (!choice) return;
+    const needsOptions = choice.hasAttribute('data-options');
+    this.querySelector('label:has([name=quantity])').hidden = needsOptions;
+    this.querySelector('button[type=submit]').textContent =
+      (needsOptions ? 'Elegir opciones' : 'Añadir al carrito') + ' · ' + choice.dataset.price;
+  };
+  submit = event => {
+    const choice = this.querySelector('input[type=radio]:checked');
+    if (choice?.hasAttribute('data-options')) {
+      event.preventDefault();
+      location.assign(choice.dataset.url);
+    }
+  };
+}
+if (!customElements.get('nuvel-pack-action')) customElements.define('nuvel-pack-action', NuvelPackAction);
