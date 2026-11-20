@@ -19,3 +19,4 @@
 @media(min-width:750px){.nv-reviews-layout{grid-template-columns:minmax(150px,1fr) minmax(0,3fr);gap:3rem}.nv-review-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .nv-reviews { grid-column:1/-1; width:100%; }
 .nv-reviews > div { width:min(100%,1200px); margin-inline:auto; }
+@media(max-width:749px){.nv-reviews > div{text-align:center}.nv-reviews aside{margin-inline:auto;width:100%}.nv-reviews li{text-align:start}.nv-review-cards article{justify-items:center}.nv-review-cards details summary{margin-inline:auto}}

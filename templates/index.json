@@ -746,6 +746,8 @@
           "type": "text",
           "settings": {
             "text": "<h2>Por qué Nuvel</h2>",
+            "width": "100%",
+            "alignment": "center",
             "type_preset": "h2"
           }
         },
@@ -909,6 +911,8 @@
           "type": "text",
           "settings": {
             "text": "<h2>Compra con tranquilidad</h2>",
+            "width": "100%",
+            "alignment": "center",
             "type_preset": "h2"
           }
         },
