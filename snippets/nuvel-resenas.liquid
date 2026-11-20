@@ -1,29 +1,75 @@
-{% assign rating = product.metafields.reviews.rating.value %}
-{% assign count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 %}
-{% assign reviews = product.metafields.custom.resenas.value %}
-<section class="nuvel-resenas" aria-label="Reseñas de la prenda">
-  <h3>Reseñas de la prenda</h3>
-  {% capture catalog_reviews %}{% render 'nuvel-resenas-catalogo', product: product %}{% endcapture %}
-  {{ catalog_reviews }}
-  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-    {% render 'nuvel-resenas-faja' %}
-  {% endif %}
-  {% if count > 0 and rating.rating != blank %}
-    {% assign percent = rating.rating | times: 100.0 | divided_by: rating.scale_max | at_most: 100 %}
-    <p><span class="nuvel-stars" style="--filled: {{ percent }}%" aria-hidden="true">★★★★★</span>
-    {{ rating.rating | replace: '.', ',' }} de {{ rating.scale_max }} · {{ count }} {% if count == 1 %}reseña{% else %}reseñas{% endif %}</p>
-  {% endif %}
-  {% for review in reviews %}
-    {% if review.texto.value != blank %}<figure><blockquote>{{ review.texto.value | escape | newline_to_br }}</blockquote>
-      {% if review.autor.value != blank %}<figcaption>{{ review.autor.value | escape }}</figcaption>{% endif %}
-    </figure>{% endif %}
-  {% endfor %}
-  {% if catalog_reviews == blank and count == 0 and reviews == blank and product.handle != 'faja-moldeadora-invisible-nuvel' %}<p>Aún no hay reseñas publicadas.</p>{% endif %}
-  {% if shop.email != blank %}{% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}<a href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña</a>{% endif %}
-</section>
+{% capture source %}{% render 'nuvel-resenas-catalogo', product: product %}{% endcapture %}
+{% if product != blank %}
+{% liquid
+  assign rows = source | strip | split: '~~'
+  assign total = rows.size
+  assign sum = 0
+  for row in rows
+    assign fields = row | strip | split: '||'
+    assign sum = sum | plus: fields.first
+  endfor
+  assign additional = product.metafields.custom.resenas.value
+%}
+<section class="nv-reviews section section--page-width" aria-label="Reseñas de la prenda"><div>
+  <h2>Reseñas de la prenda</h2>
+  <div class="nv-reviews-layout">
+    <aside>
+      {% if total > 0 %}
+        <strong class="nv-average">{{ sum | times: 1.0 | divided_by: total | round: 1 | replace: '.', ',' }}</strong>
+        <small>{{ total }} reseñas</small>
+        <ul aria-label="Distribución de valoraciones">
+          {% for score in (1..5) reversed %}
+            {% assign votes = 0 %}
+            {% for row in rows %}
+              {% assign value = row | strip | split: '||' | first | plus: 0 %}
+              {% if value == score %}{% assign votes = votes | plus: 1 %}{% endif %}
+            {% endfor %}
+            <li aria-label="{{ score }} estrellas, {{ votes }} reseñas">{{ score }} <progress aria-hidden="true" value="{{ votes }}" max="{{ total }}"></progress> {{ votes }}</li>
+          {% endfor %}
+        </ul>
+      {% elsif product.metafields.reviews.rating.value != blank %}
+        <strong class="nv-average">{{ product.metafields.reviews.rating.value.rating | replace: '.', ',' }}</strong>
+        <small>{{ product.metafields.reviews.rating_count.value }} reseñas</small>
+      {% endif %}
+      {% if shop.email != blank %}{% assign subject = 'Opinión sobre ' | append: product.title | url_encode %}<a class="nv-review-action" href="mailto:{{ shop.email | escape }}?subject={{ subject }}">Escribir una reseña</a>{% endif %}
+    </aside>
+    <div class="nv-review-cards">
+      {% for row in rows %}
+        {% assign fields = row | strip | split: '||' %}
+        {% if forloop.index == 3 %}<details><summary class="nv-review-action">Ver las otras {{ total | minus: 2 }} reseñas</summary><div class="nv-review-cards">{% endif %}
+        <article>
+          {% assign stars = fields[0] | plus: 0 %}
+          <span class="nv-review-stars" aria-label="{{ stars }} de 5 estrellas">{% for i in (1..5) %}{% if i <= stars %}★{% else %}☆{% endif %}{% endfor %}</span>
+          <strong>{{ fields[1] | escape }}</strong>
+          <p>{{ fields[2] | escape }}</p>
+          <small><b>{{ fields[3] | escape }}</b> — {{ fields[4] | escape }}</small>
+        </article>
+        {% if forloop.last and total > 2 %}</div></details>{% endif %}
+      {% endfor %}
+      {% for review in additional %}{% if review.texto.value != blank %}<article><p>{{ review.texto.value | escape }}</p><small>{{ review.autor.value | escape }}</small></article>{% endif %}{% endfor %}
+      {% if total == 0 and additional == blank %}<p>Aún no hay reseñas publicadas.</p>{% endif %}
+    </div>
+  </div>
+</div></section>
+{% endif %}
 {% stylesheet %}
-  .nuvel-resenas { margin-block: 1.5rem; }
-  .nuvel-resenas figure { margin: 1rem 0; }
-  .nuvel-resenas blockquote { margin: 0; }
-  .nuvel-stars { color: transparent; background: linear-gradient(to right,#f5b800 var(--filled),#dcd6cc var(--filled)); background-clip: text; }
+.nv-reviews { border-block:1px solid #e4e2dd; padding-block:clamp(2rem,4vw,4rem); }
+.nv-reviews h2 { font-size:1.25rem; margin:0 0 1.5rem; }
+.nv-reviews-layout,.nv-review-cards { display:grid; gap:1rem; align-items:start; }
+.nv-reviews aside { max-width:16rem; }
+.nv-average { display:block; font-size:2.75rem; line-height:1.1; }
+.nv-reviews small,.nv-reviews p,.nv-reviews li { color:#605f65; }
+.nv-reviews ul { list-style:none; padding:0; margin:1rem 0; }
+.nv-reviews li { display:grid; grid-template-columns:1ch 1fr 2ch; gap:.6rem; align-items:center; font-size:.82rem; margin:.35rem 0; }
+.nv-reviews progress { appearance:none; border:none; border-radius:6px; overflow:hidden; width:100%; height:6px; color:#1d1d1f; background:#ece9e4; }
+.nv-reviews progress::-webkit-progress-bar { background:#ece9e4; }
+.nv-reviews progress::-webkit-progress-value { background:#1d1d1f; }
+.nv-reviews progress::-moz-progress-bar { background:#1d1d1f; }
+.nv-review-cards article { display:grid; align-content:start; gap:.6rem; padding:1.1rem; border:1px solid #e4e2dd; border-radius:8px; height:100%; }
+.nv-review-stars { color:#d99a16; letter-spacing:.08em; }
+.nv-review-cards p { margin:0; line-height:1.55; }
+.nv-review-action { display:inline-flex; align-items:center; min-height:44px; padding:.5rem 1rem; border:1px solid #1d1d1f; border-radius:8px; cursor:pointer; text-decoration:none; }
+.nv-review-cards details { grid-column:1/-1; }
+.nv-review-cards details[open] summary { margin-bottom:1rem; }
+@media(min-width:750px){.nv-reviews-layout{grid-template-columns:minmax(150px,1fr) minmax(0,3fr);gap:3rem}.nv-review-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 {% endstylesheet %}
