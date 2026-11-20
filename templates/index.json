@@ -385,6 +385,8 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "width": "fill",
                 "width_mobile": "fill",
                 "gap": 8
@@ -401,6 +403,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Diseño sin costuras</h3>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "h3"
                   }
                 },
@@ -408,6 +412,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "rte"
                   }
                 }
@@ -422,6 +428,8 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "width": "fill",
                 "width_mobile": "fill",
                 "gap": 8
@@ -438,6 +446,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Silueta uniforme</h3>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "h3"
                   }
                 },
@@ -445,6 +455,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Pensada para no enrollarse ni molestar.</p>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "rte"
                   }
                 }
@@ -459,6 +471,8 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "width": "fill",
                 "width_mobile": "fill",
                 "gap": 8
@@ -475,6 +489,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Comodidad a tu ritmo</h3>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "h3"
                   }
                 },
@@ -482,6 +498,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Tejido pensado para resistir los lavados.</p>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "rte"
                   }
                 }
@@ -496,6 +514,8 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "width": "fill",
                 "width_mobile": "fill",
                 "gap": 8
@@ -512,6 +532,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<h3>Tabla de tallas clara</h3>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "h3"
                   }
                 },
@@ -519,6 +541,8 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>",
+                    "alignment": "center",
+                    "width": "100%",
                     "type_preset": "rte"
                   }
                 }
