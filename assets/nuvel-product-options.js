@@ -42,7 +42,7 @@ class NuvelProductOptions extends HTMLElement {
       const heading = document.createElement('div');
       heading.className = 'nv-heading';
       heading.textContent = label;
-      if ((label === 'Talla' && current.color) || colorGroup) {
+      if ((label === 'Talla' && current.color && !this.hasAttribute('data-hide-color')) || colorGroup) {
         const color = document.createElement('span');
         color.textContent = colorGroup ? current.color : 'Color: ' + current.color;
         heading.append(color);

@@ -19,7 +19,7 @@
   endfor
   assign size_axis = product.options_with_values[size_index]
 %}
-<nuvel-product-options class="nuvel-controls">
+<nuvel-product-options class="nuvel-controls"{% if product.handle == 'faja-moldeadora-invisible-nuvel' %} data-hide-color{% endif %}>
   <label data-fallback>Color y talla
     <select aria-label="Color y talla">
       {% for variant in variants %}
