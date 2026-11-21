@@ -141,7 +141,7 @@
         });
         const watch = () => {
           apply();
-          document.querySelectorAll('sticky-add-to-cart').forEach((bar) => new MutationObserver(apply).observe(bar, { childList: true, subtree: true }));
+          new MutationObserver(apply).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src', 'srcset'] });
         };
         document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', watch) : watch();
       })();
