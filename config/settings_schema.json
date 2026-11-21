@@ -2117,5 +2117,40 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Oferta Nuvel",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Cuenta atrás y textos de la oferta. El precio tachado y el % salen del precio de comparación de cada producto en Shopify."
+      },
+      {
+        "type": "text",
+        "id": "nuvel_oferta_fin",
+        "label": "Fin de la oferta (fecha y hora ISO)",
+        "info": "Formato 2026-12-01T23:59:00+01:00 (hora de Madrid). Vacío = sin cuenta atrás. Al llegar a cero la cuenta atrás se oculta sola.",
+        "default": "2026-12-01T23:59:00+01:00"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_oferta_titulo",
+        "label": "Título de la cuenta atrás",
+        "info": "[descuento] se sustituye por el % real (p. ej. −50 %) si el producto tiene precio de comparación; si no, desaparece.",
+        "default": "🔥 OFERTA BLACK FRIDAY[descuento] · TERMINA EN"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_oferta_envio",
+        "label": "Texto de envío junto al ahorro",
+        "default": "Envío gratis a toda España"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_oferta_entrega",
+        "label": "Microtexto junto al botón de compra",
+        "default": "Pide hoy: entrega en España en 7-15 días laborables"
+      }
+    ]
   }
 ]

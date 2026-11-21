@@ -107,7 +107,6 @@ class NuvelPackAction extends HTMLElement {
       const money = new Intl.NumberFormat('es-ES',{style:'currency',currency:this.querySelector('form').dataset.currency || 'EUR'});
       choice.dataset.price = money.format(cents / 100);
       group.querySelector('[data-unit]').textContent = choice.dataset.price;
-      group.querySelector('[data-code]').textContent = money.format(Math.round(cents * .9)/100) + ' con código';
     }
     const needsOptions = choice.hasAttribute('data-options');
     this.querySelector('label:has([name=quantity])').hidden = needsOptions;

@@ -1,15 +1,33 @@
-{% assign deadline = product.metafields.custom.fin_oferta %}
-<nuvel-contador-diario class="flipdeal" hidden {% if deadline.type == 'date_time' and deadline.value != blank %}data-end="{{ deadline.value | date: '%s' }}"{% else %}data-daily{% endif %}>
-  <p class="flipdeal__title">LA OFERTA CIERRA EN</p>
+{%- liquid
+  assign deadline = product.metafields.custom.fin_oferta
+  assign end_iso = ''
+  if deadline.type == 'date_time' and deadline.value != blank
+    assign end_iso = deadline.value | date: '%s' | times: 1000
+  elsif settings.nuvel_oferta_fin != blank
+    assign end_iso = settings.nuvel_oferta_fin | strip
+  endif
+
+  assign variant = product.selected_or_first_available_variant
+  assign descuento = ''
+  if variant.compare_at_price > variant.price
+    assign pct = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+    assign descuento = ' −' | append: pct | append: ' %'
+  endif
+  assign titulo = settings.nuvel_oferta_titulo | default: 'LA OFERTA CIERRA EN' | replace: '[descuento]', descuento
+-%}
+{%- if end_iso != blank -%}
+<nuvel-contador-diario class="flipdeal" hidden data-end-iso="{{ end_iso | escape }}">
+  <p class="flipdeal__title">{{ titulo | escape }}</p>
   <span class="visually-hidden" role="timer" aria-live="off"></span>
   <div class="flipdeal__row" aria-hidden="true">
-    <div class="flipdeal__col"><div class="flip" data-u="h"></div><div class="flipdeal__label">Horas</div></div>
-    <div class="flipdeal__col"><div class="flip" data-u="m"></div><div class="flipdeal__label">Minutos</div></div>
-    <div class="flipdeal__col"><div class="flip" data-u="s"></div><div class="flipdeal__label">Segundos</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="d"></div><div class="flipdeal__label">{{ 'nuvel.oferta.dias' | t }}</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="h"></div><div class="flipdeal__label">{{ 'nuvel.oferta.horas' | t }}</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="m"></div><div class="flipdeal__label">{{ 'nuvel.oferta.minutos' | t }}</div></div>
+    <div class="flipdeal__col"><div class="flip" data-u="s"></div><div class="flipdeal__label">{{ 'nuvel.oferta.segundos' | t }}</div></div>
   </div>
-  <p class="flipdeal__foot">{% if deadline.type == 'date_time' and deadline.value != blank %}Tiempo limitado · {% endif %}No dejes pasar esta oferta</p>
 </nuvel-contador-diario>
 <script type="module" src="{{ 'nuvel-contador-diario.js' | asset_url }}"></script>
+{%- endif -%}
 {% stylesheet %}
 nuvel-contador-diario.flipdeal:not([hidden]) { display:block; width:100%; }
 nuvel-contador-diario.flipdeal[hidden] { display:none; }
@@ -23,18 +41,18 @@ nuvel-contador-diario.flipdeal[hidden] { display:none; }
     border-radius: 12px; text-align: center; color: var(--digit); text-shadow: 0 1px 2px rgba(0,0,0,.45);
   }
   .flipdeal * { box-sizing: border-box; }
-  .flipdeal__title { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #ffffff; text-shadow: 0 1px 8px rgba(255,255,255,.12); }
-  .flipdeal__row { display: flex; gap: 10px; }
+  .flipdeal__title { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #ffffff; text-shadow: 0 1px 8px rgba(255,255,255,.12); }
+  .flipdeal__row { display: flex; gap: 8px; }
   .flipdeal__col { flex: 1; min-width: 0; }
   .flipdeal__label { margin-top: 8px; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--silver); font-weight: 650; }
   .flipdeal__foot { margin: 14px 0 0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #e7ebf0; opacity: 1; font-weight: 600; }
 
   /* ---- tarjeta ---- */
-  .flipdeal .flip { position: relative; height: 76px; perspective: 500px; font-variant-numeric: tabular-nums; }
+  .flipdeal .flip { position: relative; height: 68px; perspective: 500px; font-variant-numeric: tabular-nums; }
   .flipdeal .flip__half, .flipdeal .flip__leaf { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; }
   .flipdeal .flip__half span, .flipdeal .flip__leaf span {
-    position: absolute; left: 0; right: 0; height: 200%; line-height: 76px; text-align: center;
-    font-size: clamp(40px, 12vw, 50px); font-weight: 600; letter-spacing: .01em; color: var(--digit);
+    position: absolute; left: 0; right: 0; height: 200%; line-height: 68px; text-align: center;
+    font-size: clamp(32px, 9vw, 46px); font-weight: 600; letter-spacing: .01em; color: var(--digit);
   }
   .flipdeal .flip__top, .flipdeal .flip__leaf--top { top: 0; border-radius: 8px 8px 0 0; background: linear-gradient(var(--card-top), #232325); }
   .flipdeal .flip__top span, .flipdeal .flip__leaf--top span { top: 0; }

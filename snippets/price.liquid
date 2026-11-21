@@ -17,8 +17,10 @@
   assign compare_at_price = selected_variant.compare_at_price
 
   assign show_compare_price = false
+  assign nuvel_discount_pct = 0
   if compare_at_price > price
     assign show_compare_price = true
+    assign nuvel_discount_pct = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round
   endif
 
   if product_resource == blank
@@ -115,6 +117,9 @@
       >
     {% endif %}
   {% endif %}
+  {%- if show_compare_price and nuvel_discount_pct > 0 -%}
+    <span class="nuvel-price-badge">−{{ nuvel_discount_pct }}&nbsp;%</span>
+  {%- endif -%}
   {%- if selected_variant.unit_price and show_unit_price %}
     {%- liquid
       if use_currency

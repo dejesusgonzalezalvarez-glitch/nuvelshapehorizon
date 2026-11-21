@@ -256,6 +256,9 @@
         {%- endif -%}
       {%- endform -%}
     </product-form-component>
+    {%- if settings.nuvel_oferta_entrega != blank -%}
+      <p class="nuvel-entrega">{{ settings.nuvel_oferta_entrega }}</p>
+    {%- endif -%}
   {%- else -%}
     <div class="product-form-buttons">
       <button

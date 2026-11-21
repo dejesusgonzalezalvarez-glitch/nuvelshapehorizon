@@ -759,6 +759,13 @@
       "size_2xl": "2XL",
       "size_3xl": "3XL",
       "pack_price_suffix": "€"
+    },
+    "oferta": {
+      "ahorras": "Ahorras {{ amount }}",
+      "dias": "Días",
+      "horas": "Horas",
+      "minutos": "Min",
+      "segundos": "Seg"
     }
   }
 }

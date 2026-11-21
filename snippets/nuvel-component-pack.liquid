@@ -24,7 +24,7 @@
   <input type="radio" name="id" value="group-{{ kind }}" data-component data-price="{{ total | money | escape }}" {% if kind == 3 %}checked{% elsif kind == 1 %}data-first{% endif %}>
   <span class="nv-thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% if qty == 3 %}{% render 'nuvel-pack-foto', product: third %}{% endif %}</span>
   <span><strong>{{ title | escape }}</strong><span class="nv-meta">{{ qty }} piezas</span></span>
-  <span class="nv-price"><span data-unit>{{ total | money }}</span><small data-code>{{ total | times: 0.9 | round | money }} con código</small></span>
+  <span class="nv-price"><span data-unit>{{ total | money }}</span></span>
   {% if kind == 3 %}<span class="nv-popular">Más popular</span>{% endif %}
 </label>
 <details class="nv-pack-sizes"><summary>Elegir tallas del pack</summary>{{ choices }}</details>
