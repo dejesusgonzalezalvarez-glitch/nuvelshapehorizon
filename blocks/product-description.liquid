@@ -12,7 +12,7 @@
 {% if closest.product.handle == 'faja-moldeadora-invisible-nuvel' %}
   {{ description_block | replace: 'tallas S a 3XL', 'tallas M a 2XL' | replace: '3XL', '2XL' }}
 {% else %}
-  {{ description_block }}
+  {{ description_block | replace: 'XXXL', 'XXL' | replace: '3XL', '2XL' }}
 {% endif %}
 
 {% schema %}
