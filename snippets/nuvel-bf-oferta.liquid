@@ -15,7 +15,6 @@
     assign saving = unit | divided_by: 2.0 | round
     assign two_offer = two_regular | minus: saving
   -%}
-  {% render 'nuvel-countdown', version: 'grande' %}
   <fieldset class="nbf-offer" data-bf-only data-nbf-offer data-form="{{ form_id }}">
     <legend class="visually-hidden">{{ 'nuvel.black_friday.seleccion' | t }}</legend>
     <label class="nbf-offer__card">

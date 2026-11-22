@@ -44,8 +44,19 @@
 %}
 
 {% if product != blank %}
+  {%- liquid
+    assign nuvel_bf_ficha = false
+    if settings.nuvel_bf_activo and product.handle == settings.nuvel_bf_producto and product.available
+      assign nuvel_bf_ficha = true
+    endif
+  -%}
+  {%- if nuvel_bf_ficha -%}
+    {% render 'nuvel-countdown', version: 'grande' %}
+  {%- endif -%}
   <a href="#NuvelReviews-{{ section.id }}">Ver reseñas de la prenda</a>
-  {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+  {%- unless nuvel_bf_ficha -%}
+    {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+  {%- endunless -%}
 {% endif %}
 
 <span
@@ -272,6 +283,10 @@
     </div>
   {%- endif -%}
 </span>
+
+{% if product != blank and nuvel_bf_ficha %}
+  {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+{% endif %}
 
 {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
   {% render 'nuvel-faja-tecnica' %}
