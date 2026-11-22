@@ -57,6 +57,7 @@
 >
   {%- if product != blank -%}
     {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
+    {% render 'nuvel-bf-oferta', product: product, form_id: product_form_id %}
     <product-form-component
       data-section-id="{{ section.id }}"
       data-product-id="{{ product.id }}"

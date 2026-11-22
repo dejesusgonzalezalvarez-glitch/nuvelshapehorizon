@@ -98,7 +98,7 @@
       endif
     %}
     {% assign rendered = rendered | plus: 1 %}
-    <label class="nv-pack">
+    <label class="nv-pack"{% if kind == 1 and settings.nuvel_bf_activo and product.handle == settings.nuvel_bf_producto %} data-bf-hide{% endif %}>
       <input type="radio" name="id" data-price="{{ variant.price | money | escape }}" data-url="{{ variant.url | escape }}" {% unless pack.has_only_default_variant %}data-options{% endunless %} {% if popular %}checked{% elsif rendered == 1 %}data-first{% endif %} required value="{{ variant.id }}" aria-label="{{ pack.title | escape }}">
       <span class="nv-thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% if qty == 3 %}{% render 'nuvel-pack-foto', product: third %}{% endif %}</span>
       <span><strong>{{ pack.title | escape }}</strong><span class="nv-meta">{{ qty }} piezas {% if pct > 0 %}<span class="nv-save">Ahorras {{ pct }} %</span>{% endif %}</span></span>

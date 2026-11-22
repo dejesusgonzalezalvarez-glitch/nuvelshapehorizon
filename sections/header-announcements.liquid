@@ -24,7 +24,11 @@
     endif
   %}
 
+  {%- capture nuvel_bf_barra -%}{% render 'nuvel-countdown', version: 'barra' %}{%- endcapture -%}
+  {%- assign nuvel_bf_barra = nuvel_bf_barra | strip -%}
+  {{ nuvel_bf_barra }}
   <announcement-bar-component
+    {% if nuvel_bf_barra != blank %}data-bf-hide{% endif %}
     class="announcement-bar__slider"
     {% if autoplay == true %}
       autoplay="{{ section.settings.speed }}" aria-live="polite"

@@ -19,7 +19,7 @@
   {% endfor %}
 {% endcapture %}
 {% unless unavailable %}
-<div data-component-pack>
+<div data-component-pack{% if kind == 1 and settings.nuvel_bf_activo and product.handle == settings.nuvel_bf_producto %} data-bf-hide{% endif %}>
 <label class="nv-pack">
   <input type="radio" name="id" value="group-{{ kind }}" data-component data-price="{{ total | money | escape }}" {% if kind == 3 %}checked{% elsif kind == 1 %}data-first{% endif %}>
   <span class="nv-thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% if qty == 3 %}{% render 'nuvel-pack-foto', product: third %}{% endif %}</span>
