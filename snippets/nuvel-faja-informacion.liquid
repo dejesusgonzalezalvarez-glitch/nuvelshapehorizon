@@ -23,7 +23,9 @@
   <details>
     <summary>Cambios y devoluciones</summary>
     <p>Tienes 30 días naturales desde la recepción. La prenda debe estar sin usar ni lavar y conservar sus etiquetas.</p>
-    <a href="/policies/refund-policy">Ver política completa</a>
+    {% if shop.refund_policy != blank %}
+      <a href="{{ shop.refund_policy.url }}">Ver política completa</a>
+    {% endif %}
   </details>
 
 

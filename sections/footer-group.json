@@ -117,7 +117,7 @@
             "atencion_contacto": {
               "type": "text",
               "settings": {
-                "text": "<p style='margin:4px 0;'><a href='/policies/contact-information' style='color:#1a1a1a;text-decoration:none;'>Contacto</a></p>",
+                "text": "<p style='margin:4px 0;'><a href='/pages/contact' style='color:#1a1a1a;text-decoration:none;'>Contacto</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -248,7 +248,7 @@
             "legal_terminos": {
               "type": "text",
               "settings": {
-                "text": "<p style='margin:4px 0;'><a href='/policies/terms-of-service' style='color:#1a1a1a;text-decoration:none;'>Términos y condiciones</a></p>",
+                "text": "<p style='margin:4px 0;'><a href='/pages/terminos' style='color:#1a1a1a;text-decoration:none;'>Términos y condiciones</a></p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
