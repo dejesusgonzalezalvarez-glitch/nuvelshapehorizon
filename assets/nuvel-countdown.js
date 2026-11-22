@@ -100,23 +100,48 @@
     input.dispatchEvent(new Event('change', { bubbles: true }));
   };
 
+  // Lista única de la faja: la oferta (1 o 2 fajas) y los packs comparten un solo botón de compra.
+  const packChoice = (stack) => stack && stack.querySelector('nuvel-pack-action input[type="radio"]:checked');
+
   document.addEventListener(
     'submit',
     (event) => {
       const form = event.target;
       if (!(form instanceof HTMLFormElement) || !form.id) return;
+      const stack = form.closest('[data-nbf-stack]');
+      const pack = form.matches('[data-type="add-to-cart-form"]') && packChoice(stack);
+      if (pack) {
+        // Hay un pack marcado: lo compra la lógica de packs, que añade cada prenda con su talla.
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        pack.form?.requestSubmit();
+        return;
+      }
       const qty = offerQuantity(form);
       if (qty) syncQuantity(form, qty);
     },
     true
   );
 
+  const markStack = (stack) => stack && stack.classList.toggle('is-pack', Boolean(packChoice(stack)));
+
   document.addEventListener('change', (event) => {
     const radio = event.target;
-    if (!(radio instanceof HTMLInputElement) || !radio.closest('[data-nbf-offer]')) return;
+    if (!(radio instanceof HTMLInputElement) || radio.type !== 'radio') return;
+    const stack = radio.closest('[data-nbf-stack]');
     const offer = radio.closest('[data-nbf-offer]');
-    syncQuantity(document.getElementById(offer.dataset.form), Number(radio.value));
+    if (stack && radio.checked) {
+      // Solo una opción marcada en toda la lista.
+      const others = offer
+        ? stack.querySelectorAll('nuvel-pack-action input[type="radio"]')
+        : stack.querySelectorAll('[data-nbf-offer] input[type="radio"]');
+      others.forEach((other) => (other.checked = false));
+      markStack(stack);
+    }
+    if (offer) syncQuantity(document.getElementById(offer.dataset.form), Number(radio.value));
+    else if (stack && radio.closest('nuvel-pack-action')) syncQuantity(stack.querySelector('form[data-type="add-to-cart-form"]'), 1);
   });
+  document.querySelectorAll('[data-nbf-stack]').forEach(markStack);
 
   const initOffers = () =>
     document.querySelectorAll('[data-nbf-offer]').forEach((offer) => {

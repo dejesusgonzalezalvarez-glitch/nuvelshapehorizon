@@ -51,6 +51,7 @@
     endif
   -%}
   {%- if nuvel_bf_ficha -%}
+    <div class="nbf-stack" data-nbf-stack>
     {% render 'nuvel-countdown', version: 'grande' %}
   {%- endif -%}
   <a href="#NuvelReviews-{{ section.id }}">Ver reseñas de la prenda</a>
@@ -286,6 +287,7 @@
 
 {% if product != blank and nuvel_bf_ficha %}
   {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
+  </div>
 {% endif %}
 
 {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}

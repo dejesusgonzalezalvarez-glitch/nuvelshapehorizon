@@ -17,7 +17,7 @@
   -%}
   <fieldset class="nbf-offer" data-bf-only data-nbf-offer data-form="{{ form_id }}">
     <legend class="visually-hidden">{{ 'nuvel.black_friday.seleccion' | t }}</legend>
-    <label class="nbf-offer__card">
+    <label class="nbf-offer__card nbf-offer__card--one">
       <input type="radio" name="nbf-qty-{{ form_id }}" value="1">
       <span class="nv-thumbs nbf-offer__thumbs">{% render 'nuvel-pack-foto', product: product %}</span>
       <span class="nbf-offer__name">{{ settings.nuvel_bf_una | escape }}</span>
@@ -123,6 +123,52 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.06em;
+  }
+
+  /* Faja en oferta: una sola lista (1 faja, faja y short, 2 fajas, faja short y top) y después los botones */
+  .nbf-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .nbf-stack > .buy-buttons-block,
+  .nbf-stack .nbf-offer,
+  .nbf-stack nuvel-pack-action,
+  .nbf-stack nuvel-pack-action > form {
+    display: contents;
+  }
+  .nbf-stack > *,
+  .nbf-stack > .buy-buttons-block > *,
+  .nbf-stack nuvel-pack-action > form > * {
+    order: 20;
+  }
+  .nbf-stack .nbf--grande { order: 1; margin: 0; }
+  .nbf-stack > a { order: 2; }
+  .nbf-stack .nbf-offer > .nbf-offer__card--one { order: 3; }
+  .nbf-stack nuvel-pack-action > form > .nv-kind-1 { order: 4; }
+  .nbf-stack nuvel-pack-action > form > .nv-kind-2 { order: 5; }
+  .nbf-stack .nbf-offer > .nbf-offer__card--best { order: 6; }
+  .nbf-stack nuvel-pack-action > form > .nv-kind-3 { order: 7; }
+  .nbf-stack nuvel-pack-action > form > [role='status'] { order: 8; }
+  .nbf-stack .buy-buttons-block > product-form-component { order: 9; }
+  .nbf-stack .buy-buttons-block > .nuvel-entrega { order: 10; }
+  .nbf-stack nuvel-pack-action > form > h3,
+  .nbf-stack nuvel-pack-action > form > p,
+  .nbf-stack .nv-pack-action {
+    display: none !important;
+  }
+  .nbf-stack .nv-pack {
+    margin: 0;
+    border-radius: 10px;
+  }
+  .nbf-stack [data-component-pack] {
+    display: grid;
+    gap: 6px;
+  }
+  .nbf-stack.is-pack .buy-buttons-block .quantity-selector-wrapper,
+  .nbf-stack.is-pack .buy-buttons-block .accelerated-checkout-block {
+    display: none !important;
   }
 
   .nbf-sticky {
