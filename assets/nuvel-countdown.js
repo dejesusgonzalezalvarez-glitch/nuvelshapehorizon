@@ -136,7 +136,52 @@
     true
   );
 
-  const markStack = (stack) => stack && stack.classList.toggle('is-pack', Boolean(packChoice(stack)));
+  // PayPal (iframe de PayPal) solo sabe comprar la prenda suelta. Con un pack marcado, una capa encima
+  // del botón añade el pack con sus tallas y lleva directamente al pago, donde PayPal sigue disponible.
+  const packItems = (choice) => {
+    const form = choice.form;
+    const qty = Number(form?.elements.quantity?.value || 1);
+    const group = choice.closest('[data-component-pack]');
+    if (!group) return [{ id: Number(choice.value), quantity: qty }];
+    const map = new Map();
+    group.querySelectorAll('select').forEach((select) => map.set(select.value, (map.get(select.value) || 0) + qty));
+    return Array.from(map, ([id, quantity]) => ({ id: Number(id), quantity }));
+  };
+
+  const ensureShield = (stack) => {
+    const block = stack.querySelector('.accelerated-checkout-block');
+    if (!block || block.querySelector('.nbf-paypal-shield')) return;
+    const shield = document.createElement('button');
+    shield.type = 'button';
+    shield.className = 'nbf-paypal-shield';
+    shield.setAttribute('aria-label', 'Pagar el pack con PayPal');
+    shield.addEventListener('click', async () => {
+      const choice = packChoice(stack);
+      if (!choice || shield.disabled) return;
+      if (choice.hasAttribute('data-options') && choice.dataset.url) return location.assign(choice.dataset.url);
+      shield.disabled = true;
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items: packItems(choice) }),
+        });
+        if (!response.ok) throw new Error('add');
+        location.assign('/checkout');
+      } catch {
+        shield.disabled = false;
+        const status = choice.form?.querySelector('[role="status"]');
+        if (status) status.textContent = 'Comprueba las tallas y la disponibilidad del pack.';
+      }
+    });
+    block.append(shield);
+  };
+
+  const markStack = (stack) => {
+    if (!stack) return;
+    ensureShield(stack);
+    stack.classList.toggle('is-pack', Boolean(packChoice(stack)));
+  };
 
   document.addEventListener('change', (event) => {
     const radio = event.target;
@@ -154,7 +199,10 @@
     if (offer) syncQuantity(document.getElementById(offer.dataset.form), Number(radio.value));
     else if (stack && radio.closest('nuvel-pack-action')) syncQuantity(stack.querySelector('form[data-type="add-to-cart-form"]'), 1);
   });
-  document.querySelectorAll('[data-nbf-stack]').forEach(markStack);
+  document.querySelectorAll('[data-nbf-stack]').forEach((stack) => {
+    markStack(stack);
+    new MutationObserver(() => ensureShield(stack)).observe(stack, { childList: true, subtree: true });
+  });
 
   const initOffers = () =>
     document.querySelectorAll('[data-nbf-offer]').forEach((offer) => {

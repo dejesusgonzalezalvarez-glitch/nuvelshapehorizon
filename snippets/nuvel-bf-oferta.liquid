@@ -195,9 +195,25 @@
     display: grid;
     gap: 6px;
   }
-  .nbf-stack.is-pack .buy-buttons-block .quantity-selector-wrapper,
-  .nbf-stack.is-pack .buy-buttons-block .accelerated-checkout-block {
+  .nbf-stack.is-pack .buy-buttons-block .quantity-selector-wrapper {
     display: none !important;
+  }
+  /* Con un pack marcado, PayPal sigue visible: una capa encima añade el pack y lleva al pago */
+  .nbf-stack .accelerated-checkout-block {
+    position: relative;
+  }
+  .nbf-paypal-shield {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .nbf-stack.is-pack .nbf-paypal-shield {
+    display: block;
   }
 
   .nbf-sticky {
