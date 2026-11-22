@@ -722,177 +722,49 @@
       "block_order": []
     },
     "porque": {
-      "type": "section",
+      "type": "nuvel-razones",
       "settings": {
-        "content_direction": "column",
-        "gap": 24,
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "esquema": "claro",
+        "etiqueta": "— NUVEL",
+        "titulo": "Por qué <em>Nuvel</em>",
+        "columnas": "4"
       },
       "blocks": {
-        "titulo": {
-          "type": "text",
+        "punto_1": {
+          "type": "punto",
           "settings": {
-            "text": "<h2>Por qué Nuvel</h2>",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "h2"
+            "titulo": "Sin costuras",
+            "texto": "Diseñada para no marcarse bajo la ropa."
           }
         },
-        "columnas": {
-          "type": "group",
+        "punto_2": {
+          "type": "punto",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "width": "fill",
-            "width_mobile": "fill",
-            "gap": 16
-          },
-          "blocks": {
-            "columna1": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Sin costuras</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            },
-            "columna2": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>No se enrolla</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Compresión suave que aguanta todo el día sin molestar.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            },
-            "columna3": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Resiste lavados</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>No pierde la forma ni la compresión al primer lavado.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            },
-            "columna4": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Guía de tallas</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Compara tus medidas con la tabla.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            }
-          },
-          "block_order": [
-            "columna1",
-            "columna2",
-            "columna3",
-            "columna4"
-          ]
+            "titulo": "No se enrolla",
+            "texto": "Compresión suave que aguanta todo el día sin molestar."
+          }
+        },
+        "punto_3": {
+          "type": "punto",
+          "settings": {
+            "titulo": "Resiste lavados",
+            "texto": "No pierde la forma ni la compresión al primer lavado."
+          }
+        },
+        "punto_4": {
+          "type": "punto",
+          "settings": {
+            "titulo": "Guía de tallas",
+            "texto": "Compara tus medidas con la tabla.",
+            "enlace": "/products/faja-moldeadora-invisible-nuvel"
+          }
         }
       },
       "block_order": [
-        "titulo",
-        "columnas"
+        "punto_1",
+        "punto_2",
+        "punto_3",
+        "punto_4"
       ]
     },
     "testimonios": {
@@ -903,143 +775,41 @@
       }
     },
     "confianza": {
-      "type": "section",
+      "type": "nuvel-razones",
       "settings": {
-        "content_direction": "column",
-        "gap": 24,
-        "padding-block-start": 64,
-        "padding-block-end": 64
+        "esquema": "oscuro",
+        "etiqueta": "— NUVEL",
+        "titulo": "Compra con <em>tranquilidad</em>",
+        "columnas": "3"
       },
       "blocks": {
-        "titulo": {
-          "type": "text",
+        "punto_1": {
+          "type": "punto",
           "settings": {
-            "text": "<h2>Compra con tranquilidad</h2>",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "h2"
+            "titulo": "Envío gratis",
+            "texto": "Entrega en 7-15 días laborables, con seguimiento por email."
           }
         },
-        "columnas": {
-          "type": "group",
+        "punto_2": {
+          "type": "punto",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "width": "fill",
-            "width_mobile": "fill",
-            "gap": 16
-          },
-          "blocks": {
-            "columna1": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Envío gratis</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Entrega en 7-15 días laborables, con seguimiento por email.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            },
-            "columna2": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>30 días de prueba</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Consulta las condiciones de devolución.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            },
-            "columna3": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "width": "fill",
-                "width_mobile": "fill",
-                "gap": 8
-              },
-              "blocks": {
-                "titulo": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<h3>Pago seguro</h3>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "h3"
-                  }
-                },
-                "texto": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Tus datos protegidos en cada compra.</p>",
-                    "width": "100%",
-                    "alignment": "center",
-                    "type_preset": "rte"
-                  }
-                }
-              },
-              "block_order": [
-                "titulo",
-                "texto"
-              ]
-            }
-          },
-          "block_order": [
-            "columna1",
-            "columna2",
-            "columna3"
-          ]
+            "titulo": "30 días de prueba",
+            "texto": "Consulta las condiciones de devolución.",
+            "enlace": "/policies/refund-policy"
+          }
+        },
+        "punto_3": {
+          "type": "punto",
+          "settings": {
+            "titulo": "Pago seguro",
+            "texto": "Tus datos protegidos en cada compra."
+          }
         }
       },
       "block_order": [
-        "titulo",
-        "columnas"
+        "punto_1",
+        "punto_2",
+        "punto_3"
       ]
     },
     "ctafinal": {

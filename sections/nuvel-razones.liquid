@@ -1,0 +1,215 @@
+{%- comment -%}
+  Nuvel · Razones (Por qué Nuvel / Compra con tranquilidad)
+  Sección editable: etiqueta, título con palabra en cursiva, esquema claro u oscuro, columnas y bloques numerados.
+{%- endcomment -%}
+{%- liquid
+  assign esquema = section.settings.esquema
+  assign columnas = section.settings.columnas | default: 4
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<section class="nrz nrz--{{ esquema }} nrz--c{{ columnas }}" aria-labelledby="NuvelRazones-{{ section.id }}">
+  <div class="nrz__inner">
+    {%- if section.settings.etiqueta != blank -%}
+      <p class="nrz__eyebrow">{{ section.settings.etiqueta | escape }}</p>
+    {%- endif -%}
+    <h2 class="nrz__title" id="NuvelRazones-{{ section.id }}">{{ section.settings.titulo }}</h2>
+
+    <ol class="nrz__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign enlace = block.settings.enlace
+          if enlace contains 'refund-policy' and shop.refund_policy == blank
+            assign enlace = ''
+          endif
+        -%}
+        <li class="nrz__item" {{ block.shopify_attributes }}>
+          <span class="nrz__num" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+          <h3 class="nrz__item-title">
+            {%- if enlace != blank -%}
+              <a href="{{ enlace }}">{{ block.settings.titulo | escape }}</a>
+            {%- else -%}
+              {{ block.settings.titulo | escape }}
+            {%- endif -%}
+          </h3>
+          {%- if block.settings.texto != blank -%}
+            <p class="nrz__text">{{ block.settings.texto | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+
+{% stylesheet %}
+  .nrz {
+    --nrz-bg: #ffffff;
+    --nrz-fg: #000000;
+    --nrz-muted: #404040;
+    background: var(--nrz-bg);
+    color: var(--nrz-fg);
+  }
+  .nrz--oscuro {
+    --nrz-bg: #000000;
+    --nrz-fg: #ffffff;
+    --nrz-muted: #d4d4d4;
+  }
+  .nrz__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 32px;
+  }
+  .nrz__eyebrow {
+    margin: 0 0 20px;
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--nrz-fg);
+  }
+  .nrz__title {
+    margin: 0 0 72px;
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-align: left;
+    color: var(--nrz-fg);
+  }
+  .nrz__title em,
+  .nrz__title i {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .nrz__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--nrz-cols, 4), minmax(0, 1fr));
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nrz--c2 .nrz__grid { --nrz-cols: 2; }
+  .nrz--c3 .nrz__grid { --nrz-cols: 3; }
+  .nrz--c4 .nrz__grid { --nrz-cols: 4; }
+  .nrz__item {
+    padding-top: 24px;
+    border-top: 1px solid var(--nrz-fg);
+    transition: transform 0.4s ease;
+  }
+  .nrz__item:hover {
+    transform: translateY(-6px);
+  }
+  .nrz__num {
+    display: block;
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 16px;
+    font-style: italic;
+    opacity: 0.7;
+  }
+  .nrz__item-title {
+    margin: 40px 0 12px;
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--nrz-fg);
+  }
+  .nrz__item-title a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+  .nrz__text {
+    margin: 0;
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--nrz-muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nrz__item { transition: none; }
+    .nrz__item:hover { transform: none; }
+  }
+  @media (max-width: 860px) {
+    .nrz__title { font-size: 44px; }
+    .nrz--c4 .nrz__grid { --nrz-cols: 2; }
+    .nrz--c3 .nrz__grid,
+    .nrz--c2 .nrz__grid { --nrz-cols: 1; }
+  }
+  @media (max-width: 520px) {
+    .nrz .nrz__grid { --nrz-cols: 1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Nuvel · Razones",
+  "tag": "div",
+  "class": "section-nuvel-razones",
+  "settings": [
+    {
+      "type": "select",
+      "id": "esquema",
+      "label": "Colores",
+      "options": [
+        { "value": "claro", "label": "Fondo blanco, texto negro" },
+        { "value": "oscuro", "label": "Fondo negro, texto blanco" }
+      ],
+      "default": "claro"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta",
+      "label": "Etiqueta",
+      "default": "— NUVEL"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "titulo",
+      "label": "Título",
+      "info": "Pon en cursiva la palabra clave.",
+      "default": "Por qué <em>Nuvel</em>"
+    },
+    {
+      "type": "select",
+      "id": "columnas",
+      "label": "Columnas en escritorio",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "punto",
+      "name": "Punto",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Sin costuras" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Diseñada para no marcarse bajo la ropa." },
+        { "type": "url", "id": "enlace", "label": "Enlace (opcional)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nuvel · Razones",
+      "blocks": [
+        { "type": "punto" },
+        { "type": "punto" },
+        { "type": "punto" }
+      ]
+    }
+  ]
+}
+{% endschema %}

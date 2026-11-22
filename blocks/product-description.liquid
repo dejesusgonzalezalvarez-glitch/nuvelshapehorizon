@@ -10,7 +10,7 @@
 
 {% capture description_block %}{% render 'text', fallback_text: text, block: block %}{% endcapture %}
 {% if closest.product.handle == 'faja-moldeadora-invisible-nuvel' %}
-  {{ description_block | replace: '3XL', '2XL' }}
+  {{ description_block | replace: 'tallas S a 3XL', 'tallas M a 2XL' | replace: '3XL', '2XL' }}
 {% else %}
   {{ description_block }}
 {% endif %}

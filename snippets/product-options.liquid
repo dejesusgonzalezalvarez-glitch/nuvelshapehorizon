@@ -23,6 +23,7 @@
   <label data-fallback>Color y talla
     <select aria-label="Color y talla">
       {% for variant in variants %}
+        {% if variant.title contains '3XL' or variant.title contains 'XXXL' %}{% continue %}{% endif %}
         {% assign raw_color = variant.options[color_index] | split: ' (' | first %}
         {% if product.options.size == 1 %}{% assign raw_color = '' %}{% endif %}
         {% assign size = variant.options[size_index] %}

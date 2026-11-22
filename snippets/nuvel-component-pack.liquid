@@ -7,6 +7,7 @@
     <label>{{ item.title | escape }}<select>
       {% for v in item.variants %}
         {% unless v.available %}{% continue %}{% endunless %}
+        {% if v.title contains '3XL' or v.title contains 'XXXL' %}{% continue %}{% endif %}
         {% if item.handle == 'faja-moldeadora-invisible-nuvel' %}
           {% if v.option1 != 'Black' or v.option2 == '3XL' or v.option2 == 'XXXL' %}{% continue %}{% endif %}
         {% endif %}

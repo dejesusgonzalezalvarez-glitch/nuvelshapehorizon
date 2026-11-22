@@ -1,5 +1,17 @@
 {%- liquid
   assign selected = product.selected_or_first_available_variant
+  if selected.title contains '3XL' or selected.title contains 'XXXL'
+    for v in product.variants
+      unless v.available
+        continue
+      endunless
+      if v.title contains '3XL' or v.title contains 'XXXL'
+        continue
+      endif
+      assign selected = v
+      break
+    endfor
+  endif
   if product.handle == 'faja-moldeadora-invisible-nuvel'
     assign allowed = product.variants | where: 'option1', 'Black' | where: 'available', true | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
     assign selected = allowed | where: 'option2', selected.option2 | first | default: allowed.first
