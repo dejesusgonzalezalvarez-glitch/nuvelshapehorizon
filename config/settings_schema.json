@@ -2188,6 +2188,12 @@
         "content": "Textos"
       },
       {
+        "type": "inline_richtext",
+        "id": "nuvel_bf_titulo",
+        "label": "Título de la cuenta atrás",
+        "default": "Black Friday: tu <strong>2ª faja al 50 %</strong>"
+      },
+      {
         "type": "text",
         "id": "nuvel_bf_barra",
         "label": "Barra de anuncios",
@@ -2196,26 +2202,26 @@
       {
         "type": "text",
         "id": "nuvel_bf_fase1",
-        "label": "Más de 48 h",
-        "default": "BLACK FRIDAY: tu 2ª faja al 50 %. Termina en"
+        "label": "Subtítulo: más de 48 h",
+        "default": "La oferta termina en"
       },
       {
         "type": "text",
         "id": "nuvel_bf_fase2",
-        "label": "Entre 24 y 48 h",
-        "default": "Quedan menos de 2 días para el 50 % en tu 2ª faja"
+        "label": "Subtítulo: entre 24 y 48 h",
+        "default": "Quedan menos de 2 días"
       },
       {
         "type": "text",
         "id": "nuvel_bf_fase3",
-        "label": "Menos de 24 h",
-        "default": "ÚLTIMAS HORAS. Termina hoy a las 23:59"
+        "label": "Subtítulo: menos de 24 h",
+        "default": "Últimas horas: termina hoy a las 23:59"
       },
       {
         "type": "text",
         "id": "nuvel_bf_fase4",
-        "label": "Menos de 1 h",
-        "default": "ÚLTIMA HORA. Se acaba en"
+        "label": "Subtítulo: menos de 1 h",
+        "default": "Última hora: se acaba en"
       },
       {
         "type": "text",

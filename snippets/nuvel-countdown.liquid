@@ -36,16 +36,17 @@
   >
     {%- case version -%}
       {%- when 'grande' -%}
-        <p class="nbf__title" data-nbf-title>{{ settings.nuvel_bf_fase1 | escape }}</p>
+        <p class="nbf__title">{{ settings.nuvel_bf_titulo }}</p>
+        <p class="nbf__sub" data-nbf-title>{{ settings.nuvel_bf_fase1 | escape }}</p>
         <span class="visually-hidden" role="timer" aria-live="off" data-nbf-timer></span>
-        <div class="nbf__row" aria-hidden="true">
-          <div class="nbf__col nbf__col--d"><span class="nbf__num" data-u="d">00</span><span class="nbf__label">{{ 'nuvel.black_friday.dias' | t }}</span></div>
-          <span class="nbf__sep nbf__col--d">:</span>
-          <div class="nbf__col nbf__col--h"><span class="nbf__num" data-u="h">00</span><span class="nbf__label">{{ 'nuvel.black_friday.horas' | t }}</span></div>
-          <span class="nbf__sep nbf__col--h">:</span>
-          <div class="nbf__col"><span class="nbf__num" data-u="m">00</span><span class="nbf__label">{{ 'nuvel.black_friday.minutos' | t }}</span></div>
-          <span class="nbf__sep">:</span>
-          <div class="nbf__col"><span class="nbf__num nbf__num--s" data-u="s">00</span><span class="nbf__label">{{ 'nuvel.black_friday.segundos' | t }}</span></div>
+        <div class="nbf__clock-row" aria-hidden="true">
+          <div class="nbf__unit nbf__col--d"><span class="nbf__tile" data-u="d">00</span><span class="nbf__lab">{{ 'nuvel.black_friday.dias' | t }}</span></div>
+          <div class="nbf__dots nbf__col--d"><i></i><i></i></div>
+          <div class="nbf__unit nbf__col--h"><span class="nbf__tile" data-u="h">00</span><span class="nbf__lab">{{ 'nuvel.black_friday.horas' | t }}</span></div>
+          <div class="nbf__dots nbf__col--h"><i></i><i></i></div>
+          <div class="nbf__unit"><span class="nbf__tile" data-u="m">00</span><span class="nbf__lab">{{ 'nuvel.black_friday.minutos' | t }}</span></div>
+          <div class="nbf__dots"><i></i><i></i></div>
+          <div class="nbf__unit"><span class="nbf__tile nbf__tile--s" data-u="s">00</span><span class="nbf__lab">{{ 'nuvel.black_friday.segundos' | t }}</span></div>
         </div>
       {%- when 'barra' -%}
         <span class="nbf__lead">{{ settings.nuvel_bf_barra | escape }}</span>
@@ -79,82 +80,129 @@
     --nbf-accent: var(--nuvel-bf-red, #b3261e);
   }
 
-  /* Versión grande */
+  /* Versión grande (estilo tarjeta negra con línea plateada) */
   .nbf--grande {
+    position: relative;
     width: 100%;
     margin: 0.75rem 0;
-    padding: 14px 12px 12px;
-    border-radius: 12px;
-    background: #111;
+    padding: 20px 16px 16px;
+    overflow: hidden;
+    border: 1px solid #232425;
+    border-radius: 10px;
+    background: #080808;
     color: #fff;
     text-align: center;
-    border-top: 3px solid var(--nbf-accent);
+    font-family: Inter, var(--font-body--family, system-ui), 'Segoe UI', sans-serif;
+  }
+  .nbf--grande::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6d7178, #e9ebee 30%, #9aa0a7 55%, #f4f5f7 80%, #6d7178);
+  }
+  html[data-nuvel-phase='p3'] .nbf--grande::before,
+  html[data-nuvel-phase='p4'] .nbf--grande::before {
+    background: var(--nuvel-bf-red, #b3261e);
   }
   .nbf__title {
-    margin: 0 0 10px;
+    margin: 0;
     font-size: 14px;
-    font-weight: 600;
-    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: #fff;
   }
-  html[data-nuvel-phase='p3'] .nbf__title,
-  html[data-nuvel-phase='p4'] .nbf__title {
-    color: #ffb4ab;
+  .nbf__title b,
+  .nbf__title strong {
+    font-weight: 700;
+    color: #b9bdc3;
   }
-  .nbf__row {
+  .nbf__sub {
+    margin: 2px 0 14px;
+    font-size: 13px;
+    color: #8b9097;
+  }
+  html[data-nuvel-phase='p3'] .nbf__sub,
+  html[data-nuvel-phase='p4'] .nbf__sub {
+    color: #ffb4ab;
+    font-weight: 600;
+  }
+  .nbf__clock-row {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     gap: 6px;
   }
-  .nbf__col {
+  .nbf__unit {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 6px;
+    width: 70px;
     min-width: 0;
-    flex: 0 1 64px;
   }
-  .nbf__num {
-    display: block;
+  .nbf__tile {
+    position: relative;
+    display: grid;
+    place-items: center;
     width: 100%;
-    padding: 6px 0;
+    height: 60px;
+    overflow: hidden;
+    border: 1px solid #2e2f31;
     border-radius: 8px;
-    background: #222;
-    font-size: clamp(28px, 8.5vw, 40px);
+    background: linear-gradient(180deg, #1c1c1d, #111112);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    font-size: 34px;
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
     color: #fff;
   }
-  .nbf__label {
-    margin-top: 5px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--nbf-gold);
+  .nbf__tile::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.7);
   }
-  html[data-nuvel-phase='p3'] .nbf__label,
-  html[data-nuvel-phase='p4'] .nbf__label {
-    color: #ffb4ab;
+  .nbf__lab {
+    font-size: 12px;
+    color: #8b9097;
   }
-  .nbf__sep {
-    padding-top: 8px;
-    font-size: clamp(22px, 6vw, 30px);
-    font-weight: 600;
-    color: var(--nbf-accent);
+  .nbf__dots {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 9px;
+    height: 60px;
+  }
+  .nbf__dots i {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #b9bdc3;
   }
   html[data-nuvel-phase='p4'] .nbf--grande .nbf__col--d,
   html[data-nuvel-phase='p4'] .nbf--grande .nbf__col--h {
     display: none;
   }
+  @media (max-width: 360px) {
+    .nbf__unit { width: 58px; }
+    .nbf__tile { height: 52px; font-size: 28px; }
+    .nbf__dots { height: 52px; }
+  }
   @media (prefers-reduced-motion: no-preference) {
-    html[data-nuvel-phase='p3'] .nbf__num--s,
-    html[data-nuvel-phase='p4'] .nbf__num--s {
+    html[data-nuvel-phase='p3'] .nbf__tile--s,
+    html[data-nuvel-phase='p4'] .nbf__tile--s {
       animation: nbf-pulse 1s ease-in-out infinite;
     }
   }
   @keyframes nbf-pulse {
-    50% { background: var(--nbf-accent); }
+    50% { border-color: var(--nuvel-bf-red, #b3261e); }
   }
 
   /* Versión barra de anuncios */
