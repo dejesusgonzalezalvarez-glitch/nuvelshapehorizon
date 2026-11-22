@@ -5,10 +5,8 @@
   const root = document.documentElement;
   const raw = root.dataset.nuvelBfEnd || '';
   const end = /^\d+$/.test(raw) ? Number(raw) : Date.parse(raw);
-  if (!Number.isFinite(end)) {
-    root.dataset.nuvelBf = 'off';
-    return;
-  }
+  const hasCountdown = Number.isFinite(end);
+  if (!hasCountdown) root.dataset.nuvelBf = 'off';
 
   const pad = (n) => String(n).padStart(2, '0');
   let timer = null;
@@ -82,8 +80,10 @@
     timer = null;
   }
 
-  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-  start();
+  if (hasCountdown) {
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    start();
+  }
 
   // Selector 1 faja / 2 fajas: la cantidad elegida se aplica al formulario de compra justo antes de enviarlo.
   const offerQuantity = (form) => {

@@ -46,9 +46,7 @@
     {% endif %}
 
     {{ content_for_header }}
-    {%- if nuvel_bf_end != blank -%}
-      <script src="{{ 'nuvel-countdown.js' | asset_url }}" defer></script>
-    {%- endif -%}
+    <script src="{{ 'nuvel-countdown.js' | asset_url }}" defer></script>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">

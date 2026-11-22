@@ -50,14 +50,11 @@
       assign nuvel_bf_ficha = true
     endif
   -%}
+  <div class="nbf-stack{% unless nuvel_bf_ficha %} nbf-stack--normal{% endunless %}" data-nbf-stack>
   {%- if nuvel_bf_ficha -%}
-    <div class="nbf-stack" data-nbf-stack>
     {% render 'nuvel-countdown', version: 'grande' %}
   {%- endif -%}
   <a href="#NuvelReviews-{{ section.id }}">Ver reseñas de la prenda</a>
-  {%- unless nuvel_bf_ficha -%}
-    {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
-  {%- endunless -%}
 {% endif %}
 
 <span
@@ -69,7 +66,19 @@
 >
   {%- if product != blank -%}
     {%- assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id -%}
-    {% render 'nuvel-bf-oferta', product: product, form_id: product_form_id %}
+    {%- if nuvel_bf_ficha -%}
+      {% render 'nuvel-bf-oferta', product: product, form_id: product_form_id %}
+    {%- elsif product.available -%}
+      <fieldset class="nbf-offer" data-nbf-offer data-form="{{ product_form_id }}">
+        <legend class="visually-hidden">{{ 'nuvel.black_friday.seleccion' | t }}</legend>
+        <label class="nbf-offer__card nbf-offer__card--one">
+          <input type="radio" name="nbf-qty-{{ product_form_id }}" value="1">
+          <span class="nv-thumbs nbf-offer__thumbs">{% render 'nuvel-pack-foto', product: product %}</span>
+          <span class="nbf-offer__name">1 unidad</span>
+          <span class="nbf-offer__price">{{ product.selected_or_first_available_variant.price | money }}</span>
+        </label>
+      </fieldset>
+    {%- endif -%}
     <product-form-component
       data-section-id="{{ section.id }}"
       data-product-id="{{ product.id }}"
@@ -285,7 +294,7 @@
   {%- endif -%}
 </span>
 
-{% if product != blank and nuvel_bf_ficha %}
+{% if product != blank %}
   {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
   </div>
 {% endif %}
