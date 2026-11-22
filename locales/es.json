@@ -759,6 +759,13 @@
       "size_2xl": "2XL",
       "size_3xl": "3XL",
       "pack_price_suffix": "€"
+    },
+    "black_friday": {
+      "dias": "días",
+      "horas": "horas",
+      "minutos": "min",
+      "segundos": "seg",
+      "seleccion": "Elige cuántas fajas"
     }
   }
 }

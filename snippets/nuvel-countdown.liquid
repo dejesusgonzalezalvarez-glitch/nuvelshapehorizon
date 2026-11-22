@@ -1,0 +1,211 @@
+{%- comment -%}
+  Cuenta atrás Black Friday Nuvel (única para toda la tienda).
+  Se calcula siempre contra la fecha fija settings.nuvel_bf_fin: no se reinicia por visita, cookie ni almacenamiento.
+  Al llegar a cero, assets/nuvel-countdown.js pone data-nuvel-bf="off" en <html> y todo lo marcado con data-bf-only se oculta.
+
+  Parámetros:
+  - version: 'grande' | 'barra' | 'carrito' | 'movil'
+{%- endcomment -%}
+{%- liquid
+  assign version = version | default: 'grande'
+  assign mostrar = false
+  if settings.nuvel_bf_activo and settings.nuvel_bf_fin != blank
+    case version
+      when 'grande'
+        assign mostrar = settings.nuvel_bf_en_producto
+      when 'barra'
+        assign mostrar = settings.nuvel_bf_en_anuncios
+      when 'carrito'
+        assign mostrar = settings.nuvel_bf_en_carrito
+      when 'movil'
+        assign mostrar = settings.nuvel_bf_en_movil
+    endcase
+  endif
+-%}
+{%- if mostrar -%}
+  <nuvel-countdown
+    class="nbf nbf--{{ version }}"
+    data-bf-only
+    data-version="{{ version }}"
+    {% if version == 'grande' -%}
+      data-f1="{{ settings.nuvel_bf_fase1 | escape }}"
+      data-f2="{{ settings.nuvel_bf_fase2 | escape }}"
+      data-f3="{{ settings.nuvel_bf_fase3 | escape }}"
+      data-f4="{{ settings.nuvel_bf_fase4 | escape }}"
+    {%- endif %}
+  >
+    {%- case version -%}
+      {%- when 'grande' -%}
+        <p class="nbf__title" data-nbf-title>{{ settings.nuvel_bf_fase1 | escape }}</p>
+        <span class="visually-hidden" role="timer" aria-live="off" data-nbf-timer></span>
+        <div class="nbf__row" aria-hidden="true">
+          <div class="nbf__col nbf__col--d"><span class="nbf__num" data-u="d">00</span><span class="nbf__label">{{ 'nuvel.black_friday.dias' | t }}</span></div>
+          <span class="nbf__sep nbf__col--d">:</span>
+          <div class="nbf__col nbf__col--h"><span class="nbf__num" data-u="h">00</span><span class="nbf__label">{{ 'nuvel.black_friday.horas' | t }}</span></div>
+          <span class="nbf__sep nbf__col--h">:</span>
+          <div class="nbf__col"><span class="nbf__num" data-u="m">00</span><span class="nbf__label">{{ 'nuvel.black_friday.minutos' | t }}</span></div>
+          <span class="nbf__sep">:</span>
+          <div class="nbf__col"><span class="nbf__num nbf__num--s" data-u="s">00</span><span class="nbf__label">{{ 'nuvel.black_friday.segundos' | t }}</span></div>
+        </div>
+      {%- when 'barra' -%}
+        <span class="nbf__lead">{{ settings.nuvel_bf_barra | escape }}</span>
+        <strong class="nbf__clock" data-nbf-compact></strong>
+      {%- when 'carrito' -%}
+        <span class="nbf__lead">{{ settings.nuvel_bf_carrito | escape }}</span>
+        <strong class="nbf__clock" data-nbf-clock></strong>
+      {%- when 'movil' -%}
+        <strong class="nbf__clock" data-nbf-compact></strong>
+    {%- endcase -%}
+  </nuvel-countdown>
+{%- endif -%}
+
+{% stylesheet %}
+  html[data-nuvel-bf='off'] [data-bf-only],
+  html:not([data-nuvel-bf]) [data-bf-only] {
+    display: none !important;
+  }
+  html[data-nuvel-bf='on'] [data-bf-hide] {
+    display: none !important;
+  }
+
+  .nbf {
+    --nbf-gold: var(--nuvel-bf-gold, #8a6f4a);
+    --nbf-accent: var(--nbf-gold);
+    display: block;
+    font-family: Poppins, var(--font-body--family, system-ui), sans-serif;
+  }
+  html[data-nuvel-phase='p3'] .nbf,
+  html[data-nuvel-phase='p4'] .nbf {
+    --nbf-accent: var(--nuvel-bf-red, #b3261e);
+  }
+
+  /* Versión grande */
+  .nbf--grande {
+    width: 100%;
+    margin: 0.75rem 0;
+    padding: 14px 12px 12px;
+    border-radius: 12px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    border-top: 3px solid var(--nbf-accent);
+  }
+  .nbf__title {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #fff;
+  }
+  html[data-nuvel-phase='p3'] .nbf__title,
+  html[data-nuvel-phase='p4'] .nbf__title {
+    color: #ffb4ab;
+  }
+  .nbf__row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .nbf__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    flex: 0 1 64px;
+  }
+  .nbf__num {
+    display: block;
+    width: 100%;
+    padding: 6px 0;
+    border-radius: 8px;
+    background: #222;
+    font-size: clamp(28px, 8.5vw, 40px);
+    font-weight: 600;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+  }
+  .nbf__label {
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nbf-gold);
+  }
+  html[data-nuvel-phase='p3'] .nbf__label,
+  html[data-nuvel-phase='p4'] .nbf__label {
+    color: #ffb4ab;
+  }
+  .nbf__sep {
+    padding-top: 8px;
+    font-size: clamp(22px, 6vw, 30px);
+    font-weight: 600;
+    color: var(--nbf-accent);
+  }
+  html[data-nuvel-phase='p4'] .nbf--grande .nbf__col--d,
+  html[data-nuvel-phase='p4'] .nbf--grande .nbf__col--h {
+    display: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html[data-nuvel-phase='p3'] .nbf__num--s,
+    html[data-nuvel-phase='p4'] .nbf__num--s {
+      animation: nbf-pulse 1s ease-in-out infinite;
+    }
+  }
+  @keyframes nbf-pulse {
+    50% { background: var(--nbf-accent); }
+  }
+
+  /* Versión barra de anuncios */
+  .nbf--barra {
+    padding: 8px 16px;
+    background: #111;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+  html[data-nuvel-phase='p3'] .nbf--barra,
+  html[data-nuvel-phase='p4'] .nbf--barra {
+    background: var(--nuvel-bf-red, #b3261e);
+  }
+  .nbf--barra .nbf__clock {
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+    color: var(--nbf-gold);
+  }
+  html[data-nuvel-phase='p3'] .nbf--barra .nbf__clock,
+  html[data-nuvel-phase='p4'] .nbf--barra .nbf__clock {
+    color: #fff;
+  }
+
+  /* Versión carrito */
+  .nbf--carrito {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+  }
+  .nbf--carrito .nbf__clock {
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+    color: var(--nbf-accent);
+  }
+  html[data-nuvel-phase='p3'] .nbf--carrito .nbf__clock,
+  html[data-nuvel-phase='p4'] .nbf--carrito .nbf__clock {
+    color: #ffb4ab;
+  }
+
+  /* Versión barra móvil */
+  .nbf--movil {
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    color: #fff;
+  }
+{% endstylesheet %}

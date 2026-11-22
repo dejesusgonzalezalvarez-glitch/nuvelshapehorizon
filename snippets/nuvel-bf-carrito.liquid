@@ -1,0 +1,35 @@
+{%- comment -%}
+  Carrito: cuenta atrás compacta y ahorro real aplicado por los descuentos automáticos de Shopify.
+{%- endcomment -%}
+{%- liquid
+  assign nuvel_bf_ahorro = 0
+  for item in cart.items
+    for allocation in item.line_level_discount_allocations
+      if allocation.discount_application.type == 'automatic'
+        assign nuvel_bf_ahorro = nuvel_bf_ahorro | plus: allocation.amount
+      endif
+    endfor
+  endfor
+  for application in cart.cart_level_discount_applications
+    if application.type == 'automatic'
+      assign nuvel_bf_ahorro = nuvel_bf_ahorro | plus: application.total_allocated_amount
+    endif
+  endfor
+-%}
+{% render 'nuvel-countdown', version: 'carrito' %}
+{%- if settings.nuvel_bf_activo and nuvel_bf_ahorro > 0 -%}
+  <p class="nbf-aplicado">{{ settings.nuvel_bf_aplicado | escape }}: −{{ nuvel_bf_ahorro | money }}</p>
+{%- endif -%}
+
+{% stylesheet %}
+  .nbf-aplicado {
+    margin: 0 0 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #f5f1ec;
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+{% endstylesheet %}

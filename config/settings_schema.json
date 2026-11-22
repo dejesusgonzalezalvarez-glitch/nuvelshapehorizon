@@ -2125,7 +2125,155 @@
         "type": "text",
         "id": "nuvel_oferta_entrega",
         "label": "Microtexto junto al botón de compra",
-        "default": "Pide hoy: entrega en España en 7-15 días laborables"
+        "default": "Pide hoy: entrega en España en 7-15 días laborables · 30 días de prueba"
+      }
+    ]
+  },
+  {
+    "name": "Black Friday Nuvel",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Oferta 2ª faja al 50 %. El descuento real lo aplica el descuento automático de Shopify; aquí solo se controla lo que se ve. Al llegar la fecha de fin, todo se oculta solo y la tienda vuelve a 39,90 €."
+      },
+      {
+        "type": "checkbox",
+        "id": "nuvel_bf_activo",
+        "label": "Activar Black Friday",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_fin",
+        "label": "Fin de la oferta (fecha y hora ISO)",
+        "default": "2026-12-01T23:59:00+01:00",
+        "info": "Formato 2026-12-01T23:59:00+01:00 (hora de Madrid). Debe coincidir con el fin del descuento automático de Shopify."
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_producto",
+        "label": "Handle del producto en oferta",
+        "default": "faja-moldeadora-invisible-nuvel"
+      },
+      {
+        "type": "header",
+        "content": "Dónde se ve la cuenta atrás"
+      },
+      {
+        "type": "checkbox",
+        "id": "nuvel_bf_en_anuncios",
+        "label": "En la barra de anuncios",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "nuvel_bf_en_producto",
+        "label": "Encima del selector de oferta (inicio y ficha)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "nuvel_bf_en_carrito",
+        "label": "En el carrito",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "nuvel_bf_en_movil",
+        "label": "Barra fija en móvil",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Textos"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_barra",
+        "label": "Barra de anuncios",
+        "default": "BLACK FRIDAY · 2ª FAJA AL 50 % · TERMINA EN"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_fase1",
+        "label": "Más de 48 h",
+        "default": "BLACK FRIDAY: tu 2ª faja al 50 %. Termina en"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_fase2",
+        "label": "Entre 24 y 48 h",
+        "default": "Quedan menos de 2 días para el 50 % en tu 2ª faja"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_fase3",
+        "label": "Menos de 24 h",
+        "default": "ÚLTIMAS HORAS. Termina hoy a las 23:59"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_fase4",
+        "label": "Menos de 1 h",
+        "default": "ÚLTIMA HORA. Se acaba en"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_carrito",
+        "label": "Carrito",
+        "default": "Tu descuento Black Friday termina en"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_aplicado",
+        "label": "Ahorro en el carrito",
+        "default": "Black Friday aplicado"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_una",
+        "label": "Tarjeta 1 unidad",
+        "default": "1 faja"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_dos",
+        "label": "Tarjeta 2 unidades",
+        "default": "2 fajas"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_sello",
+        "label": "Sello de la tarjeta 2 unidades",
+        "default": "MÁS ELEGIDO"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_ahorras",
+        "label": "Etiqueta de ahorro",
+        "default": "AHORRAS"
+      },
+      {
+        "type": "text",
+        "id": "nuvel_bf_boton_movil",
+        "label": "Botón de la barra móvil",
+        "default": "Comprar con −50 % en la 2ª"
+      },
+      {
+        "type": "header",
+        "content": "Colores"
+      },
+      {
+        "type": "color",
+        "id": "nuvel_bf_dorado",
+        "label": "Detalles",
+        "default": "#8A6F4A"
+      },
+      {
+        "type": "color",
+        "id": "nuvel_bf_rojo",
+        "label": "Últimas 24 h",
+        "default": "#B3261E"
       }
     ]
   }

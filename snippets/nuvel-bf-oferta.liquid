@@ -1,0 +1,157 @@
+{%- comment -%}
+  Selector de oferta Black Friday (1 faja / 2 fajas) y barra fija en móvil.
+  El precio con descuento lo aplica el descuento automático de Shopify en el carrito; aquí solo se muestra.
+  El tachado es 2 × el precio actual real de la variante: no hay precios de comparación inventados.
+
+  Parámetros:
+  - product: producto
+  - form_id: id del formulario de compra principal
+{%- endcomment -%}
+{%- if settings.nuvel_bf_activo and product.handle == settings.nuvel_bf_producto and product.available -%}
+  {%- liquid
+    assign variant = product.selected_or_first_available_variant
+    assign unit = variant.price
+    assign two_regular = unit | times: 2
+    assign saving = unit | divided_by: 2.0 | round
+    assign two_offer = two_regular | minus: saving
+  -%}
+  {% render 'nuvel-countdown', version: 'grande' %}
+  <fieldset class="nbf-offer" data-bf-only data-nbf-offer data-form="{{ form_id }}">
+    <legend class="visually-hidden">{{ 'nuvel.black_friday.seleccion' | t }}</legend>
+    <label class="nbf-offer__card">
+      <input type="radio" name="nbf-qty-{{ form_id }}" value="1">
+      <span class="nbf-offer__name">{{ settings.nuvel_bf_una | escape }}</span>
+      <span class="nbf-offer__price">{{ unit | money }}</span>
+    </label>
+    <label class="nbf-offer__card nbf-offer__card--best">
+      <input type="radio" name="nbf-qty-{{ form_id }}" value="2" checked>
+      <span class="nbf-offer__seal">{{ settings.nuvel_bf_sello | escape }}</span>
+      <span class="nbf-offer__name">{{ settings.nuvel_bf_dos | escape }}</span>
+      <span class="nbf-offer__price">{{ two_offer | money }} <s>{{ two_regular | money }}</s></span>
+      <span class="nbf-offer__save">{{ settings.nuvel_bf_ahorras | escape }} {{ saving | money }}</span>
+    </label>
+  </fieldset>
+  {%- if settings.nuvel_bf_en_movil -%}
+    <div class="nbf-sticky" data-bf-only data-nbf-sticky data-form="{{ form_id }}">
+      {% render 'nuvel-countdown', version: 'movil' %}
+      <button type="button" class="button nbf-sticky__buy" data-nbf-buy>{{ settings.nuvel_bf_boton_movil | escape }}</button>
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .nbf-offer {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 12px;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  .nbf-offer__card {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 14px 12px;
+    border: 1.5px solid #dcd8d1;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+  }
+  .nbf-offer__card:has(input:checked) {
+    border-color: #111;
+    box-shadow: 0 0 0 1px #111;
+  }
+  .nbf-offer__card input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: #111;
+  }
+  .nbf-offer__name {
+    font-weight: 600;
+  }
+  .nbf-offer__price {
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .nbf-offer__price s {
+    margin-left: 4px;
+    font-size: 0.85em;
+    font-weight: 400;
+    color: #77736c;
+  }
+  .nbf-offer__save {
+    grid-column: 2 / -1;
+    justify-self: start;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--nuvel-bf-gold, #8a6f4a);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .nbf-offer__seal {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .nbf-sticky {
+    display: none;
+  }
+  @media (max-width: 749px) {
+    .nbf-sticky {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: #111;
+      transform: translateY(110%);
+      transition: transform 0.25s ease;
+    }
+    .nbf-sticky.is-visible {
+      transform: none;
+    }
+    .nbf-sticky .nbf--movil {
+      flex: 0 0 auto;
+    }
+    .nbf-sticky__buy {
+      flex: 1;
+      min-height: 46px;
+      background: #fff;
+      color: #111;
+      font-weight: 700;
+      white-space: normal;
+    }
+    html[data-nuvel-phase='p3'] .nbf-sticky,
+    html[data-nuvel-phase='p4'] .nbf-sticky {
+      background: var(--nuvel-bf-red, #b3261e);
+    }
+    /* Mientras dura la oferta, la barra fija de Nuvel sustituye a la de Horizon en móvil */
+    html[data-nuvel-bf='on'] .sticky-add-to-cart__bar {
+      display: none !important;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nbf-sticky {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
