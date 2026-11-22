@@ -725,7 +725,7 @@
       "type": "nuvel-razones",
       "settings": {
         "esquema": "claro",
-        "etiqueta": "— NUVEL",
+        "etiqueta": "",
         "titulo": "Por qué <em>Nuvel</em>",
         "columnas": "4"
       },
@@ -778,7 +778,7 @@
       "type": "nuvel-razones",
       "settings": {
         "esquema": "oscuro",
-        "etiqueta": "— NUVEL",
+        "etiqueta": "",
         "titulo": "Compra con <em>tranquilidad</em>",
         "columnas": "3"
       },
