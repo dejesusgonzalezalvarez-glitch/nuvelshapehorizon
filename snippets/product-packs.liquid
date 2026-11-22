@@ -102,7 +102,7 @@
       <input type="radio" name="id" data-price="{{ variant.price | money | escape }}" data-url="{{ variant.url | escape }}" {% unless pack.has_only_default_variant %}data-options{% endunless %} {% if popular %}checked{% elsif rendered == 1 %}data-first{% endif %} required value="{{ variant.id }}" aria-label="{{ pack.title | escape }}">
       <span class="nv-thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: second %}{% if qty == 3 %}{% render 'nuvel-pack-foto', product: third %}{% endif %}</span>
       <span><strong>{{ pack.title | escape }}</strong><span class="nv-meta">{{ qty }} piezas {% if pct > 0 %}<span class="nv-save">Ahorras {{ pct }} %</span>{% endif %}</span></span>
-      <span class="nv-price"><span>{{ variant.price | money }}{% if pct > 0 %}<s>{{ separate | money }}</s>{% endif %}</span><small>{{ variant.price | times: 0.9 | round | money }} con código</small></span>
+      <span class="nv-price"><span>{{ variant.price | money }}{% if pct > 0 %}<s>{{ separate | money }}</s>{% endif %}</span></span>
       {% if popular %}<span class="nv-popular">Más popular</span>{% endif %}
     </label>
   {% endfor %}
@@ -110,7 +110,7 @@
 {% assign cards = cards | strip %}
 {% if cards != blank %}
   <nuvel-pack-action><form method="post" action="{{ routes.cart_add_url }}" class="nuvel-controls nv-packs" data-pack-picker data-cart="{{ routes.cart_url }}" data-currency="{{ cart.currency.iso_code }}">
-    <h3>Packs</h3><p>Primera compra: −10 % con el código NUVEL10</p>
+    <h3>Packs</h3>
     {% if cards contains 'checked' %}{{ cards }}{% else %}{{ cards | replace_first: 'data-first', 'checked' }}{% endif %}
     <div class="nv-pack-action"><label>Cantidad <input type="number" name="quantity" min="1" step="1" value="1" required></label><button type="submit" class="button">Añadir al carrito</button></div><span role="status"></span>
   </form></nuvel-pack-action>

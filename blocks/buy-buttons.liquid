@@ -45,7 +45,6 @@
 
 {% if product != blank %}
   <a href="#NuvelReviews-{{ section.id }}">Ver reseñas de la prenda</a>
-  {% render 'nuvel-contador-diario', product: product %}
   {% render 'product-packs', product: product, duo: section.settings.nuvel_duo, look: section.settings.nuvel_look %}
 {% endif %}
 
@@ -256,6 +255,9 @@
         {%- endif -%}
       {%- endform -%}
     </product-form-component>
+    {%- if settings.nuvel_oferta_entrega != blank -%}
+      <p class="nuvel-entrega">{{ settings.nuvel_oferta_entrega }}</p>
+    {%- endif -%}
   {%- else -%}
     <div class="product-form-buttons">
       <button

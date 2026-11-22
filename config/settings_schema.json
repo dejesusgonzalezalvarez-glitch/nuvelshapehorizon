@@ -2117,5 +2117,16 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Textos de compra Nuvel",
+    "settings": [
+      {
+        "type": "text",
+        "id": "nuvel_oferta_entrega",
+        "label": "Microtexto junto al botón de compra",
+        "default": "Pide hoy: entrega en España en 7-15 días laborables"
+      }
+    ]
   }
 ]

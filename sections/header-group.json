@@ -8,7 +8,7 @@
         "announcement_envio": {
           "type": "_announcement",
           "settings": {
-            "text": "Envíos a toda España",
+            "text": "Envío gratis a toda España · 30 días de prueba",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",
@@ -28,22 +28,9 @@
             "text_color": "#ffffff"
           },
           "blocks": {}
-        },
-        "announcement_descuento": {
-          "type": "_announcement",
-          "settings": {
-            "text": "10 % de descuento en tu primera compra",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "letter_spacing": "normal",
-            "case": "none",
-            "text_color": "#ffffff"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_descuento",
         "announcement_envio",
         "announcement_faja"
       ],
