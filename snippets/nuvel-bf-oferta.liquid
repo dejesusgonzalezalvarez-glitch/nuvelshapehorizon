@@ -162,6 +162,32 @@
     margin: 0;
     border-radius: 10px;
   }
+  /* Mismo tamaño de foto y misma columna en las 4 opciones */
+  .nbf-stack .nv-pack,
+  .nbf-stack .nbf-offer__card {
+    grid-template-columns: 18px 82px minmax(0, 1fr) auto;
+    column-gap: 10px;
+  }
+  .nbf-stack .nv-thumbs,
+  .nbf-stack .nbf-offer__thumbs {
+    display: flex;
+    width: 82px;
+    min-width: 82px;
+  }
+  .nbf-stack .nv-thumbs img,
+  .nbf-stack .nbf-offer .nbf-offer__thumbs img {
+    width: 34px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: multiply;
+  }
+  .nbf-stack .nv-thumbs img + img,
+  .nbf-stack .nbf-offer .nbf-offer__thumbs img + img {
+    margin-left: -10px;
+  }
   .nbf-stack [data-component-pack] {
     display: grid;
     gap: 6px;
