@@ -59,14 +59,6 @@
     show_sale_price_first: block_settings.show_sale_price_first
   %}
 
-  {%- if selected_variant.compare_at_price > selected_variant.price -%}
-    {%- assign nuvel_ahorro = selected_variant.compare_at_price | minus: selected_variant.price | money -%}
-    <p class="nuvel-price-savings">
-      {{- 'nuvel.oferta.ahorras' | t: amount: nuvel_ahorro -}}
-      {%- if settings.nuvel_oferta_envio != blank %} · {{ settings.nuvel_oferta_envio }}{% endif -%}
-    </p>
-  {%- endif -%}
-
   {% if block_settings.show_tax_info %}
     <div class="tax-note">
       {%- if cart.duties_included and cart.taxes_included -%}

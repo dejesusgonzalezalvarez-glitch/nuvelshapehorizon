@@ -415,14 +415,5 @@
       "signup_form_success": "Te avisaremos por correo antes de abrir.",
       "password_link": "Acceder con contraseña"
     }
-  },
-  "nuvel": {
-    "oferta": {
-      "ahorras": "You save {{ amount }}",
-      "dias": "Days",
-      "horas": "Hours",
-      "minutos": "Min",
-      "segundos": "Sec"
-    }
   }
 }
