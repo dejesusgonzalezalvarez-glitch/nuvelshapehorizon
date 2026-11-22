@@ -26,7 +26,23 @@
                 href="{{ policy.url }}"
                 class="footer-utilities__text"
               >
-                {{- policy.title | escape -}}
+                {%- liquid
+                  assign nombre = policy.title
+                  if policy.url contains 'privacy-policy'
+                    assign nombre = 'Privacidad'
+                  elsif policy.url contains 'shipping-policy'
+                    assign nombre = 'Envíos'
+                  elsif policy.url contains 'refund-policy'
+                    assign nombre = 'Devoluciones'
+                  elsif policy.url contains 'terms-of-service'
+                    assign nombre = 'Términos y condiciones'
+                  elsif policy.url contains 'contact-information'
+                    assign nombre = 'Contacto'
+                  elsif policy.url contains 'legal-notice'
+                    assign nombre = 'Aviso legal'
+                  endif
+                -%}
+                {{- nombre | escape -}}
               </a>
             </li>
           {%- endif -%}
