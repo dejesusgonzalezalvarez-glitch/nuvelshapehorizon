@@ -45,77 +45,58 @@
       ]
     },
     "vidareal": {
-      "type": "media-with-content",
+      "type": "section",
       "settings": {
-        "media_width": "medium",
-        "media_position": "left",
-        "media_height": "auto",
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "gap": 24,
         "section_width": "page-width",
         "padding-block-start": 64,
         "padding-block-end": 48
       },
       "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
+        "antetitulo": {
+          "type": "text",
           "settings": {
-            "media_type": "image",
-            "image_position": "cover",
-            "nuvel_worn_photo": true
-          },
-          "static": true
+            "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "paragraph"
+          }
         },
-        "content": {
-          "type": "_content-without-appearance",
+        "titulo": {
+          "type": "text",
           "settings": {
-            "gap": 24,
-            "horizontal_alignment_flex_direction_column": "center"
-          },
-          "blocks": {
-            "antetitulo": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
-                "width": "100%",
-                "alignment": "center",
-                "type_preset": "paragraph"
-              }
-            },
-            "titulo": {
-              "type": "text",
-              "settings": {
-                "text": "<h2>Cómo queda puesta</h2>",
-                "width": "100%",
-                "alignment": "center",
-                "type_preset": "h2"
-              }
-            },
-            "texto": {
-              "type": "text",
-              "settings": {
-                "text": "<p>Así se ajusta la faja al pecho, la cintura y la cadera.</p>",
-                "width": "100%",
-                "alignment": "center",
-                "type_preset": "paragraph"
-              }
-            },
-            "boton": {
-              "type": "button",
-              "settings": {
-                "label": "Ver detalles",
-                "link": "/products/faja-moldeadora-invisible-nuvel",
-                "style_class": "button-secondary"
-              }
-            }
-          },
-          "block_order": [
-            "antetitulo",
-            "titulo",
-            "texto",
-            "boton"
-          ],
-          "static": true
+            "text": "<h2>Cómo queda puesta</h2>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h2"
+          }
+        },
+        "texto": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Así se ajusta la faja al pecho, la cintura y la cadera.</p>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "paragraph"
+          }
+        },
+        "boton": {
+          "type": "button",
+          "settings": {
+            "label": "Ver detalles",
+            "link": "/products/faja-moldeadora-invisible-nuvel",
+            "style_class": "button-secondary"
+          }
         }
-      }
+      },
+      "block_order": [
+        "antetitulo",
+        "titulo",
+        "texto",
+        "boton"
+      ]
     },
     "productoancla": {
       "type": "featured-product-information",
