@@ -20,12 +20,14 @@
     <legend class="visually-hidden">{{ 'nuvel.black_friday.seleccion' | t }}</legend>
     <label class="nbf-offer__card">
       <input type="radio" name="nbf-qty-{{ form_id }}" value="1">
+      <span class="nv-thumbs nbf-offer__thumbs">{% render 'nuvel-pack-foto', product: product %}</span>
       <span class="nbf-offer__name">{{ settings.nuvel_bf_una | escape }}</span>
       <span class="nbf-offer__price">{{ unit | money }}</span>
     </label>
     <label class="nbf-offer__card nbf-offer__card--best">
       <input type="radio" name="nbf-qty-{{ form_id }}" value="2" checked>
       <span class="nbf-offer__seal">{{ settings.nuvel_bf_sello | escape }}</span>
+      <span class="nv-thumbs nbf-offer__thumbs">{% render 'nuvel-pack-foto', product: product %}{% render 'nuvel-pack-foto', product: product %}</span>
       <span class="nbf-offer__name">{{ settings.nuvel_bf_dos | escape }}</span>
       <span class="nbf-offer__price">{{ two_offer | money }} <s>{{ two_regular | money }}</s></span>
       <span class="nbf-offer__save">{{ settings.nuvel_bf_ahorras | escape }} {{ saving | money }}</span>
@@ -51,7 +53,7 @@
   .nbf-offer__card {
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto 1fr auto;
     align-items: center;
     gap: 4px 10px;
     padding: 14px 12px;
@@ -73,6 +75,20 @@
   .nbf-offer__name {
     font-weight: 600;
   }
+  .nbf-offer__thumbs {
+    display: flex;
+    width: auto;
+  }
+  .nbf-offer__thumbs img {
+    width: 34px;
+    height: 48px;
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: multiply;
+  }
+  .nbf-offer__thumbs img + img {
+    margin-left: -10px;
+  }
   .nbf-offer__price {
     font-weight: 600;
     text-align: right;
@@ -85,7 +101,7 @@
     color: #77736c;
   }
   .nbf-offer__save {
-    grid-column: 2 / -1;
+    grid-column: 3 / -1;
     justify-self: start;
     padding: 2px 8px;
     border-radius: 4px;
