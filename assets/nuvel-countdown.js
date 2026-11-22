@@ -103,20 +103,33 @@
   // Lista única de la faja: la oferta (1 o 2 fajas) y los packs comparten un solo botón de compra.
   const packChoice = (stack) => stack && stack.querySelector('nuvel-pack-action input[type="radio"]:checked');
 
-  document.addEventListener(
+  // Con un pack marcado, el botón principal compra el pack (cada prenda con su talla) y no la faja suelta.
+  // Se intercepta en window y en fase de captura para adelantarse a los manejadores de Horizon.
+  const buyPack = (event, form) => {
+    const stack = form && form.closest('[data-nbf-stack]');
+    const pack = form && form.matches('[data-type="add-to-cart-form"]') && packChoice(stack);
+    if (!pack) return false;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    pack.form?.requestSubmit();
+    return true;
+  };
+
+  window.addEventListener(
+    'click',
+    (event) => {
+      const button = event.target instanceof Element && event.target.closest('button[type="submit"], button:not([type])');
+      if (button && button.form) buyPack(event, button.form);
+    },
+    true
+  );
+
+  window.addEventListener(
     'submit',
     (event) => {
       const form = event.target;
       if (!(form instanceof HTMLFormElement) || !form.id) return;
-      const stack = form.closest('[data-nbf-stack]');
-      const pack = form.matches('[data-type="add-to-cart-form"]') && packChoice(stack);
-      if (pack) {
-        // Hay un pack marcado: lo compra la lógica de packs, que añade cada prenda con su talla.
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        pack.form?.requestSubmit();
-        return;
-      }
+      if (buyPack(event, form)) return;
       const qty = offerQuantity(form);
       if (qty) syncQuantity(form, qty);
     },
