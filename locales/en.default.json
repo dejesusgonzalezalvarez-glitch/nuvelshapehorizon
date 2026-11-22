@@ -418,11 +418,11 @@
   },
   "nuvel": {
     "black_friday": {
-      "dias": "days",
-      "horas": "hours",
+      "dias": "días",
+      "horas": "horas",
       "minutos": "min",
-      "segundos": "sec",
-      "seleccion": "Choose how many"
+      "segundos": "seg",
+      "seleccion": "Elige cuántas fajas"
     }
   }
 }
