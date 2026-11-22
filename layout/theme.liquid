@@ -202,5 +202,23 @@ img[src*="/corse-negro-modelo-espalda.jpg"] {
   filter: url(#nuvel-studio-white);
 }
     </style>
+    {%- if request.page_type == 'policy' -%}
+      <script>
+        (() => {
+          const nombres = {
+            'shipping-policy': 'Política de envíos',
+            'refund-policy': 'Política de devoluciones y reembolsos',
+            'terms-of-service': 'Términos y condiciones',
+            'contact-information': 'Información de contacto',
+            'privacy-policy': 'Política de privacidad',
+            'legal-notice': 'Aviso legal',
+          };
+          const clave = Object.keys(nombres).find((k) => location.pathname.includes(k));
+          if (!clave) return;
+          document.querySelectorAll('.shopify-policy__title h1, .shopify-policy__container h1').forEach((h) => (h.textContent = nombres[clave]));
+          document.title = document.title.replace(/^[^–|-]+/, nombres[clave] + ' ');
+        })();
+      </script>
+    {%- endif -%}
   </body>
 </html>
