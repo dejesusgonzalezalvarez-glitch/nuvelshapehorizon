@@ -387,7 +387,7 @@
         }
       },
       "settings": {
-        "product": "faja-moldeadora-invisible-nuvel",
+        "product": "faja-moldeadora-invisible-nuvel-anterior",
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
         "equal_columns": true,
@@ -654,7 +654,7 @@
       ],
       "name": "t:names.product_recommendations",
       "settings": {
-        "product": "faja-moldeadora-invisible-nuvel",
+        "product": "faja-moldeadora-invisible-nuvel-anterior",
         "recommendation_type": "related",
         "layout_type": "grid",
         "carousel_on_mobile": false,
