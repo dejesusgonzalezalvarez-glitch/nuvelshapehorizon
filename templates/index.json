@@ -1,160 +1,265 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {
-        "media_type_1": "image",
-        "section_height": "large",
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "toggle_overlay": true,
-        "overlay_color": "#00000040",
-        "padding-block-start": 0,
-        "padding-block-end": 0,
-        "nuvel_campaign": "inicio"
-      },
       "blocks": {
         "titulo": {
           "type": "text",
           "settings": {
             "text": "<h1>Faja moldeadora invisible Nuvel</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "h1",
-            "text_color": "#ffffff"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "texto": {
           "type": "text",
           "settings": {
-            "text": "<p>Diseñada para desaparecer bajo cualquier prenda: sin costuras, con cierre frontal y tejido flexible que se adapta a tu figura.</p>",
+            "text": "<p>Diseñada para quedar discreta bajo el vestido: sin costuras, con tirantes ajustables y tejido flexible que se adapta a tu figura.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "rte",
-            "text_color": "#ffffff"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "boton": {
           "type": "button",
           "settings": {
             "label": "Ver producto",
             "link": "/products/faja-moldeadora-invisible-nuvel",
-            "style_class": "button"
-          }
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "titulo",
         "texto",
         "boton"
-      ]
-    },
-    "vidareal": {
-      "type": "section",
+      ],
       "settings": {
+        "media_type_1": "image",
+        "nuvel_campaign": "inicio",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
         "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
-        "gap": 24,
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
         "section_width": "page-width",
-        "padding-block-start": 64,
-        "padding-block-end": 48
-      },
-      "blocks": {
-        "antetitulo": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "paragraph"
-          }
-        },
-        "titulo": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>Cómo queda puesta</h2>",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "h2"
-          }
-        },
-        "texto": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Así se ajusta la faja al pecho, la cintura y la cadera.</p>",
-            "width": "100%",
-            "alignment": "center",
-            "type_preset": "paragraph"
-          }
-        },
-        "boton": {
-          "type": "button",
-          "settings": {
-            "label": "Ver detalles",
-            "link": "/products/faja-moldeadora-invisible-nuvel",
-            "style_class": "button-secondary"
-          }
-        }
-      },
-      "block_order": [
-        "antetitulo",
-        "titulo",
-        "texto",
-        "boton"
-      ]
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "",
+        "toggle_overlay": true,
+        "overlay_color": "#00000040",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     },
     "productoancla": {
       "type": "featured-product-information",
-      "settings": {
-        "gap": 48,
-        "padding-block-start": 64,
-        "padding-block-end": 64,
-        "equal_columns": true,
-        "product": "faja-moldeadora-invisible-nuvel",
-        "desktop_media_position": "left"
-      },
       "blocks": {
         "media-gallery": {
           "type": "_featured-product-information-carousel",
           "static": true,
           "settings": {
+            "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
             "media_radius": 0,
             "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
             "hide_variants": true,
+            "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "bottom",
-            "thumbnail_width": 44
-          }
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "product-details": {
           "type": "_product-details",
           "static": true,
           "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
             "gap": 28,
             "sticky_details_desktop": true,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
             "padding-block-start": 24,
-            "padding-block-end": 24
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "header": {
               "type": "group",
               "name": "t:names.header",
               "settings": {
-                "gap": 12
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "title": {
                   "type": "product-title",
                   "name": "t:names.title",
                   "settings": {
-                    "type_preset": "h2"
-                  }
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "price": {
                   "type": "price",
                   "name": "t:names.product_price",
                   "settings": {
+                    "show_sale_price_first": true,
                     "show_installments": false,
-                    "show_tax_info": false
-                  }
+                    "show_tax_info": false,
+                    "type_preset": "",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "text_color": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -162,34 +267,115 @@
                 "price"
               ]
             },
-            "variant_picker": {
-              "type": "variant-picker",
-              "name": "t:names.product_variant_picker"
-            },
-            "buy_buttons": {
-              "type": "buy-buttons",
-              "name": "t:names.product_buy_buttons",
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true
-                }
-              }
-            },
             "description": {
               "type": "product-description",
               "settings": {
                 "text": "{{ closest.product.description }}",
-                "type_preset": "rte"
-              }
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker": {
+              "type": "variant-picker",
+              "name": "t:names.product_variant_picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "option_label_text_color": "",
+                "variant_style_class": "default",
+                "custom_variant_background": "{{ settings.color_palette.background }}",
+                "custom_variant_text": "{{ settings.color_palette.foreground }}",
+                "custom_variant_border": "{{ settings.color_palette.foreground }}",
+                "selected_variant_style_class": "default",
+                "custom_selected_variant_background": "{{ settings.color_palette.foreground }}",
+                "custom_selected_variant_text": "{{ settings.color_palette.background }}",
+                "custom_selected_variant_border": "{{ settings.color_palette.foreground }}",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "text_color": "",
+                "show_pickup_availability": true,
+                "show_physical_stores": true,
+                "gift_card_form": true,
+                "recipient_button_style": "default",
+                "recipient_button_background": "{{ settings.color_palette.background }}",
+                "recipient_button_text": "{{ settings.color_palette.foreground }}",
+                "recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_style": "default",
+                "selected_recipient_button_background": "{{ settings.color_palette.foreground }}",
+                "selected_recipient_button_text": "{{ settings.color_palette.background }}",
+                "selected_recipient_button_border": "{{ settings.color_palette.foreground }}",
+                "input_style": "default",
+                "input_background_color": "{{ settings.color_palette.background }}",
+                "input_text_color": "{{ settings.color_palette.foreground }}",
+                "input_border_color": "{{ settings.color_palette.foreground }}",
+                "border_width": 1,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "input_style": "default",
+                    "input_background_color": "{{ settings.color_palette.background }}",
+                    "input_text_color": "{{ settings.color_palette.foreground }}",
+                    "input_border_color": "{{ settings.color_palette.foreground }}",
+                    "border_width": 1,
+                    "border_radius": 0
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button-secondary",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
             }
           },
           "block_order": [
@@ -199,6 +385,149 @@
             "buy_buttons"
           ]
         }
+      },
+      "settings": {
+        "product": "faja-moldeadora-invisible-nuvel",
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": true,
+        "limit_details_width": false,
+        "gap": 48,
+        "background_color": "",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
+    },
+    "vidareal": {
+      "type": "section",
+      "blocks": {
+        "antetitulo": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Faja moldeadora invisible: la prenda que no se nota</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "titulo": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Cómo queda puesta</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "texto": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Así se ajusta la faja al pecho, la cintura y la cadera.</p>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "boton": {
+          "type": "button",
+          "settings": {
+            "label": "Ver detalles",
+            "link": "/products/faja-moldeadora-invisible-nuvel",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "antetitulo",
+        "titulo",
+        "texto",
+        "boton"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 64,
+        "padding-block-end": 48
       }
     },
     "combinala": {
@@ -345,65 +674,193 @@
     },
     "caracteristicashome": {
       "type": "section",
-      "settings": {
-        "content_direction": "column",
-        "gap": 24,
-        "padding-block-start": 36,
-        "padding-block-end": 36
-      },
       "blocks": {
         "titulo": {
           "type": "text",
           "settings": {
             "text": "<h2>Características principales</h2>",
-            "type_preset": "h2"
-          }
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "detalle": {
+          "type": "image",
+          "settings": {
+            "nuvel_detail_photo": true,
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "columnas": {
           "type": "group",
           "settings": {
             "content_direction": "row",
             "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
             "width": "fill",
+            "custom_width": 100,
             "width_mobile": "fill",
-            "gap": 16
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "columna1": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 8,
                 "width": "fill",
+                "custom_width": 100,
                 "width_mobile": "fill",
-                "gap": 8
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "imagen": {
                   "type": "icon",
                   "settings": {
                     "icon": "shirt",
-                    "width": 44
-                  }
+                    "width": 44,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "icon_color": ""
+                  },
+                  "blocks": {}
                 },
                 "titulo": {
                   "type": "text",
                   "settings": {
                     "text": "<h3>Diseño sin costuras</h3>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "h3"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "texto": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Diseñada para no marcarse bajo la ropa.</p>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "rte"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -416,37 +873,101 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 8,
                 "width": "fill",
+                "custom_width": 100,
                 "width_mobile": "fill",
-                "gap": 8
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "imagen": {
                   "type": "icon",
                   "settings": {
                     "icon": "silhouette",
-                    "width": 44
-                  }
+                    "width": 44,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "icon_color": ""
+                  },
+                  "blocks": {}
                 },
                 "titulo": {
                   "type": "text",
                   "settings": {
                     "text": "<h3>Silueta uniforme</h3>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "h3"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "texto": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Pensada para no enrollarse ni molestar.</p>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "rte"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -459,37 +980,101 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 8,
                 "width": "fill",
+                "custom_width": 100,
                 "width_mobile": "fill",
-                "gap": 8
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "imagen": {
                   "type": "icon",
                   "settings": {
                     "icon": "washing",
-                    "width": 44
-                  }
+                    "width": 44,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "icon_color": ""
+                  },
+                  "blocks": {}
                 },
                 "titulo": {
                   "type": "text",
                   "settings": {
                     "text": "<h3>Comodidad a tu ritmo</h3>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "h3"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "texto": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Tejido pensado para resistir los lavados.</p>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "rte"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -502,37 +1087,101 @@
               "type": "group",
               "settings": {
                 "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 8,
                 "width": "fill",
+                "custom_width": 100,
                 "width_mobile": "fill",
-                "gap": 8
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "imagen": {
                   "type": "icon",
                   "settings": {
                     "icon": "ruler",
-                    "width": 44
-                  }
+                    "width": 44,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "icon_color": ""
+                  },
+                  "blocks": {}
                 },
                 "titulo": {
                   "type": "text",
                   "settings": {
                     "text": "<h3>Tabla de tallas clara</h3>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "h3"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "texto": {
                   "type": "text",
                   "settings": {
                     "text": "<p>Guía sencilla para elegir tu talla sin miedo a equivocarte.</p>",
-                    "alignment": "center",
                     "width": "100%",
-                    "type_preset": "rte"
-                  }
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -548,40 +1197,44 @@
             "columna3",
             "columna4"
           ]
-        },
-        "detalle": {
-          "type": "image",
-          "settings": {
-            "nuvel_detail_photo": true,
-            "width": "fill",
-            "image_ratio": "adapt"
-          }
         }
       },
       "block_order": [
         "titulo",
         "detalle",
         "columnas"
-      ]
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 36,
+        "padding-block-end": 36
+      }
     },
     "catalogo": {
       "type": "product-list",
-      "settings": {
-        "collection": "todos-los-productos",
-        "max_products": 5,
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "columns": 4,
-        "mobile_columns": "2",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "gap": 28,
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      },
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
@@ -603,11 +1256,13 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
+            "background_color": "",
             "video_position": "cover",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -619,16 +1274,44 @@
               "type": "text",
               "settings": {
                 "text": "<h3>Nuestro catálogo</h3>",
-                "type_preset": "h3"
-              }
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "boton": {
               "type": "button",
               "settings": {
                 "label": "Ver todos",
                 "link": "/collections/all",
-                "style_class": "button"
-              }
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -642,9 +1325,11 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
+            "background_color": "",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -660,12 +1345,14 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
+                "border_color": "",
                 "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             },
             "product_title": {
               "type": "product-title",
@@ -681,6 +1368,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -688,7 +1376,8 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             },
             "price": {
               "type": "price",
@@ -705,11 +1394,13 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
+                "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -719,36 +1410,51 @@
           ]
         }
       },
-      "block_order": []
+      "settings": {
+        "collection": "todos-los-productos",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 5,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     },
     "porque": {
       "type": "nuvel-razones",
-      "settings": {
-        "esquema": "claro",
-        "etiqueta": "",
-        "titulo": "Por qué <em>Nuvel</em>",
-        "columnas": "4"
-      },
       "blocks": {
         "punto_1": {
           "type": "punto",
           "settings": {
             "titulo": "Sin costuras",
-            "texto": "Diseñada para no marcarse bajo la ropa."
+            "texto": "Diseñada para no marcarse bajo la ropa.",
+            "enlace": ""
           }
         },
         "punto_2": {
           "type": "punto",
           "settings": {
             "titulo": "No se enrolla",
-            "texto": "Compresión suave que aguanta todo el día sin molestar."
+            "texto": "Compresión suave que aguanta todo el día sin molestar.",
+            "enlace": ""
           }
         },
         "punto_3": {
           "type": "punto",
           "settings": {
             "titulo": "Resiste lavados",
-            "texto": "No pierde la forma ni la compresión al primer lavado."
+            "texto": "No pierde la forma ni la compresión al primer lavado.",
+            "enlace": ""
           }
         },
         "punto_4": {
@@ -765,7 +1471,13 @@
         "punto_2",
         "punto_3",
         "punto_4"
-      ]
+      ],
+      "settings": {
+        "esquema": "claro",
+        "etiqueta": "",
+        "titulo": "Por qué <em>Nuvel</em>",
+        "columnas": "4"
+      }
     },
     "testimonios": {
       "type": "nuvel-opiniones",
@@ -776,18 +1488,13 @@
     },
     "confianza": {
       "type": "nuvel-razones",
-      "settings": {
-        "esquema": "oscuro",
-        "etiqueta": "",
-        "titulo": "Compra con <em>tranquilidad</em>",
-        "columnas": "3"
-      },
       "blocks": {
         "punto_1": {
           "type": "punto",
           "settings": {
             "titulo": "Envío gratis",
-            "texto": "Entrega en 7-15 días laborables, con seguimiento por email."
+            "texto": "Entrega en 7-15 días laborables, con seguimiento por email.",
+            "enlace": ""
           }
         },
         "punto_2": {
@@ -802,7 +1509,8 @@
           "type": "punto",
           "settings": {
             "titulo": "Pago seguro",
-            "texto": "Tus datos protegidos en cada compra."
+            "texto": "Tus datos protegidos en cada compra.",
+            "enlace": ""
           }
         }
       },
@@ -810,51 +1518,122 @@
         "punto_1",
         "punto_2",
         "punto_3"
-      ]
+      ],
+      "settings": {
+        "esquema": "oscuro",
+        "etiqueta": "",
+        "titulo": "Compra con <em>tranquilidad</em>",
+        "columnas": "3"
+      }
     },
     "ctafinal": {
       "type": "hero",
-      "settings": {
-        "media_type_1": "image",
-        "section_height": "large",
-        "horizontal_alignment_flex_direction_column": "center",
-        "toggle_overlay": true,
-        "overlay_color": "#00000080",
-        "padding-block-start": 0,
-        "padding-block-end": 0,
-        "nuvel_campaign": "cierre"
-      },
       "blocks": {
         "titulo": {
           "type": "text",
           "settings": {
             "text": "<h2>Sin aros. Sin costuras.</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "h2",
-            "text_color": "#ffffff"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "texto": {
           "type": "text",
           "settings": {
             "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "rte",
-            "text_color": "#ffffff"
-          }
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#ffffff",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "boton": {
           "type": "button",
           "settings": {
             "label": "Ver la faja invisible",
             "link": "/products/faja-moldeadora-invisible-nuvel",
-            "style_class": "button"
-          }
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "custom_button_background": "{{ settings.color_palette.foreground }}",
+            "custom_button_text": "{{ settings.color_palette.background }}",
+            "custom_button_border": "{{ settings.color_palette.background }}",
+            "link_text_color": "",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "titulo",
         "texto",
         "boton"
-      ]
+      ],
+      "settings": {
+        "media_type_1": "image",
+        "nuvel_campaign": "cierre",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "",
+        "toggle_overlay": true,
+        "overlay_color": "#00000080",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
