@@ -13,7 +13,12 @@
     endfor
   endif
   if product.handle == 'faja-moldeadora-invisible-nuvel'
-    assign allowed = product.variants | where: 'option1', 'Black' | where: 'available', true | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
+    assign faja_color = 'Black Triangle'
+    assign replacement_variants = product.variants | where: 'option1', faja_color
+    if replacement_variants.size == 0
+      assign faja_color = 'Black'
+    endif
+    assign allowed = product.variants | where: 'option1', faja_color | where: 'available', true | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
     assign selected = allowed | where: 'option2', selected.option2 | first | default: allowed.first
   endif
   echo selected.id
