@@ -160,6 +160,7 @@
         capture file
           render 'nuvel-photo-file', image: medium.preview_image, owner: selected_product, studio_gallery: true
         endcapture
+        assign file = file | strip
         if file == wanted
           assign entry = selected_product.media | where: 'id', medium.id
           assign ordered = ordered | concat: entry
