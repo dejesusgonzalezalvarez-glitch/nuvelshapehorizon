@@ -41,7 +41,11 @@
   {% if nuvel_file != blank %}
     {% assign nuvel_ref = image_ref | default: ref_image_to_transition %}
     {% assign nuvel_alt = selected_product.title %}
-    {% if nuvel_file == 'nuvel-corte-tanga-negro.png' %}
+    {% if nuvel_file == 'nuvel-tanga-negro-frente.png' %}
+      {% assign nuvel_alt = 'Body negro de corte tanga, vista delantera sobre fondo blanco.' %}
+    {% elsif nuvel_file == 'nuvel-braguita-negro-frente.png' %}
+      {% assign nuvel_alt = 'Body negro de corte braguita, vista delantera sobre fondo blanco.' %}
+    {% elsif nuvel_file == 'nuvel-corte-tanga-negro.png' %}
       {% assign nuvel_alt = 'Ejemplo de corte tanga del body negro: deja los glúteos más descubiertos. Vista trasera.' %}
     {% elsif nuvel_file == 'nuvel-corte-braguita-negro.png' %}
       {% assign nuvel_alt = 'Ejemplo de corte braguita del body negro: cubre los glúteos. Vista trasera.' %}
