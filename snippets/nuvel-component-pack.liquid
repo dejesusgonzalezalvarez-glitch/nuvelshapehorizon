@@ -4,13 +4,15 @@
     {% assign item = product %}
     {% if pos == 2 %}{% assign item = second %}{% elsif pos == 3 %}{% assign item = third %}{% endif %}
     {% assign first = true %}
+    {% capture default_choice %}{% render 'nuvel-selected-variant-id', product: item %}{% endcapture %}
+    {% assign default_choice_id = default_choice | plus: 0 %}
     <label>{{ item.title | escape }}<select>
       {% for v in item.variants %}
         {% unless v.available %}{% continue %}{% endunless %}
         {% if v.title contains '3XL' or v.title contains 'XXXL' %}{% continue %}{% endif %}
         {% if item.handle == 'sujetador-corrector-postura' %}{% unless v.option1 contains '1 Sujetador' %}{% continue %}{% endunless %}{% endif %}
         {% if first %}{% assign total = total | plus: v.price %}{% assign first = false %}{% endif %}
-        <option value="{{ v.id }}" data-price="{{ v.price }}">{% render 'nuvel-opcion', value: v.title %}</option>
+        <option value="{{ v.id }}" data-price="{{ v.price }}"{% if v.id == default_choice_id %} selected{% endif %}>{% render 'nuvel-opcion', value: v.title %}</option>
       {% endfor %}
     </select></label>
     {% if first %}{% assign unavailable = true %}{% endif %}
