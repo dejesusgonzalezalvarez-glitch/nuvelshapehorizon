@@ -46,5 +46,16 @@
     </select>
   </label>
   <div data-options-ui></div>
+  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
+    <div class="nuvel-cut-description">
+      <p><strong>Tanga:</strong> deja los glúteos más descubiertos.</p>
+      <p><strong>Braguita:</strong> cubre los glúteos.</p>
+    </div>
+  {% endif %}
 </nuvel-product-options>
 <script type="module" src="{{ 'nuvel-product-options.js' | asset_url }}"></script>
+
+{% stylesheet %}
+  .nuvel-cut-description { margin-block: .5rem 1rem; font-size: .875rem; line-height: 1.5; }
+  .nuvel-cut-description p { margin: .25rem 0; }
+{% endstylesheet %}

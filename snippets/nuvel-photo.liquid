@@ -11,6 +11,9 @@
 {% enddoc %}
 {%- liquid
   case file
+    when 'nuvel-corte-tanga-negro.png', 'nuvel-corte-braguita-negro.png'
+      assign w = 1254
+      assign h = 1254
     when 'nuvel-faja-modelo-espalda.webp', 'nuvel-hover-faja.webp'
       assign w = 800
       assign h = 1000

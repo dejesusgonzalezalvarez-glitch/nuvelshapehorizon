@@ -8,6 +8,14 @@
 {%- liquid
   assign filename = image.src | split: '?' | first | split: '/' | last | split: '.' | first | split: '_' | first
   case filename
+    when '654951c64e3e8d0dc02a277d727c'
+      if studio_gallery and owner.handle == 'faja-moldeadora-invisible-nuvel'
+        echo 'nuvel-corte-tanga-negro.png'
+      endif
+    when '5ab2a05d4260af56d8d65602f459'
+      if studio_gallery and owner.handle == 'faja-moldeadora-invisible-nuvel'
+        echo 'nuvel-corte-braguita-negro.png'
+      endif
     when 'producto-frente', 'ad0c4e0e47f9adb3e2957826db54', '621971c145818920ccfd34569be5'
       echo 'producto-frente.jpg'
     when 'nuvel-hover-faja', '45ff059f43acb77c434dc97147f4'
