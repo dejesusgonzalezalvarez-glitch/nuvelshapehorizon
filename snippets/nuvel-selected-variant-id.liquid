@@ -20,7 +20,8 @@
     endif
     assign allowed = product.variants | where: 'available', true | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
     assign default_choices = allowed | where: 'option1', faja_color
-    assign selected = default_choices.first | default: allowed.first
+    assign default_small = default_choices | where: 'option2', 'S' | first
+    assign selected = default_small | default: default_choices.first | default: allowed.first
     if product.selected_variant != blank
       assign requested = allowed | where: 'id', product.selected_variant.id | first
       assign selected = requested | default: selected

@@ -85,7 +85,8 @@ class NuvelProductOptions extends HTMLElement {
     const lots = [...new Set(items.map(item => item.lot))];
     if (lots.length > 1) group('Unidades',lots,current.lot,(item,v) => item.lot === v);
     const subset = items.filter(item => item.lot === current.lot);
-    const colors = [...new Set(subset.map(item => item.color))];
+    const colors = [...new Set(subset.map(item => item.color))]
+      .sort((a,b) => Number(b === 'Negro') - Number(a === 'Negro'));
     if (colors.length > 1) group('Color',colors,current.color,(item,v) => item.lot === current.lot && item.color === v,true);
     const colorItems = subset.filter(item => item.color === current.color);
     const styles = [...new Set(colorItems.map(item => item.style))].filter(Boolean);
