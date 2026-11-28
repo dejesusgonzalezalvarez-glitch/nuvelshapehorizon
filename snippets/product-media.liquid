@@ -38,6 +38,7 @@
     assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
   %}
   {%- capture nuvel_file -%}{% render 'nuvel-photo-file', image: media.preview_image, owner: selected_product, studio_gallery: true %}{%- endcapture -%}
+  {% assign nuvel_file = nuvel_file | strip %}
   {% if nuvel_file != blank %}
     {% assign nuvel_ref = image_ref | default: ref_image_to_transition %}
     {% assign nuvel_alt = selected_product.title %}
