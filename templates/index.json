@@ -1500,7 +1500,7 @@
         "punto_2": {
           "type": "punto",
           "settings": {
-            "titulo": "30 días de prueba",
+            "titulo": "Devoluciones hasta 30 días",
             "texto": "Consulta las condiciones de devolución.",
             "enlace": "/policies/refund-policy"
           }
@@ -1557,7 +1557,7 @@
         "texto": {
           "type": "text",
           "settings": {
-            "text": "<p>30 días de prueba: si no te convence, te devolvemos el dinero.</p>",
+            "text": "<p>Devoluciones hasta 30 días: si no te convence, te devolvemos el dinero.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
