@@ -198,4 +198,11 @@
     line-height: 1.4;
     pointer-events: none;
   }
+  @media (max-width: 749px) {
+    .media-gallery--carousel .product-media:has(> .nuvel-gallery-label),
+    .media-gallery--grid .product-media:has(> .nuvel-gallery-label) {
+      padding-bottom: 3.5rem;
+    }
+    media-gallery .nuvel-gallery-label { bottom: 1.5rem; }
+  }
 {% endstylesheet %}
