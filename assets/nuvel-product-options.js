@@ -3,6 +3,8 @@ const palette = [
   ['Beige', '#d9c7b0', /\b(skin(?:tone)?|beige|nude)\b/i],
   ['Marrón', '#7a5a43', /\b(brown|marrón)\b/i],
   ['Rosa', '#e8b4bc', /\b(pink|rosa)\b/i],
+  ['Azul', '#87aaca', /\b(blue|azul)\b/i],
+  ['Blanco', '#ffffff', /\b(white|blanco)\b/i],
   ['Gris', '#9a9a9a', /\b(gr[ae]y|gris)\b/i],
 ];
 const sizeOrder = ['XXS','XS','S','M','L','XL','XXL','2XL','XXXL','3XL','4XL','5XL','6XL'];
@@ -27,7 +29,8 @@ class NuvelProductOptions extends HTMLElement {
       const raw = option.dataset.raw;
       const color = palette.find(entry => entry[2].test(raw));
       const lot = raw.match(/\b(\d+)\s*(?:sujetador(?:es)?|pcs?)\b/i);
-      return {option, color:color?.[0] || raw, hex:color?.[1], size:option.dataset.size, lot:option.dataset.lot || lot?.[1] || '1'};
+      const style = /\bt back\b/i.test(raw) ? 'Tanga' : /\btriangle\b/i.test(raw) ? 'Braguita' : '';
+      return {option, color:color?.[0] || raw, hex:color?.[1], style, size:option.dataset.size, lot:option.dataset.lot || lot?.[1] || '1'};
     });
     const current = items.find(item => item.option.selected) || items[0];
     if (!current) return;
@@ -50,7 +53,9 @@ class NuvelProductOptions extends HTMLElement {
       box.append(heading);
       for (const value of values) {
         const candidates = items.filter(item => match(item,value) && !item.option.disabled);
-        const next = candidates.find(item => item.size === current.size && item.color === current.color)
+        const next = candidates.find(item => item.size === current.size && item.color === current.color && item.style === current.style)
+          || candidates.find(item => item.size === current.size && item.style === current.style)
+          || candidates.find(item => item.size === current.size && item.color === current.color)
           || candidates.find(item => item.size === current.size) || candidates[0];
         const wrap = document.createElement('label');
         const input = document.createElement('input');
@@ -60,6 +65,7 @@ class NuvelProductOptions extends HTMLElement {
         input.disabled = !next;
         input.dataset.key = label + '/' + value;
         input.setAttribute('aria-label',value);
+        wrap.title = value;
         const face = document.createElement('span');
         face.className = 'nv-chip';
         const hex = colorGroup && items.find(item => item.color === value)?.hex;
@@ -81,8 +87,11 @@ class NuvelProductOptions extends HTMLElement {
     const subset = items.filter(item => item.lot === current.lot);
     const colors = [...new Set(subset.map(item => item.color))];
     if (colors.length > 1) group('Color',colors,current.color,(item,v) => item.lot === current.lot && item.color === v,true);
-    const sizes = [...new Set(subset.map(item => item.size))].sort((a,b) => (sizeOrder.includes(a)?sizeOrder.indexOf(a):99)-(sizeOrder.includes(b)?sizeOrder.indexOf(b):99));
-    group('Talla',sizes,current.size,(item,v) => item.lot === current.lot && item.color === current.color && item.size === v);
+    const colorItems = subset.filter(item => item.color === current.color);
+    const styles = [...new Set(colorItems.map(item => item.style))].filter(Boolean);
+    if (styles.length) group('Corte',styles,current.style,(item,v) => item.lot === current.lot && item.color === current.color && item.style === v);
+    const sizes = [...new Set(colorItems.filter(item => item.style === current.style).map(item => item.size))].sort((a,b) => (sizeOrder.includes(a)?sizeOrder.indexOf(a):99)-(sizeOrder.includes(b)?sizeOrder.indexOf(b):99));
+    group('Talla',sizes,current.size,(item,v) => item.lot === current.lot && item.color === current.color && item.style === current.style && item.size === v);
     if (focusKey) Array.from(ui.querySelectorAll('input')).find(el => el.dataset.key === focusKey)?.focus({preventScroll:true});
   }
 }

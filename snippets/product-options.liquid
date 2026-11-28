@@ -1,12 +1,7 @@
 {% liquid
   assign variants = product.variants
   if product.handle == 'faja-moldeadora-invisible-nuvel'
-    assign faja_color = 'Black Triangle'
-    assign replacement_variants = variants | where: 'option1', faja_color
-    if replacement_variants.size == 0
-      assign faja_color = 'Black'
-    endif
-    assign variants = variants | where: 'option1', faja_color | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
+    assign variants = variants | reject: 'option2', '3XL' | reject: 'option2', 'XXXL'
   endif
   capture choice
     render 'nuvel-selected-variant-id', product: product
@@ -24,7 +19,7 @@
   endfor
   assign size_axis = product.options_with_values[size_index]
 %}
-<nuvel-product-options class="nuvel-controls"{% if product.handle == 'faja-moldeadora-invisible-nuvel' %} data-hide-color{% endif %}>
+<nuvel-product-options class="nuvel-controls">
   <label data-fallback>Color y talla
     <select aria-label="Color y talla">
       {% for variant in variants %}

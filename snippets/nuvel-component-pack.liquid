@@ -3,17 +3,11 @@
   {% for pos in (1..qty) %}
     {% assign item = product %}
     {% if pos == 2 %}{% assign item = second %}{% elsif pos == 3 %}{% assign item = third %}{% endif %}
-    {% assign faja_color = 'Black Triangle' %}
-    {% assign replacement_variants = item.variants | where: 'option1', faja_color %}
-    {% if replacement_variants.size == 0 %}{% assign faja_color = 'Black' %}{% endif %}
     {% assign first = true %}
     <label>{{ item.title | escape }}<select>
       {% for v in item.variants %}
         {% unless v.available %}{% continue %}{% endunless %}
         {% if v.title contains '3XL' or v.title contains 'XXXL' %}{% continue %}{% endif %}
-        {% if item.handle == 'faja-moldeadora-invisible-nuvel' %}
-          {% if v.option1 != faja_color or v.option2 == '3XL' or v.option2 == 'XXXL' %}{% continue %}{% endif %}
-        {% endif %}
         {% if item.handle == 'sujetador-corrector-postura' %}{% unless v.option1 contains '1 Sujetador' %}{% continue %}{% endunless %}{% endif %}
         {% if first %}{% assign total = total | plus: v.price %}{% assign first = false %}{% endif %}
         <option value="{{ v.id }}" data-price="{{ v.price }}">{% render 'nuvel-opcion', value: v.title %}</option>

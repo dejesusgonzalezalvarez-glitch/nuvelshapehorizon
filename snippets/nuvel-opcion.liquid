@@ -5,6 +5,14 @@
   {%- assign packed = key | split: ' (' -%}
   {%- if packed.size > 1 -%}{%- assign key = packed.first -%}{%- endif -%}
   {%- case key -%}
+    {%- when 'black t back' -%}Negro · Tanga
+    {%- when 'black triangle' -%}Negro · Braguita
+    {%- when 'skin color t back' -%}Beige · Tanga
+    {%- when 'skin color triangle' -%}Beige · Braguita
+    {%- when 'blue t back' -%}Azul · Tanga
+    {%- when 'white t back' -%}Blanco · Tanga
+    {%- when 'brown triangle' -%}Marrón · Braguita
+    {%- when 'pink t back' -%}Rosa · Tanga
     {%- when 'black' -%}Negro
     {%- when 'black a' -%}Negro · modelo A
     {%- when 'black b' -%}Negro · modelo B
