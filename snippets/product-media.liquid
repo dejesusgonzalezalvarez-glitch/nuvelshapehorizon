@@ -48,6 +48,10 @@
         {% assign nuvel_label = 'Braguita · Frente' %}
       {% elsif nuvel_file == 'producto-espalda.jpg' or nuvel_file == 'nuvel-faja-modelo-espalda.webp' %}
         {% assign nuvel_label = 'Braguita · Detrás' %}
+      {% elsif nuvel_file == 'nuvel-tanga-negro-frente.png' or nuvel_file == 'nuvel-modelo-tanga-frente.png' %}
+        {% assign nuvel_label = 'Tanga · Frente' %}
+      {% elsif nuvel_file == 'nuvel-corte-tanga-negro.png' or nuvel_file == 'nuvel-modelo-corte-tanga-negro.png' %}
+        {% assign nuvel_label = 'Tanga · Detrás' %}
       {% endif %}
       {% if nuvel_label != blank %}
         {% assign nuvel_alt = selected_product.title | append: ' — ' | append: nuvel_label %}
