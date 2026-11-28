@@ -41,6 +41,17 @@
   {% if nuvel_file != blank %}
     {% assign nuvel_ref = image_ref | default: ref_image_to_transition %}
     {% assign nuvel_alt = selected_product.title %}
+    {% assign nuvel_label = '' %}
+    {% if selected_product.handle == 'faja-moldeadora-invisible-nuvel' %}
+      {% if nuvel_file == 'producto-frente.jpg' or nuvel_file == 'nuvel-hover-faja.webp' %}
+        {% assign nuvel_label = 'Braguita · Frente' %}
+      {% elsif nuvel_file == 'producto-espalda.jpg' or nuvel_file == 'nuvel-faja-modelo-espalda.webp' %}
+        {% assign nuvel_label = 'Braguita · Detrás' %}
+      {% endif %}
+      {% if nuvel_label != blank %}
+        {% assign nuvel_alt = selected_product.title | append: ' — ' | append: nuvel_label %}
+      {% endif %}
+    {% endif %}
     {% if nuvel_file == 'nuvel-tanga-negro-frente.png' %}
       {% assign nuvel_alt = 'Body negro de corte tanga, vista delantera sobre fondo blanco.' %}
     {% elsif nuvel_file == 'nuvel-braguita-negro-frente.png' %}
@@ -57,6 +68,9 @@
       {% assign nuvel_alt = 'Modelo con el body negro en versión tanga, vista delantera sobre fondo blanco.' %}
     {% endif %}
     {% render 'nuvel-photo', file: nuvel_file, alt: nuvel_alt, class: 'product-media__image', ref: nuvel_ref, priority: fetch_priority, loading: loading, style: focal_point_style, media_id: media.id %}
+    {% if nuvel_label != blank and preview_image_only != true %}
+      <span class="nuvel-gallery-label">{{ nuvel_label }}</span>
+    {% endif %}
   {% else %}
     {{
       media.preview_image
@@ -159,3 +173,20 @@
 </div>
 
 {% render 'deferred-media-product-model-styles' %}
+
+{% stylesheet %}
+  .product-media:has(> .nuvel-gallery-label) { position: relative; }
+  .nuvel-gallery-label {
+    position: absolute;
+    inset-inline-start: .75rem;
+    bottom: .75rem;
+    z-index: 1;
+    padding: .3rem .5rem;
+    border-radius: 3px;
+    background: #fff;
+    color: #1d1d1f;
+    font-size: clamp(.7rem, 1.2vw, .9rem);
+    line-height: 1.4;
+    pointer-events: none;
+  }
+{% endstylesheet %}
