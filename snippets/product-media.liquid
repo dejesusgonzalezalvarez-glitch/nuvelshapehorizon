@@ -180,14 +180,18 @@
 {% render 'deferred-media-product-model-styles' %}
 
 {% stylesheet %}
-  .product-media:has(> .nuvel-gallery-label) { position: relative; }
+  .product-media:has(> .nuvel-gallery-label) {
+    position: relative;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+  }
   .nuvel-gallery-label {
     position: absolute;
-    inset-inline-start: .75rem;
-    bottom: .75rem;
+    inset-inline: 0;
+    bottom: 0;
     z-index: 1;
     padding: .3rem .5rem;
-    border-radius: 3px;
+    text-align: center;
     background: #fff;
     color: #1d1d1f;
     font-size: clamp(.7rem, 1.2vw, .9rem);
