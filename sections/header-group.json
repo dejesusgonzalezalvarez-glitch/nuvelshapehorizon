@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Encabezado Nuvel",
@@ -8,7 +17,7 @@
         "announcement_envio": {
           "type": "_announcement",
           "settings": {
-            "text": "Envío gratis a toda España · 30 días de prueba",
+            "text": "Envío gratis a Península y Baleares · Devoluciones hasta 30 días",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "letter_spacing": "normal",

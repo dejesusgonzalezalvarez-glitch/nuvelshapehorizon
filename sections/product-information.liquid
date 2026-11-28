@@ -4,13 +4,6 @@
   {{ closest.product | structured_data }}
 </script>
 
-{% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-  <nav class="page-width" aria-label="Ruta de navegación"><a href="{{ routes.root_url }}">Inicio</a> / <a href="{{ routes.all_products_collection_url }}">Catálogo</a> / {{ product.title | escape }}</nav>
-  <div class="nuvel-faja-intro page-width">
-    <h2>No era tu cuerpo. Eran las costuras.</h2>
-    <p>El diseño sin costuras de Nuvel está pensado para que la faja no se marque bajo la ropa.</p>
-  </div>
-{% endif %}
 {% capture media_gallery %}
   {%- content_for 'block',
     type: '_product-media-gallery',
@@ -28,23 +21,6 @@
 {% endcapture %}
 
 {% capture additional_blocks %}
-  {% if product.handle == 'faja-moldeadora-invisible-nuvel' %}
-    {% render 'nuvel-faja-video' %}
-    <div class="nuvel-faja-benefits">
-      <h2>Cómo llega tu pedido</h2>
-      <ol>
-        <li>Preparamos tu pedido</li>
-        <li>En camino</li>
-        <li>Recibido</li>
-      </ol>
-      {% if shop.shipping_policy != blank %}
-        <a href="{{ shop.shipping_policy.url }}">Envíos</a>
-      {% endif %}
-      {% if shop.refund_policy != blank %}
-        <a href="{{ shop.refund_policy.url }}">Devoluciones</a>
-      {% endif %}
-    </div>
-  {% endif %}
   {% content_for 'blocks' %}
 {% endcapture %}
 
@@ -82,19 +58,36 @@
       role="region"
       aria-label="{{ 'products.product.sticky_add_to_cart' | t }}"
     >
-      {% capture sticky_photo %}{% render 'nuvel-catalog-front', product: product %}{% endcapture %}
-      {% if sticky_photo != blank %}
-        <div class="sticky-add-to-cart__image">
-          <img src="{{ sticky_photo | asset_url }}" width="60" height="60" loading="lazy" alt="{{ product.title | escape }}" class="sticky-add-to-cart__image-img" ref="productImage">
+      {% liquid
+        assign image_to_show = current_variant.featured_image | default: product.featured_image
+      %}
+      {% if image_to_show %}
+        <div
+          class="sticky-add-to-cart__image"
+        >
+          {% assign image_alt = image_to_show.alt | default: product.title | escape %}
+          {{
+            image_to_show
+            | image_url: width: 120
+            | image_tag:
+              loading: 'lazy',
+              alt: image_alt,
+              class: 'sticky-add-to-cart__image-img',
+              data-testid: 'sticky-product-image',
+              srcset: null,
+              sizes: null,
+              ref: 'productImage'
+          }}
         </div>
       {% endif %}
+
       {% liquid
         assign has_single_option = false
         if product.has_only_default_variant != true and product.options.size == 1
           assign has_single_option = true
         endif
 
-        if sticky_photo == blank
+        if image_to_show == blank
           assign has_image = false
         else
           assign has_image = true
@@ -121,8 +114,9 @@
         >
           {% unless product.has_only_default_variant %}
             {% if current_variant != blank %}
-              {% render 'nuvel-opcion', value: current_variant.title %}
+              {% capture variant_title %}{% render 'nuvel-opcion', value: current_variant.title %}{% endcapture %}
             {% endif %}
+            {{ variant_title }}
           {% endunless %}
         </div>
       </div>
@@ -154,11 +148,11 @@
           <span class="add-to-cart-text__content">
             <span>
               {%- if current_variant.available -%}
-                Añadir al carrito
+                {{- 'products.product.add_to_cart' | t -}}
               {%- elsif current_variant == blank -%}
-                No disponible
+                {{- 'products.product.unavailable' | t -}}
               {%- else -%}
-                Agotado
+                {{- 'products.product.sold_out' | t -}}
               {%- endif -%}
             </span>
             <span
@@ -196,19 +190,7 @@
   additional_blocks: additional_blocks
 %}
 
-
 {% stylesheet %}
-  .nuvel-faja-intro {
-    padding-block: 1.5rem;
-    text-align: center;
-  }
-
-  .nuvel-faja-benefits {
-    display: grid;
-    gap: .75rem;
-    margin-block: 1rem;
-  }
-
   .sticky-add-to-cart__bar {
     position: fixed;
     bottom: max(20px, var(--safe-area-inset-bottom));
@@ -283,8 +265,7 @@
   .sticky-add-to-cart__image-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background: #fff;
+    object-fit: cover;
   }
 
   .sticky-add-to-cart__info {
@@ -335,7 +316,7 @@
     }
 
     .sticky-add-to-cart__bar .add-to-cart-text__content {
-      display: inline;
+      display: none;
     }
 
     .sticky-add-to-cart__info[data-has-image='false'] {
@@ -347,7 +328,7 @@
     }
 
     .sticky-add-to-cart__button {
-      padding-inline: .75rem;
+      padding: var(--padding-lg);
     }
 
     .sticky-add-to-cart__price {
@@ -355,7 +336,7 @@
     }
 
     .sticky-add-to-cart__button {
-      width: auto;
+      width: var(--height-buy-buttons);
     }
 
     sticky-add-to-cart:not([data-variant-available='true']) .add-to-cart-text__content {
@@ -413,16 +394,6 @@
     "groups": ["header", "footer"]
   },
   "settings": [
-    {
-      "type": "product",
-      "id": "nuvel_duo",
-      "label": "Pack de 2 fajas Nuvel"
-    },
-    {
-      "type": "product",
-      "id": "nuvel_look",
-      "label": "Pack Look completo Nuvel"
-    },
     {
       "type": "header",
       "content": "t:content.layout"
