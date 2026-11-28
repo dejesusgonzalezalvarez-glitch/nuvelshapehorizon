@@ -53,6 +53,8 @@
       {% assign nuvel_alt = 'Modelo con el body negro en versión braguita, vista trasera de catálogo.' %}
     {% elsif nuvel_file == 'nuvel-modelo-corte-tanga-negro.png' %}
       {% assign nuvel_alt = 'Modelo con el body negro en versión tanga, vista trasera de catálogo.' %}
+    {% elsif nuvel_file == 'nuvel-modelo-tanga-frente.png' %}
+      {% assign nuvel_alt = 'Modelo con el body negro en versión tanga, vista delantera sobre fondo blanco.' %}
     {% endif %}
     {% render 'nuvel-photo', file: nuvel_file, alt: nuvel_alt, class: 'product-media__image', ref: nuvel_ref, priority: fetch_priority, loading: loading, style: focal_point_style, media_id: media.id %}
   {% else %}

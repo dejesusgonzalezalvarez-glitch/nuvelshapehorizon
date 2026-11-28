@@ -146,7 +146,7 @@
   endcapture
   if selected_product.handle == 'faja-moldeadora-invisible-nuvel' or selected_product.handle == 'womens-shapewear-dress-jumpsuit'
     assign ordered = '' | split: ','
-    assign order = 'producto-frente.jpg,nuvel-hover-faja.webp,producto-espalda.jpg,nuvel-faja-modelo-espalda.webp,nuvel-tanga-negro-frente.png,nuvel-corte-tanga-negro.png,nuvel-modelo-corte-tanga-negro.png'
+    assign order = 'producto-frente.jpg,nuvel-hover-faja.webp,producto-espalda.jpg,nuvel-faja-modelo-espalda.webp,nuvel-tanga-negro-frente.png,nuvel-corte-tanga-negro.png,nuvel-modelo-tanga-frente.png,nuvel-modelo-corte-tanga-negro.png'
     if selected_product.handle == 'womens-shapewear-dress-jumpsuit'
       assign selected_color = selected_product.selected_variant.title | downcase
       assign order = 'nuvel-vestido-negro-blanco.webp,nuvel-vestido-gris-blanco.webp'
