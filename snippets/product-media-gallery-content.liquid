@@ -188,7 +188,7 @@
         endif
         assign seen_files = seen_files | append: display_file | append: '|'
       endif
-      assign entry = sorted_media | where: 'id', medium.id
+      assign entry = selected_product.media | where: 'id', medium.id
       assign unique_media = unique_media | concat: entry
     endfor
     if unique_media.size > 0
