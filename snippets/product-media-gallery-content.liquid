@@ -146,7 +146,7 @@
   endcapture
   if selected_product.handle == 'faja-moldeadora-invisible-nuvel' or selected_product.handle == 'womens-shapewear-dress-jumpsuit'
     assign ordered = '' | split: ','
-    assign order = 'producto-frente.jpg,nuvel-hover-faja.webp,producto-espalda.jpg,nuvel-faja-modelo-espalda.webp,nuvel-tanga-negro-frente.png,nuvel-corte-tanga-negro.png,nuvel-braguita-negro-frente.png,nuvel-corte-braguita-negro.png,nuvel-modelo-corte-tanga-negro.png,nuvel-modelo-corte-braguita-negro.png'
+    assign order = 'producto-frente.jpg,nuvel-hover-faja.webp,producto-espalda.jpg,nuvel-faja-modelo-espalda.webp,nuvel-tanga-negro-frente.png,nuvel-corte-tanga-negro.png,nuvel-modelo-corte-tanga-negro.png'
     if selected_product.handle == 'womens-shapewear-dress-jumpsuit'
       assign selected_color = selected_product.selected_variant.title | downcase
       assign order = 'nuvel-vestido-negro-blanco.webp,nuvel-vestido-gris-blanco.webp'
@@ -181,6 +181,11 @@
         assign display_file = display_file | strip
         if display_file == blank
           continue
+        endif
+        if selected_product.handle == 'faja-moldeadora-invisible-nuvel'
+          if display_file == 'nuvel-braguita-negro-frente.png' or display_file == 'nuvel-corte-braguita-negro.png' or display_file == 'nuvel-modelo-corte-braguita-negro.png'
+            continue
+          endif
         endif
         assign marker = display_file | prepend: '|' | append: '|'
         if seen_files contains marker
