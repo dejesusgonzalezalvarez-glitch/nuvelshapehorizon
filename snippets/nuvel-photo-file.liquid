@@ -8,6 +8,10 @@
 {%- liquid
   assign filename = image.src | split: '?' | first | split: '/' | last | split: '.' | first | split: '_' | first
   case filename
+    when '75c7809549ba979495255a0b1d2f'
+      if studio_gallery and owner.handle == 'faja-moldeadora-invisible-nuvel'
+        echo 'nuvel-modelo-corte-braguita-negro.png'
+      endif
     when '654951c64e3e8d0dc02a277d727c'
       if studio_gallery and owner.handle == 'faja-moldeadora-invisible-nuvel'
         echo 'nuvel-corte-tanga-negro.png'
